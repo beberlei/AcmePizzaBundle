@@ -29,7 +29,7 @@ class OrderController extends Controller
         }
 
         return $this->render('AcmePizzaBundle:Order:index.html.twig', array(
-            'form' => $orderForm->getRenderer()
+            'form' => $factory->createRenderer($orderForm, 'twig')
         ));
     }
 }

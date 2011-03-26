@@ -31,7 +31,7 @@ class PizzaController extends Controller
         }
 
         return $this->render('AcmePizzaBundle:Pizza:create.html.twig', array(
-            'form' => $pizzaForm->getRenderer(),
+            'form' => $factory->createRenderer($pizzaForm, 'twig')
         ));
     }
 
@@ -60,7 +60,7 @@ class PizzaController extends Controller
         }
 
         return $this->render('AcmePizzaBundle:Pizza:edit.html.twig', array(
-            'form' => $pizzaForm->getRenderer(),
+            'form' => $factory->createRenderer($pizzaForm, 'twig'),
             'pizza' => $pizza,
         ));
     }

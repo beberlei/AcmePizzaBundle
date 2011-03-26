@@ -13,13 +13,15 @@ class OrderFactory
     private $knownCustomer = false;
 
     /**
-     *
      * Phone number of known customer.
      *
      * @var string
      */
     private $knownPhone = "";
 
+    /**
+     * @var Address
+     */
     private $address;
 
     /**
@@ -99,7 +101,9 @@ class OrderFactory
                 true
             );
         }
-        return ($this->address instanceof Address);
+        if (!($this->address instanceof Address)) {
+            $context->addViolation('Invalid address given', array(), $this->address);
+        }
     }
 
     /**
@@ -108,7 +112,11 @@ class OrderFactory
      */
     public function pickedPizzaItems($context)
     {
-        if (count($this->items) == 0) {
+        $count = 0;
+        foreach ($this->items AS $item) {
+            $count += $item->getCount();
+        }
+        if ($count === 0) {
             $context->setPropertyPath($context->getPropertyPath().'.items');
             $context->addViolation('You have pick at least one pizza', array(), null);
         }
