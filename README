@@ -1,3 +1,24 @@
 This is a test-bundle for the experimental form support.
 
 It is very early status and will be finalized as a demo example over the weekend.
+
+Distribution: Best used with Symfony Standard Edition
+
+Requirements:
+
+Symfony has to be loaded from bschussek's experimental branch (github.com/bschussek/symfony/tree/experimental)
+
+Installation:
+=============
+
+1. Add Bundle to Kernel
+2. Add AcmePizzaBundle to Doctrine ORM Mappings
+3. Create Database + Database Schema (4 tables)
+4. Register AcmePizzaBundle/Resources/config/routing.yml in app/config/routing.yml
+
+Use:
+====
+
+Go to app_dev.php/pizza
+
+
