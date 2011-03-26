@@ -1,0 +1,9 @@
+{% include "AcmePizzaBundle::nav.html.twig" %}
+
+<h1>Create a Pizza</h1>
+
+<form method="post" action="{{ path("pizza_create") }}">
+{{ form.widget }}
+
+<input type="submit" value="Put this tasty Pizza on the menu!" />
+</form>

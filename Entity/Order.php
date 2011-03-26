@@ -16,50 +16,33 @@ class Order
      * @orm:column(type="datetime")
      */
     private $date;
+
     /**
-     * @orm:column(type="boolean")
-     * @var bool
-     */
-    private $knownCustomer;
-    /**
-     * @orm:ManyToOne(targetEntity="Address")
+     * @orm:ManyToOne(targetEntity="Address", cascade={"persist"})
      * @var Address
      */
     private $address;
     /**
-     * @orm:OneToMany(targetEntity="PizzaItem", mappedBy="order")
+     * @orm:OneToMany(targetEntity="PizzaItem", mappedBy="order", cascade={"persist"})
      */
     private $items;
 
-    public function __construct()
+    public function __construct(Address $address, array $items)
     {
-        $this->items = new ArrayCollection();
-        $this->items[] = new PizzaItem();
+        $this->address = $address;
+        $this->items = new ArrayCollection($items);
         $this->date = new \DateTime("now");
     }
 
-    public function setKnownCustomer($bool)
-    {
-        $this->knownCustomer = (bool)$bool;
+    public function getId() {
+        return $this->id;
     }
 
-    public function getKnownCustomer()
-    {
-        return $this->knownCustomer;
+    public function getDate() {
+        return $this->date;
     }
 
-    public function setAddress($address)
-    {
-        $this->address = $address;
-    }
-
-    public function getAddress()
-    {
+    public function getAddress() {
         return $this->address;
-    }
-
-    public function getItems()
-    {
-        return $this->items;
     }
 }

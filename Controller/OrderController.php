@@ -8,18 +8,28 @@ class OrderController extends Controller
 {
     public function indexAction()
     {
-        $order = new \Acme\PizzaBundle\Entity\Order();
+        $request = $this->get('request');
+        $em = $this->get('doctrine.orm.entity_manager');
+        $orderFactory = new \Acme\PizzaBundle\Entity\OrderFactory($em);
 
         $factory = $this->get('form.factory');
-        $form = $factory->create('Acme\PizzaBundle\Form\OrderFormType');
-        $form->setData($order);
+        $orderForm = $factory->create('Acme\PizzaBundle\Form\OrderFormType');
+        $orderForm->setData($orderFactory);
 
-        xdebug_start_trace("/tmp/forms");
-        $renderer = $form->getRenderer();
-        $response = $this->render('AcmePizzaBundle:Order:index.html.twig', array(
-            'form' => $renderer,
+        if ($request->getMethod() == 'POST') {
+            $orderForm->bindRequest($request);
+
+            if ($orderForm->isValid()) {
+                $em = $this->get('doctrine.orm.entity_manager');
+                $em->persist($orderFactory->createOrder());
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('pizza_list'));
+            }
+        }
+
+        return $this->render('AcmePizzaBundle:Order:index.html.twig', array(
+            'form' => $orderForm->getRenderer()
         ));
-        \xdebug_stop_trace();
-        return $response;
     }
 }

@@ -7,10 +7,27 @@ namespace Acme\PizzaBundle\Entity;
  */
 class PizzaItem
 {
-    /** @orm:generatedValue @orm:id @orm:column(type="integer") */
+    /**
+     * @orm:generatedValue @orm:id @orm:column(type="integer")
+     */
     private $id;
+    /**
+     * @var Pizza
+     * @orm:ManyToOne(targetEntity="Pizza")
+     */
     private $pizza;
+    /**
+     * @orm:Column(type="integer")
+     * @validation:min(1)
+     * @var int
+     */
     private $count;
+
+    public function __construct(Pizza $pizza, $count)
+    {
+        $this->pizza = $pizza;
+        $this->count = $count;
+    }
 
     public function getPizza() {
         return $this->pizza;

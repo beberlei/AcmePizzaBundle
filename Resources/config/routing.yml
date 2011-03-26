@@ -1,0 +1,15 @@
+pizza_order:
+  pattern: /pizza
+  defaults: { _controller: AcmePizzaBundle:Order:index }
+
+pizza_create:
+  pattern: /pizza/create
+  defaults: { _controller: AcmePizzaBundle:Pizza:create }
+
+pizza_list:
+  pattern: /pizza/list
+  defaults: { _controller: AcmePizzaBundle:Pizza:list }
+
+pizza_edit:
+  pattern: /pizza/{id}
+  defaults: { _controller: AcmePizzaBundle:Pizza:edit }
