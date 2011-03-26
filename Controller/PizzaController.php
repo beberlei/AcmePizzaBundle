@@ -3,6 +3,7 @@
 namespace Acme\PizzaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Acme\PizzaBundle\Form\PizzaType;
 
 class PizzaController extends Controller
 {
@@ -11,7 +12,7 @@ class PizzaController extends Controller
         $request = $this->get('request');
         $factory = $this->get('form.factory');
         /* @var $pizzaForm \Symfony\Component\Form\Form */
-        $pizzaForm = $factory->create('Acme\PizzaBundle\Form\PizzaType');
+        $pizzaForm = $factory->create(new PizzaType());
 
         $pizza = new \Acme\PizzaBundle\Entity\Pizza();
         $pizzaForm->setData($pizza);
@@ -46,7 +47,7 @@ class PizzaController extends Controller
         $request = $this->get('request');
         $factory = $this->get('form.factory');
         /* @var $pizzaForm \Symfony\Component\Form\Form */
-        $pizzaForm = $factory->create('Acme\PizzaBundle\Form\PizzaType');
+        $pizzaForm = $factory->create(new PizzaType());
         $pizzaForm->setData($pizza);
 
         if ($request->getMethod() == 'POST') {

@@ -3,6 +3,7 @@
 namespace Acme\PizzaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Acme\PizzaBundle\Form\OrderFormType;
 
 class OrderController extends Controller
 {
@@ -13,7 +14,7 @@ class OrderController extends Controller
         $orderFactory = new \Acme\PizzaBundle\Entity\OrderFactory($em);
 
         $factory = $this->get('form.factory');
-        $orderForm = $factory->create('Acme\PizzaBundle\Form\OrderFormType');
+        $orderForm = $factory->create(new OrderFormType());
         $orderForm->setData($orderFactory);
 
         if ($request->getMethod() == 'POST') {

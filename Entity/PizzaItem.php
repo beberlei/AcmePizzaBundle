@@ -13,6 +13,7 @@ class PizzaItem
     private $id;
     /**
      * @var Pizza
+     * @validation:AssertType(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
      * @orm:ManyToOne(targetEntity="Pizza")
      */
     private $pizza;
@@ -23,7 +24,7 @@ class PizzaItem
      */
     private $count;
 
-    public function __construct(Pizza $pizza, $count)
+    public function __construct(Pizza $pizza = null, $count = 0)
     {
         $this->pizza = $pizza;
         $this->count = $count;
