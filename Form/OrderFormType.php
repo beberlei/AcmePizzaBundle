@@ -13,17 +13,10 @@ class OrderFormType extends AbstractType
             'choices' => array(0 => 'No', 1 => 'Yes'),
         ));
         $builder->add('knownPhone', 'text');
-        $builder->add('address', 'Acme\PizzaBundle\Form\AddressType');
+        $add = $builder->add('address', new AddressType());
         $builder->add('items', 'collection', array(
-            'type' => 'Acme\PizzaBundle\Form\PizzaItemType',
+            'type' => new PizzaItemType(),
             'modifiable' => true,
         ));
-    }
-
-    public function getDefaultOptions(array $options)
-    {
-        return array(
-            'data_class' => 'Acme\PizzaBundle\Entity\OrderFactory',
-        );
     }
 }
