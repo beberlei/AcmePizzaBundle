@@ -7,9 +7,8 @@ use Symfony\Component\Form\FormBuilder;
 
 class OrderFormType extends AbstractType
 {
-    public function configure(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->setDataClass('Acme\PizzaBundle\Entity\OrderFactory');
         $builder->add('knownCustomer', 'choice', array(
             'choices' => array(0 => 'No', 1 => 'Yes'),
         ));
@@ -19,5 +18,12 @@ class OrderFormType extends AbstractType
             'type' => 'Acme\PizzaBundle\Form\PizzaItemType',
             'modifiable' => true,
         ));
+    }
+
+    public function getDefaultOptions(array $options)
+    {
+        return array(
+            'data_class' => 'Acme\PizzaBundle\Entity\OrderFactory',
+        );
     }
 }

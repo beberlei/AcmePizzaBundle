@@ -7,10 +7,16 @@ use Symfony\Component\Form\FormBuilder;
 
 class PizzaType extends AbstractType
 {
-    public function configure(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->setDataClass('Acme\PizzaBundle\Entity\Pizza');
         $builder->add('name', 'text');
         $builder->add('price', 'money');
+    }
+
+    public function getDefaultOptions(array $options)
+    {
+        return array(
+            'data_class' => 'Acme\PizzaBundle\Entity\Pizza',
+        );
     }
 }
