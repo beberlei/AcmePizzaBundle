@@ -69,7 +69,7 @@ class PizzaController extends Controller
     public function listAction()
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $pizzas = $em->getRepository('Acme\PizzaBundle\Entity\Pizza')->findAll();
+        $pizzas = $em->getRepository('AcmePizza:Pizza')->findAll();
 
         return $this->render('AcmePizza:Pizza:list.html.twig', array(
             'pizzas' => $pizzas,
