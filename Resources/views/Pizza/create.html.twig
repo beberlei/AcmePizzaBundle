@@ -1,4 +1,8 @@
-{% include "AcmePizzaBundle::nav.html.twig" %}
+{% extends "AcmePizzaBundle::layout.html.twig" %}
+
+{% block title parent() ~ " - Create" %}
+
+{% block content %}
 
 <h1>Create a Pizza</h1>
 
@@ -7,3 +11,5 @@
 
 <input type="submit" value="Put this tasty Pizza on the menu!" />
 </form>
+
+{% endblock %}
