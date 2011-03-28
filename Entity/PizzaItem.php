@@ -13,13 +13,13 @@ class PizzaItem
     private $id;
     /**
      * @var Pizza
-     * @validation:AssertType(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
+     * @assert:Type(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
      * @orm:ManyToOne(targetEntity="Pizza")
      */
     private $pizza;
     /**
      * @orm:Column(type="integer")
-     * @validation:min(1)
+     * @assert:min(1)
      * @var int
      */
     private $count;

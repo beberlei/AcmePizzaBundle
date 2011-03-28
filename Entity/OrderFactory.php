@@ -3,7 +3,7 @@
 namespace Acme\PizzaBundle\Entity;
 
 /**
- * @validation:callback(methods={"isValidAddress", "pickedPizzaItems"})
+ * @assert:callback(methods={"isValidAddress", "pickedPizzaItems"})
  */
 class OrderFactory
 {
@@ -25,7 +25,7 @@ class OrderFactory
     private $address;
 
     /**
-     * @validation:Valid()
+     * @assert:Valid()
      */
     private $items = array();
 
