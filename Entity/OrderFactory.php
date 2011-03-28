@@ -80,9 +80,7 @@ class OrderFactory
 
     public function setItems($items)
     {
-        foreach ((array)$items AS $item) {
-            $this->items[] = new PizzaItem($item['pizza'], $item['count']);
-        }
+        $this->items = $items;
     }
 
     /**
