@@ -31,7 +31,7 @@ class PizzaController extends Controller
             }
         }
 
-        return $this->render('AcmePizzaBundle:Pizza:create.html.twig', array(
+        return $this->render('AcmePizza:Pizza:create.html.twig', array(
             'form' => $factory->createRenderer($pizzaForm, 'twig')
         ));
     }
@@ -60,7 +60,7 @@ class PizzaController extends Controller
             }
         }
 
-        return $this->render('AcmePizzaBundle:Pizza:edit.html.twig', array(
+        return $this->render('AcmePizza:Pizza:edit.html.twig', array(
             'form' => $factory->createRenderer($pizzaForm, 'twig'),
             'pizza' => $pizza,
         ));
@@ -71,7 +71,7 @@ class PizzaController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
         $pizzas = $em->getRepository('Acme\PizzaBundle\Entity\Pizza')->findAll();
 
-        return $this->render('AcmePizzaBundle:Pizza:list.html.twig', array(
+        return $this->render('AcmePizza:Pizza:list.html.twig', array(
             'pizzas' => $pizzas,
         ));
     }

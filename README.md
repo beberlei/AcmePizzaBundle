@@ -41,7 +41,7 @@ Installation
                 default:
                     mappings:
                         [...]
-                        AcmePizzaBundle: ~
+                        AcmePizza: ~
 
 ### Create database and schema
 
@@ -52,7 +52,7 @@ Installation
 
     # app/config/routing.yml
     pizza:
-        resource: "@AcmePizzaBundle/Resources/config/routing.yml"
+        resource: "@AcmePizza/Resources/config/routing.yml"
 
 ### Refresh asset folder
 
