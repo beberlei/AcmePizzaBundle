@@ -13,12 +13,12 @@ class Pizza
     private $id;
     /**
      * @orm:column(type="string")
-     * @validation:NotBlank()
-     * @validation:MinLength(5)
+     * @assert:NotBlank()
+     * @assert:MinLength(5)
      */
     private $name;
     /**
-     * @validation:Min(2)
+     * @assert:Min(2)
      * @orm:column(type="decimal", scale=2, precision=5)
      * 
      */

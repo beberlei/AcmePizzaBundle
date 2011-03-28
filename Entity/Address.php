@@ -13,22 +13,22 @@ class Address
     private $id;
     /**
      * @orm:column(type="string")
-     * @validation:NotBlank
+     * @assert:NotBlank
      */
     private $name;
     /**
      * @orm:column(type="string")
-     * @validation:NotBlank
+     * @assert:NotBlank
      */
     private $street;
     /**
      * @orm:column(type="string")
-     * @validation:NotBlank
+     * @assert:NotBlank
      */
     private $city;
     /**
      * @orm:column(type="string")
-     * @validation:NotBlank
+     * @assert:NotBlank
      */
     private $phone;
 
