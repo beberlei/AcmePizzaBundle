@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/acmepizza/css/main.css') }}" />
+        <title>{% block title %}Pizza Bundle{% endblock %}</title>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    </head>
+    <body>
+    
+        <div class="nav">
+            <ul>
+                <li><a href="{{ path("pizza_order")  }}">New Pizza-Order</a></li>
+                <li><a href="{{ path("pizza_list")   }}">Pizza Menu</a></li>
+                <li><a href="{{ path("pizza_create") }}">Create new Pizza</a></li>
+            </ul>
+        </div>
+
+        <hr />
+
+        {% block content %}
+        {% endblock %}
+
+    </body>
+</html>

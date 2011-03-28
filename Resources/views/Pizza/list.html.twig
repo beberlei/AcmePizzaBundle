@@ -1,4 +1,8 @@
-{% include "AcmePizzaBundle::nav.html.twig" %}
+{% extends "AcmePizzaBundle::layout.html.twig" %}
+
+{% block title parent() ~ " - List" %}
+
+{% block content %}
 
 <table>
     <thead>
@@ -18,3 +22,5 @@
 {% endfor %}
     </tbody>
 </table>
+
+{% endblock %}

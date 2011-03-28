@@ -54,6 +54,10 @@ Installation
     pizza:
         resource: "@AcmePizzaBundle/Resources/config/routing.yml"
 
+### Refresh asset folder
+
+    ./app/console assets:install web/
+
 Usage
 -----
 

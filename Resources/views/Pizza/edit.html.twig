@@ -1,4 +1,8 @@
-{% include "AcmePizzaBundle::nav.html.twig" %}
+{% extends "AcmePizzaBundle::layout.html.twig" %}
+
+{% block title parent() ~ " - Edit" %}
+
+{% block content %}
 
 <h1>Edit Pizza "{{pizza.name}}"</h1>
 
@@ -7,3 +11,5 @@
 
 <input type="submit" value="Update this tasty Pizza!" />
 </form>
+
+{% endblock %}
