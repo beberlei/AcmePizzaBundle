@@ -5,8 +5,15 @@ namespace Acme\PizzaBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\PizzaBundle\Form\OrderFormType;
 
+/**
+ * @extra:Route("/pizza/order")
+ */
 class OrderController extends Controller
 {
+    /**
+     * @extra:Route("/index", name="pizza_order_index")
+     * @extra:Template()
+     */
     public function indexAction()
     {
         $request = $this->get('request');
@@ -29,8 +36,8 @@ class OrderController extends Controller
             }
         }
 
-        return $this->render('AcmePizza:Order:index.html.twig', array(
+        return array(
             'form' => $factory->createRenderer($orderForm, 'twig')
-        ));
+        );
     }
 }

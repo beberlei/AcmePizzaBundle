@@ -5,8 +5,15 @@ namespace Acme\PizzaBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Acme\PizzaBundle\Form\PizzaType;
 
+/**
+ * @extra:Route("/pizza/pizza")
+ */
 class PizzaController extends Controller
 {
+    /**
+     * @extra:Route("/create", name="pizza_pizza_create")
+     * @extra:Template()
+     */
     public function createAction()
     {
         $request = $this->get('request');
@@ -31,11 +38,15 @@ class PizzaController extends Controller
             }
         }
 
-        return $this->render('AcmePizza:Pizza:create.html.twig', array(
+        return array(
             'form' => $factory->createRenderer($pizzaForm, 'twig')
-        ));
+        );
     }
 
+    /**
+     * @extra:Route("/edit/{id}", name="pizza_pizza_edit")
+     * @extra:Template()
+     */
     public function editAction($id)
     {
         $em = $this->get('doctrine.orm.entity_manager');
@@ -60,19 +71,27 @@ class PizzaController extends Controller
             }
         }
 
-        return $this->render('AcmePizza:Pizza:edit.html.twig', array(
-            'form' => $factory->createRenderer($pizzaForm, 'twig'),
+        return array(
+            'form'  => $factory->createRenderer($pizzaForm, 'twig'),
             'pizza' => $pizza,
-        ));
+        );
     }
 
+    /**
+     * @extra:Route("/list", name="pizza_pizza_list")
+     * @extra:Template()
+     */
     public function listAction()
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $pizzas = $em->getRepository('AcmePizza:Pizza')->findAll();
 
-        return $this->render('AcmePizza:Pizza:list.html.twig', array(
+        $pizzas = $em
+            ->createQuery('SELECT p FROM AcmePizza:Pizza p ORDER BY p.name ASC')
+            ->getResult()
+            ;
+
+        return array(
             'pizzas' => $pizzas,
-        ));
+        );
     }
 }
