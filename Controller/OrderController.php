@@ -40,4 +40,19 @@ class OrderController extends Controller
             'form' => $factory->createRenderer($orderForm, 'twig')
         );
     }
+
+    /**
+     * @extra:Route("/list", name="pizza_order_list")
+     * @extra:Template()
+     */
+    public function listAction()
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        $orders = $em->getRepository('AcmePizza:Order')->findAll();
+
+        return array(
+            'orders' => $orders,
+        );
+    }
 }
