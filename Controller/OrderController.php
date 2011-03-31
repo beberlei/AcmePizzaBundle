@@ -32,7 +32,7 @@ class OrderController extends Controller
                 $em->persist($orderFactory->createOrder());
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('pizza_list'));
+                return $this->redirect($this->generateUrl('pizza_order_list'));
             }
         }
 

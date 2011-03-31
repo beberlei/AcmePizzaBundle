@@ -34,7 +34,7 @@ class PizzaController extends Controller
                 $em->persist($pizza);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('pizza_list'));
+                return $this->redirect($this->generateUrl('pizza_pizza_list'));
             }
         }
 
@@ -50,7 +50,7 @@ class PizzaController extends Controller
     public function editAction($id)
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $pizza = $em->find('Acme\PizzaBundle\Entity\Pizza', $id);
+        $pizza = $em->find('AcmePizza:Pizza', $id);
         if (!$pizza) {
             throw new NotFoundHttpException("Invalid pizza.");
         }
