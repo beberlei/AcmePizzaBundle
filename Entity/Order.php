@@ -22,6 +22,7 @@ class Order
      * @var Address
      */
     private $address;
+
     /**
      * @orm:OneToMany(targetEntity="PizzaItem", mappedBy="order", cascade={"persist"})
      */
@@ -29,9 +30,12 @@ class Order
 
     public function __construct(Address $address, array $items)
     {
+        $this->date    = new \DateTime("now");
         $this->address = $address;
-        $this->items = new ArrayCollection($items);
-        $this->date = new \DateTime("now");
+        $this->items   = new ArrayCollection($items);
+        foreach ($this->items as $item) {
+            $item->setOrder($this);
+        }
     }
 
     public function getId() {
@@ -44,5 +48,9 @@ class Order
 
     public function getAddress() {
         return $this->address;
+    }
+
+    public function getItems() {
+        return $this->items;
     }
 }

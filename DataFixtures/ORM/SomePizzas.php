@@ -3,7 +3,10 @@ namespace Acme\PizzaBundle\DataFixtures\ORM;
 
 use
     Doctrine\Common\DataFixtures\AbstractFixture,
-    Doctrine\Common\DataFixtures\OrderedFixtureInterface,
+    Doctrine\Common\DataFixtures\OrderedFixtureInterface
+    ;
+
+use
     Acme\PizzaBundle\Entity\Pizza
     ;
 

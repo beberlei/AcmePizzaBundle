@@ -1,4 +1,4 @@
-{% extends "AcmePizzaBundle::layout.html.twig" %}
+{% extends "AcmePizza::layout.html.twig" %}
 
 {% block title parent() ~ " - List" %}
 
@@ -17,7 +17,7 @@
         <tr>
             <td>{{pizza.name}}</td>
             <td>{{pizza.price}}</td>
-            <td><a href="{{ path("pizza_edit", {"id": pizza.id}) }}">Edit</a></td>
+            <td><a href="{{ path("pizza_pizza_edit", {"id": pizza.id}) }}">Edit</a></td>
         </tr>
 {% endfor %}
     </tbody>

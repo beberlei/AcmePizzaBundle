@@ -1,4 +1,4 @@
-{% extends "AcmePizzaBundle::layout.html.twig" %}
+{% extends "AcmePizza::layout.html.twig" %}
 
 {% block title parent() ~ " - Create" %}
 
@@ -6,7 +6,7 @@
 
 <h1>Create a Pizza</h1>
 
-<form method="post" action="{{ path("pizza_create") }}">
+<form method="post" action="{{ path("pizza_pizza_create") }}">
 {{ form.widget }}
 
 <input type="submit" value="Put this tasty Pizza on the menu!" />
