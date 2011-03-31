@@ -10,47 +10,42 @@
 
 <form method="post" action="{{ path("pizza_order_index") }}">
 
-{{ form.errors }}
+    {{ form.errors }}
 
-<div>
-{{ form.knownCustomer.label("Have you ordered at ACME Pizza before?") }}
-</div>
-
-<div>
-{{form.knownCustomer.errors}}
-
-{{ form.knownCustomer.widget({"class":"customerKnownBefore"}) }}
-</div>
-
-<div class="order-known-customer" style="display:none;">
-    <p>{{ form.knownPhone.label("Please enter your phone-number so we can find your address:") }}</p>
-
-    {{form.knownPhone.errors}}
-
-    {{form.knownPhone.widget}}
-</div>
-
-<div class="order-new-customer" style="display:none;">
-    <p>Please enter your address:</p>
-
-    {{ form.address.row }}
-</div>
-
-<div>
-    <h3>{{form.items.label("Select your choice of Pizza")}}</h3>
-
-    {{form.items.errors}}
-
-<div class="order-pizza-items">
-{% for key,item in form.items %}
-    <div {% if key == "$$name$$" %}class="order-pizza-prototype" style="display:none";{% endif %}>
-        {{item.widget}}
+    <div>
+        {{ form.knownCustomer.label("Have you ordered at ACME Pizza before?") }}
     </div>
-{% endfor %}
-</div>
 
-    <a href="#" class="order-more-pizza">Another pizza</a>
-</div>
+    <div>
+        {{ form.knownCustomer.errors }}
+        {{ form.knownCustomer.widget({"class":"customerKnownBefore"}) }}
+    </div>
+
+    <div class="order-known-customer">
+        <p>{{ form.knownPhone.label("Please enter your phone-number so we can find your address:") }}</p>
+        {{ form.knownPhone.errors }}
+        {{ form.knownPhone.widget }}
+    </div>
+
+    <div class="order-new-customer">
+        <p>Please enter your address:</p>
+        {{ form.address.row }}
+    </div>
+
+    <div>
+        <h3>{{ form.items.label("Select your choice of Pizza") }}</h3>
+        {{form.items.errors}}
+
+        <div class="order-pizza-items">
+        {% for key, item in form.items %}
+            <div {% if key == "$$name$$" %}class="order-pizza-prototype" style="display:none";{% endif %}>
+                {{ item.widget }}
+            </div>
+        {% endfor %}
+        </div>
+
+        <a href="#" class="order-more-pizza">Another pizza</a>
+    </div>
 
     {{form.rest}}
 
@@ -61,23 +56,40 @@
 <script type="text/javascript">
 <!--
     $(document).ready(function() {
-        $("#{{form.knownCustomer.var('id')}}").change(function() {
-            var val = parseInt($(this).val());
-            if (val == 1) {
-                $(".order-known-customer").show();
-                $(".order-new-customer").hide();
+
+        $("#{{ form.knownCustomer.var('id') }}").change(function() {
+            if (parseInt($(this).val()) == 1) {
+
+                var $$ = $(".order-known-customer");
+                $$.find('input').attr('disabled', '');
+                $$.show();
+
+                var $$ = $(".order-new-customer");
+                $$.find('input').attr('disabled', 'disabled')
+                $$.hide();
+
             } else {
-                $(".order-known-customer").hide();
-                $(".order-new-customer").show();
+
+                var $$ = $(".order-new-customer");
+                $$.find('input').attr('disabled', '');
+                $$.show();
+
+                var $$ = $(".order-known-customer");
+                $$.find('input').attr('disabled', 'disabled')
+                $$.hide();
+
             }
         }).trigger('change');
+
         $(".order-more-pizza").click(function() {
             var numPizzas = $(this).find("div").length;
             var pizza = $(".order-pizza-prototype").first().clone().css('display', '');
             $(".order-pizza-items").append(pizza.html().replace('$$name$$', "pizza"+numPizzas, 'g'));
+
             return false;
         });
     });
+
 -->
 </script>
 
