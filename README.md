@@ -14,7 +14,7 @@ Requirements
 Symfony has to be loaded from [bschussek's experimental branch](https://github.com/bschussek/symfony/tree/experimental)
 Edit `bin/vendors.sh` and update symfony's github path from
 `git://github.com/symfony/symfony.git #v$VERSION` to
-`symfony git://github.com/bschussek/symfony.git experimental` then run:
+`git://github.com/bschussek/symfony.git origin/experimental` then run:
 
     rm -rf vendor/symfony/
     ./bin/vendors.sh --min
