@@ -20,7 +20,7 @@ class Pizza
     /**
      * @assert:Min(2)
      * @orm:column(type="decimal", scale=2, precision=5)
-     * 
+     *
      */
     private $price;
 

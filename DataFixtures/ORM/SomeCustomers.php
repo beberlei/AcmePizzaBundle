@@ -13,7 +13,7 @@ class SomeCustomers extends AbstractFixture implements OrderedFixtureInterface
     {
         return 1;
     }
-    
+
     public function load($manager)
     {
         foreach(array(
@@ -64,7 +64,7 @@ class SomeCustomers extends AbstractFixture implements OrderedFixtureInterface
 
             $manager->persist($address);
         }
-        
+
         $manager->flush();
     }
 }

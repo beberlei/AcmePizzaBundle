@@ -13,7 +13,7 @@ class SomePizzas extends AbstractFixture implements OrderedFixtureInterface
     {
         return 1;
     }
-    
+
     public function load($manager)
     {
         foreach (array(
@@ -75,7 +75,7 @@ class SomePizzas extends AbstractFixture implements OrderedFixtureInterface
 
             $manager->persist($pizza);
         }
-        
+
         $manager->flush();
     }
 }

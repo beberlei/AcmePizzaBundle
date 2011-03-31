@@ -17,6 +17,13 @@ Symfony has to be loaded from [bschussek's experimental branch](https://github.c
     rm -rf symfony/
     git clone --depth 1 -b experimental git://github.com/bschussek/symfony.git
 
+If you want to merge latest improvement of symfony 
+
+    cd symfony
+    git remote add upstream git://github.com/symfony/symfony.git
+    git fetch upstream -v
+    git merge upstream/master
+
 Installation
 ------------
 
