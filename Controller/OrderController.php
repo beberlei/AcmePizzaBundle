@@ -25,6 +25,7 @@ class OrderController extends Controller
         $orderForm->setData($orderFactory);
 
         if ($request->getMethod() == 'POST') {
+
             $orderForm->bindRequest($request);
 
             if ($orderForm->isValid()) {

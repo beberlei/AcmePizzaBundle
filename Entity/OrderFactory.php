@@ -118,7 +118,7 @@ class OrderFactory
 
         if ($count === 0) {
             $context->setPropertyPath($context->getPropertyPath().'.items');
-            $context->addViolation('You have to pick at least one pizza', array(), null);
+            $context->addViolation('You have to pick at least one pizza...', array(), null);
         }
     }
 

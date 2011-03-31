@@ -57,25 +57,27 @@
 <!--
     $(document).ready(function() {
 
+        $('.order-pizza-prototype').find('input, select').attr('disabled', true);
+
         $("#{{ form.knownCustomer.var('id') }}").change(function() {
             if (parseInt($(this).val()) == 1) {
 
                 var $$ = $(".order-known-customer");
-                $$.find('input').attr('disabled', '');
+                $$.find('input').attr('disabled', false);
                 $$.show();
 
                 var $$ = $(".order-new-customer");
-                $$.find('input').attr('disabled', 'disabled')
+                $$.find('input').attr('disabled', true)
                 $$.hide();
 
             } else {
 
                 var $$ = $(".order-new-customer");
-                $$.find('input').attr('disabled', '');
+                $$.find('input').attr('disabled', false);
                 $$.show();
 
                 var $$ = $(".order-known-customer");
-                $$.find('input').attr('disabled', 'disabled')
+                $$.find('input').attr('disabled', true)
                 $$.hide();
 
             }
@@ -84,10 +86,12 @@
         $(".order-more-pizza").click(function() {
             var numPizzas = $(this).find("div").length;
             var pizza = $(".order-pizza-prototype").first().clone().css('display', '');
-            $(".order-pizza-items").append(pizza.html().replace('$$name$$', "pizza"+numPizzas, 'g'));
+            pizza.find('input, select').attr('disabled', false);
+            $(".order-pizza-items").append(pizza.html().replace('$$name$$', "pizza" + numPizzas, 'g'));
 
             return false;
-        });
+
+        }).click();
     });
 
 -->
