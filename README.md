@@ -12,10 +12,12 @@ Requirements
 ------------
 
 Symfony has to be loaded from [bschussek's experimental branch](https://github.com/bschussek/symfony/tree/experimental)
+Edit `bin/vendors.sh` and update symfony's github path from
+`git://github.com/symfony/symfony.git #v$VERSION` to
+`symfony git://github.com/bschussek/symfony.git experimental` then run:
 
-    cd vendor/
-    rm -rf symfony/
-    git clone --depth 1 -b experimental git://github.com/bschussek/symfony.git
+    rm -rf vendor/symfony/
+    ./bin/vendors.sh --min
 
 If you want to merge latest improvement of symfony 
 
