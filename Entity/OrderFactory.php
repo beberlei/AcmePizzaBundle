@@ -90,7 +90,7 @@ class OrderFactory
     public function isValidAddress($context)
     {
         if ($this->knownCustomer) {
-            $this->address = $this->em->getRepository('Acme\PizzaBundle\Entity\Address')->findOneBy(array('phone' => $this->knownPhone));
+            $this->address = $this->em->getRepository('AcmePizza:Address')->findOneBy(array('phone' => $this->knownPhone));
         } else {
             $context->getGraphWalker()->walkReference(
                 $this->address,
@@ -111,12 +111,14 @@ class OrderFactory
     public function pickedPizzaItems($context)
     {
         $count = 0;
-        foreach ($this->items AS $item) {
+
+        foreach ($this->items as $item) {
             $count += $item->getCount();
         }
+
         if ($count === 0) {
             $context->setPropertyPath($context->getPropertyPath().'.items');
-            $context->addViolation('You have pick at least one pizza', array(), null);
+            $context->addViolation('You have to pick at least one pizza', array(), null);
         }
     }
 
