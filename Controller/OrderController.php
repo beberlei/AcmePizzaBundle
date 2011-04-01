@@ -30,14 +30,14 @@ class OrderController extends Controller
         $orderFactory = new OrderFactory($em);
 
         $factory = $this->get('form.factory');
-        $orderForm = $factory->create(new OrderFormType());
-        $orderForm->setData($orderFactory);
+        $form = $factory->create(new OrderFormType());
+        $form->setData($orderFactory);
 
         if ($request->getMethod() == 'POST') {
 
-            $orderForm->bindRequest($request);
+            $form->bindRequest($request);
 
-            if ($orderForm->isValid()) {
+            if ($form->isValid()) {
                 $em = $this->get('doctrine.orm.entity_manager');
                 $em->persist($orderFactory->createOrder());
                 $em->flush();
@@ -47,7 +47,7 @@ class OrderController extends Controller
         }
 
         return array(
-            'form' => $factory->createRenderer($orderForm, 'twig')
+            'form' => $factory->createRenderer($form, 'twig')
         );
     }
 

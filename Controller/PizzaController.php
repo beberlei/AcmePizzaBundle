@@ -23,17 +23,17 @@ class PizzaController extends Controller
         $request = $this->get('request');
         $factory = $this->get('form.factory');
         /* @var $pizzaForm \Symfony\Component\Form\Form */
-        $pizzaForm = $factory->create(new PizzaType());
+        $form = $factory->create(new PizzaType());
 
         $pizza = new \Acme\PizzaBundle\Entity\Pizza();
-        $pizzaForm->setData($pizza);
+        $form->setData($pizza);
 
         $validation = $this->get('validator');
 
         if ($request->getMethod() == 'POST') {
-            $pizzaForm->bindRequest($request);
+            $form->bindRequest($request);
 
-            if ($pizzaForm->isValid()) {
+            if ($form->isValid()) {
                 $em = $this->get('doctrine.orm.entity_manager');
                 $em->persist($pizza);
                 $em->flush();
@@ -43,7 +43,7 @@ class PizzaController extends Controller
         }
 
         return array(
-            'form' => $factory->createRenderer($pizzaForm, 'twig')
+            'form' => $factory->createRenderer($form, 'twig')
         );
     }
 
@@ -62,13 +62,13 @@ class PizzaController extends Controller
         $request = $this->get('request');
         $factory = $this->get('form.factory');
         /* @var $pizzaForm \Symfony\Component\Form\Form */
-        $pizzaForm = $factory->create(new PizzaType());
-        $pizzaForm->setData($pizza);
+        $form = $factory->create(new PizzaType());
+        $form->setData($pizza);
 
         if ($request->getMethod() == 'POST') {
-            $pizzaForm->bindRequest($request);
+            $form->bindRequest($request);
 
-            if ($pizzaForm->isValid()) {
+            if ($form->isValid()) {
                 $em->flush();
 
                 return $this->redirect($this->generateUrl('pizza_pizza_edit', array('id' => $pizza->getId())));
@@ -76,7 +76,7 @@ class PizzaController extends Controller
         }
 
         return array(
-            'form'  => $factory->createRenderer($pizzaForm, 'twig'),
+            'form'  => $factory->createRenderer($form, 'twig'),
             'pizza' => $pizza,
         );
     }
@@ -87,9 +87,7 @@ class PizzaController extends Controller
      */
     public function listAction()
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-
-        $pizzas = $em
+        $pizzas = $this->get('doctrine.orm.entity_manager')
             ->createQuery('SELECT p FROM AcmePizza:Pizza p ORDER BY p.name ASC')
             ->getResult()
             ;
