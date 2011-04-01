@@ -57,9 +57,10 @@ class OrderController extends Controller
      */
     public function listAction()
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-
-        $orders = $em->getRepository('AcmePizza:Order')->findAll();
+        $orders = $this->get('doctrine.orm.entity_manager')
+            ->createQuery('SELECT o FROM AcmePizza:Order o ORDER BY o.id DESC')
+            ->getResult()
+            ;
 
         return array(
             'orders' => $orders,
