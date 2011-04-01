@@ -2,7 +2,11 @@
 
 namespace Acme\PizzaBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use
+    Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+    ;
+
 use Acme\PizzaBundle\Form\PizzaType;
 
 /**
