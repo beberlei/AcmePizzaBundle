@@ -8,7 +8,9 @@ namespace Acme\PizzaBundle\Entity;
 class PizzaItem
 {
     /**
-     * @orm:generatedValue @orm:id @orm:column(type="integer")
+     * @orm:GeneratedValue
+     * @orm:Id
+     * @orm:Column(type="integer")
      */
     private $id;
 
@@ -26,7 +28,7 @@ class PizzaItem
 
     /**
      * @orm:Column(type="integer")
-     * @assert:min(1)
+     * @assert:Min(0)
      * @var int
      */
     private $count;

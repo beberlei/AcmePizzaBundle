@@ -26,6 +26,7 @@ class OrderController extends Controller
     {
         $request = $this->get('request');
         $em = $this->get('doctrine.orm.entity_manager');
+
         $orderFactory = new OrderFactory($em);
 
         $factory = $this->get('form.factory');

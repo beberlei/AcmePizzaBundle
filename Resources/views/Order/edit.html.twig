@@ -7,11 +7,40 @@
 <h1>Edit Order #"{{ order.id }}"</h1>
 
 <form method="post" action="{{ path("pizza_order_edit", {"id": order.id}) }}">
-    
     {{ form.errors }}
-    
     {{ form.widget }}
     <input type="submit" value="Update" />
 </form>
+
+<script>
+$(document).ready(function() {
+    var $$ = $("label:contains('$$name$$')").closest("div");
+    $$.find("input, select").attr('disabled', true);
+    $$.hide();
+
+    /*
+    $$.find("div").each(function(i, item) {
+        // console.log(i);
+        // console.log(item);
+
+        var k = i + 1;
+        k = "numero";
+        console.log(k);
+
+        var pattern = /\$\$name\$\$/g;
+
+        var tmp = $(item).find("label");
+        tmp.attr("for", tmp.attr("for").replace(pattern, k));
+
+        var tmp = $(item).find("label");
+        tmp.attr("for", tmp.attr("for").replace(pattern, k));
+
+        var tmp = $(item).find("input, select");
+        tmp.attr("id", tmp.attr("id").replace(pattern, k));
+        tmp.attr("name", tmp.attr("name").replace(pattern, k));
+    });
+    */
+});
+</script>
 
 {% endblock %}

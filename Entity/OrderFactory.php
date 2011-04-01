@@ -60,7 +60,7 @@ class OrderFactory
 
     public function setKnownCustomer($bool)
     {
-        $this->knownCustomer = (bool)$bool;
+        $this->knownCustomer = (bool) $bool;
     }
 
     public function setAddress(Address $address)
@@ -117,7 +117,7 @@ class OrderFactory
         }
 
         if ($count === 0) {
-            $context->setPropertyPath($context->getPropertyPath().'.items');
+            $context->setPropertyPath($context->getPropertyPath() . '.items');
             $context->addViolation('You have to pick at least one pizza...', array(), null);
         }
     }

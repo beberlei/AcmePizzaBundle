@@ -97,9 +97,12 @@
 
         $(".order-more-pizza").click(function() {
             var numPizzas = $(this).find("div").length;
-            var pizza = $(".order-pizza-prototype").first().clone().css('display', '');
-            pizza.find('input, select').attr('disabled', false);
-            $(".order-pizza-items").append(pizza.html().replace('$$name$$', "pizza" + numPizzas, 'g'));
+
+            var $$ = $(".order-pizza-prototype").first().clone().show();
+            $$.find("input, select").attr("disabled", false);
+
+            var pattern = /\$\$name\$\$/g;
+            $(".order-pizza-items").append($$.html().replace(pattern, numPizzas));
 
             return false;
 
