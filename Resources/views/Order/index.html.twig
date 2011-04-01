@@ -10,20 +10,26 @@
 
 <form method="post" action="{{ path("pizza_order_index") }}">
 
-    {{ form.errors }}
+    <div class="error">
+        {{ form.errors }}
+    </div>
 
     <div>
         {{ form.knownCustomer.label("Have you ordered at ACME Pizza before?") }}
     </div>
 
     <div>
-        {{ form.knownCustomer.errors }}
-        {{ form.knownCustomer.widget({"class":"customerKnownBefore"}) }}
+        <div class="error">
+            {{ form.knownCustomer.errors }}
+        </div>
+        {{ form.knownCustomer.widget({"class": "customerKnownBefore"}) }}
     </div>
 
     <div class="order-known-customer">
         <p>{{ form.knownPhone.label("Please enter your phone-number so we can find your address:") }}</p>
-        {{ form.knownPhone.errors }}
+        <div class="error">
+            {{ form.knownPhone.errors }}
+        </div>
         {{ form.knownPhone.widget }}
     </div>
 
@@ -32,9 +38,13 @@
         {{ form.address.row }}
     </div>
 
+    <hr />
+
     <div>
         <h3>{{ form.items.label("Select your choice of Pizza") }}</h3>
-        {{form.items.errors}}
+        <div class="error">
+            {{ form.items.errors }}
+        </div>
 
         <div class="order-pizza-items">
         {% for key, item in form.items %}
@@ -47,7 +57,9 @@
         <a href="#" class="order-more-pizza">Another pizza</a>
     </div>
 
-    {{form.rest}}
+    <hr />
+
+    {{ form.rest }}
 
     <input type="submit" value="Gimme this Pizza, Pronto!" />
 

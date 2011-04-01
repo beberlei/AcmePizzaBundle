@@ -2,8 +2,16 @@
 
 namespace Acme\PizzaBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Acme\PizzaBundle\Form\OrderFormType;
+use
+    Symfony\Bundle\FrameworkBundle\Controller\Controller,
+    Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+    ;
+
+use
+    Acme\PizzaBundle\Entity\OrderFactory,
+    Acme\PizzaBundle\Form\OrderFormType,
+    Acme\PizzaBundle\Form\OrderType
+    ;
 
 /**
  * @extra:Route("/pizza/order")
@@ -18,7 +26,7 @@ class OrderController extends Controller
     {
         $request = $this->get('request');
         $em = $this->get('doctrine.orm.entity_manager');
-        $orderFactory = new \Acme\PizzaBundle\Entity\OrderFactory($em);
+        $orderFactory = new OrderFactory($em);
 
         $factory = $this->get('form.factory');
         $orderForm = $factory->create(new OrderFormType());
@@ -54,6 +62,40 @@ class OrderController extends Controller
 
         return array(
             'orders' => $orders,
+        );
+    }
+
+    /**
+     * @extra:Route("/edit/{id}", name="pizza_order_edit")
+     * @extra:Template()
+     */
+    public function editAction($id)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        $order = $em->find('AcmePizza:Order', $id);
+        if (!$order) {
+            throw new NotFoundHttpException("Invalid Order.");
+        }
+
+        $form = $this->get('form.factory')->create(new OrderType());
+        $form->setData($order);
+
+        if ($this->get('request')->getMethod() == 'POST') {
+
+            $form->bindRequest($this->get('request'));
+
+            if ($form->isValid()) {
+
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('pizza_order_edit', array('id' => $pizza->getId())));
+            }
+        }
+
+        return array(
+            'form'  => $this->get('form.factory')->createRenderer($form, 'twig'),
+            'order' => $order,
         );
     }
 }

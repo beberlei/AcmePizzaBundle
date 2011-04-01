@@ -1,0 +1,21 @@
+
+@import "toucan-0.1.9";
+
+body {
+    margin: 20px;
+}
+
+.nav ul {
+    list-style: none;
+    li {
+        margin-left: 0;
+        display: inline-block;
+        margin-right: 20px;
+    }
+}
+
+form .error ul {
+    border: 2px solid #FBC2C4;
+    background-color: #FBE3E4;
+    color: #8A1F11;
+}

@@ -1,0 +1,17 @@
+{% extends "AcmePizza::layout.html.twig" %}
+
+{% block title parent() ~ " - Order - Edit" %}
+
+{% block content %}
+
+<h1>Edit Order #"{{ order.id }}"</h1>
+
+<form method="post" action="{{ path("pizza_order_edit", {"id": order.id}) }}">
+    
+    {{ form.errors }}
+    
+    {{ form.widget }}
+    <input type="submit" value="Update" />
+</form>
+
+{% endblock %}
