@@ -5,15 +5,20 @@ namespace Acme\PizzaBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @orm:entity
- * @orm:table(name="PizzaOrder")
+ * @orm:Entity
+ * @orm:Table(name="PizzaOrder")
  */
 class Order
 {
-    /** @orm:generatedValue @orm:id @orm:column(type="integer") */
-    private $id;
     /**
-     * @orm:column(type="datetime")
+     * @orm:GeneratedValue
+     * @orm:Id
+     * @orm:Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @orm:Column(type="datetime")
      */
     private $date;
 
@@ -38,19 +43,23 @@ class Order
         }
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getDate() {
+    public function getDate()
+    {
         return $this->date;
     }
 
-    public function getAddress() {
+    public function getAddress()
+    {
         return $this->address;
     }
 
-    public function getItems() {
+    public function getItems()
+    {
         return $this->items;
     }
 }

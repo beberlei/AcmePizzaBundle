@@ -3,44 +3,52 @@
 namespace Acme\PizzaBundle\Entity;
 
 /**
- * @orm:entity
+ * @orm:Entity
  */
 class Pizza
 {
     /**
-     * @orm:generatedValue @orm:id @orm:column(type="integer")
+     * @orm:GeneratedValue
+     * @orm:Id
+     * @orm:Column(type="integer")
      */
     private $id;
+
     /**
-     * @orm:column(type="string")
+     * @orm:Column(type="string")
      * @assert:NotBlank()
      * @assert:MinLength(5)
      */
     private $name;
+
     /**
+     * @orm:Column(type="decimal", scale=2, precision=5)
      * @assert:Min(2)
-     * @orm:column(type="decimal", scale=2, precision=5)
-     *
      */
     private $price;
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
-    public function getPrice() {
+    public function getPrice()
+    {
         return $this->price;
     }
 
-    public function setPrice($price) {
+    public function setPrice($price)
+    {
         $this->price = $price;
     }
 

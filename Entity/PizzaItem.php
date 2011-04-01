@@ -21,8 +21,8 @@ class PizzaItem
 
     /**
      * @var Pizza
-     * @assert:Type(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
      * @orm:ManyToOne(targetEntity="Pizza")
+     * @assert:Type(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
      */
     private $pizza;
 
