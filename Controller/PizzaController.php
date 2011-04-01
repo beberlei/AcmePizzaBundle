@@ -71,7 +71,7 @@ class PizzaController extends Controller
             if ($pizzaForm->isValid()) {
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('pizza_edit', array('id' => $pizza->getId())));
+                return $this->redirect($this->generateUrl('pizza_pizza_edit', array('id' => $pizza->getId())));
             }
         }
 
