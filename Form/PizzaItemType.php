@@ -2,17 +2,20 @@
 
 namespace Acme\PizzaBundle\Form;
 
-use Symfony\Component\Form\Type\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use
+    Symfony\Component\Form\Type\AbstractType,
+    Symfony\Component\Form\FormBuilder
+    ;
 
 class PizzaItemType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('pizza', 'entity', array(
-            'class' => 'Acme\PizzaBundle\Entity\Pizza',
-        ));
-        $builder->add('count', 'integer');
+        $builder
+            ->add('pizza', 'entity', array('class' => 'Acme\PizzaBundle\Entity\Pizza'))
+            ->add('count', 'integer')
+            ->end()
+            ;
     }
 
     public function getDefaultOptions(array $options)
