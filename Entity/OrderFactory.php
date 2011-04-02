@@ -10,7 +10,8 @@ class OrderFactory
     /**
      * @var bool
      */
-    private $knownCustomer = false;
+    //private $knownCustomer = false;
+    private $knownCustomer = 0; // we must set it to integer type in order to be well rendered in the form
 
     /**
      * Phone number of known customer.

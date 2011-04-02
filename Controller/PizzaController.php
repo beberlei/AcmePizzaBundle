@@ -7,7 +7,10 @@ use
     Symfony\Component\HttpKernel\Exception\NotFoundHttpException
     ;
 
-use Acme\PizzaBundle\Form\PizzaType;
+use
+    Acme\PizzaBundle\Entity\Pizza,
+    Acme\PizzaBundle\Form\PizzaType
+    ;
 
 /**
  * @extra:Route("/pizza/pizza")
@@ -25,7 +28,7 @@ class PizzaController extends Controller
         /* @var $pizzaForm \Symfony\Component\Form\Form */
         $form = $factory->create(new PizzaType());
 
-        $pizza = new \Acme\PizzaBundle\Entity\Pizza();
+        $pizza = new Pizza();
         $form->setData($pizza);
 
         $validation = $this->get('validator');

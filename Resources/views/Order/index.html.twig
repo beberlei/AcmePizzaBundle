@@ -69,11 +69,8 @@
 <!--
     $(document).ready(function() {
 
-        $('.order-pizza-prototype').find('input, select').attr('disabled', true);
-
-        $("#{{ form.knownCustomer.var('id') }}").change(function() {
-            if (parseInt($(this).val()) == 1) {
-
+        $('input[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
+            if ($(this).val() == 1) {
                 var $$ = $(".order-known-customer");
                 $$.find('input').attr('disabled', false);
                 $$.show();
@@ -81,9 +78,7 @@
                 var $$ = $(".order-new-customer");
                 $$.find('input').attr('disabled', true)
                 $$.hide();
-
             } else {
-
                 var $$ = $(".order-new-customer");
                 $$.find('input').attr('disabled', false);
                 $$.show();
@@ -91,9 +86,12 @@
                 var $$ = $(".order-known-customer");
                 $$.find('input').attr('disabled', true)
                 $$.hide();
-
             }
-        }).trigger('change');
+        });
+
+        $('input[name="OrderFormType[knownCustomer]"]:checked').change();
+
+        $('.order-pizza-prototype').find('input, select').attr('disabled', true);
 
         $(".order-more-pizza").click(function() {
             var numPizzas = $(this).find("div").length;
