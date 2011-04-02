@@ -12,19 +12,11 @@ Requirements
 ------------
 
 Symfony has to be loaded from [bschussek's experimental branch](https://github.com/bschussek/symfony/tree/experimental)
-Edit `bin/vendors.sh` and update symfony's github path from
-`git://github.com/symfony/symfony.git #v$VERSION` to
-`git://github.com/bschussek/symfony.git origin/experimental` then run:
 
-    rm -rf vendor/symfony/
-    ./bin/vendors.sh --min
-
-If you want to merge latest improvement of symfony 
-
-    cd symfony
-    git remote add upstream git://github.com/symfony/symfony.git
-    git fetch upstream -v
-    git merge upstream/master
+    cd vendor/
+    rm -rf symfony/
+    git clone -b experimental git://github.com/bschussek/symfony.git
+    git reset --hard bbeddf7
 
 Installation
 ------------
