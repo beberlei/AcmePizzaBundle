@@ -9,7 +9,7 @@ use
 
 use
     Acme\PizzaBundle\Entity\Pizza,
-    Acme\PizzaBundle\Form\PizzaType
+    Acme\PizzaBundle\Form\Type\PizzaType
     ;
 
 /**

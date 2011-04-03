@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\PizzaBundle\Form;
+namespace Acme\PizzaBundle\Form\Type;
 
 use
     Symfony\Component\Form\Type\AbstractType,
