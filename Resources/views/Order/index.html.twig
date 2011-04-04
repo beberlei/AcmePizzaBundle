@@ -42,19 +42,14 @@
 
     <div>
         <h3>{{ form.items.label("Select your choice of Pizza") }}</h3>
-        <div class="error">
-            {{ form.items.errors }}
-        </div>
 
-        <div class="order-pizza-items">
-        {% for key, item in form.items %}
-            <div {% if key == "$$name$$" %}class="order-pizza-prototype" style="display:none";{% endif %}>
+        {{ form.items.errors }}
+
+        {% for item in form.items %}
+            <div class="item">
                 {{ item.widget }}
             </div>
         {% endfor %}
-        </div>
-
-        <a href="#" class="order-more-pizza">Another pizza</a>
     </div>
 
     <hr />
@@ -67,46 +62,52 @@
 
 <script type="text/javascript">
 <!--
-    $(document).ready(function() {
+    /* ...known customer (yes/no) */
+    $('input[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
+        if ($(this).val() == 1) {
+            var $$ = $(".order-known-customer");
+            $$.find('input').attr('disabled', false);
+            $$.show();
 
-        $('input[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
-            if ($(this).val() == 1) {
-                var $$ = $(".order-known-customer");
-                $$.find('input').attr('disabled', false);
-                $$.show();
+            var $$ = $(".order-new-customer");
+            $$.find('input').attr('disabled', true)
+            $$.hide();
+        } else {
+            var $$ = $(".order-new-customer");
+            $$.find('input').attr('disabled', false);
+            $$.show();
 
-                var $$ = $(".order-new-customer");
-                $$.find('input').attr('disabled', true)
-                $$.hide();
-            } else {
-                var $$ = $(".order-new-customer");
-                $$.find('input').attr('disabled', false);
-                $$.show();
-
-                var $$ = $(".order-known-customer");
-                $$.find('input').attr('disabled', true)
-                $$.hide();
-            }
-        });
-
-        $('input[name="OrderFormType[knownCustomer]"]:checked').change();
-
-        $('.order-pizza-prototype').find('input, select').attr('disabled', true);
-
-        $(".order-more-pizza").click(function() {
-            var numPizzas = $(this).find("div").length;
-
-            var $$ = $(".order-pizza-prototype").first().clone().show();
-            $$.find("input, select").attr("disabled", false);
-
-            var pattern = /\$\$name\$\$/g;
-            $(".order-pizza-items").append($$.html().replace(pattern, numPizzas));
-
-            return false;
-
-        }).click();
+            var $$ = $(".order-known-customer");
+            $$.find('input').attr('disabled', true)
+            $$.hide();
+        }
     });
 
+    $('input[name="OrderFormType[knownCustomer]"]:checked').change();
+
+    /* ...another pizzas */
+
+    var button;
+    button = $('<a href="#">Another pizza</a>');
+    button.click(function(event) {
+        event.preventDefault();
+
+        var index = prototype.parent().find(' > div').size() - 1;
+
+        var html = prototype.html();
+        html = html.replace(/ disabled=".*?"/g, "");
+        html = html.replace(/\$\$name\$\$/g, index)
+
+        $(this).before("<div>" + html + "</div>");
+    });
+
+    var prototype;
+    prototype = $('div.item:first');
+    prototype.find('input, select').attr('disabled', true);
+    prototype.parent().append(button);
+    prototype.hide();
+
+    button.click();
 -->
 </script>
 

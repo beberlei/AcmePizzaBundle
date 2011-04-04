@@ -30,41 +30,6 @@ class OrderController extends Controller
         $em = $this->get('doctrine.orm.entity_manager');
 
         $orderFactory = new OrderFactory($em);
-/*
-if (!true) {
-        if (is_array($request->get('pizzas'))) {
-
-            $ids = array_map(function($id) { return intval($id); }, $request->get('pizzas'));
-
-            $pizzas = $em
-                ->createQuery('SELECT p FROM AcmePizza:Pizza p WHERE p.id IN (' . implode(', ', $ids) .')')
-                ->getResult()
-                ;
-
-            $items = array();
-
-            foreach ($pizzas as $pizza) {
-                $items[] = new PizzaItem($pizza);
-            }
-
-            $orderFactory->setItems($items);
-        }
-} else {
-        $pizza = new Pizza();
-        $pizza = $em->getRepository('AcmePizza:Pizza')->find(2);
-
-        $items = array();
-        for ($i = 0; $i < 3; $i++) {
-            $items[] = new PizzaItem($pizza);
-        }
-
-        $orderFactory->setItems($items);
-}
-*/
-
-        //var_dump(count($orderFactory->getItems()));
-
-        //$orderFactory->createOrder();
 
         $factory = $this->get('form.factory');
         $form = $factory->create(new OrderFormType());
