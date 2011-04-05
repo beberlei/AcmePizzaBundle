@@ -42,7 +42,7 @@ Installation
                 default:
                     mappings:
                         [...]
-                        AcmePizza: ~
+                        AcmePizzaBundle: ~
 
 ### Create database and schema
 
@@ -53,11 +53,11 @@ Installation
 
     # app/config/routing.yml
     _pizza_pizza:
-        resource: "@AcmePizza/Controller/PizzaController.php"
+        resource: "@AcmePizzaBundle/Controller/PizzaController.php"
         type:     annotation
     
     _pizza_order:
-        resource: "@AcmePizza/Controller/OrderController.php"
+        resource: "@AcmePizzaBundle/Controller/OrderController.php"
         type:     annotation
 
 ### Refresh asset folder

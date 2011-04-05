@@ -37,7 +37,7 @@ if (!true) {
             $ids = array_map(function($id) { return intval($id); }, $request->get('pizzas'));
 
             $pizzas = $em
-                ->createQuery('SELECT p FROM AcmePizza:Pizza p WHERE p.id IN (' . implode(', ', $ids) .')')
+                ->createQuery('SELECT p FROM AcmePizzaBundle:Pizza p WHERE p.id IN (' . implode(', ', $ids) .')')
                 ->getResult()
                 ;
 
@@ -51,7 +51,7 @@ if (!true) {
         }
 } else {
         $pizza = new Pizza();
-        $pizza = $em->getRepository('AcmePizza:Pizza')->find(2);
+        $pizza = $em->getRepository('AcmePizzaBundle:Pizza')->find(2);
 
         $items = array();
         for ($i = 0; $i < 3; $i++) {
@@ -95,7 +95,7 @@ if (!true) {
     public function listAction()
     {
         $orders = $this->get('doctrine.orm.entity_manager')
-            ->createQuery('SELECT o FROM AcmePizza:Order o ORDER BY o.id DESC')
+            ->createQuery('SELECT o FROM AcmePizzaBundle:Order o ORDER BY o.id DESC')
             ->getResult()
             ;
 
@@ -112,7 +112,7 @@ if (!true) {
     {
         $em = $this->get('doctrine.orm.entity_manager');
 
-        $order = $em->find('AcmePizza:Order', $id);
+        $order = $em->find('AcmePizzaBundle:Order', $id);
         if (!$order) {
             throw new NotFoundHttpException("Invalid Order.");
         }

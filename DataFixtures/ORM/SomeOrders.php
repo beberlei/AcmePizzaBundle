@@ -28,13 +28,13 @@ class SomeOrders extends AbstractFixture implements OrderedFixtureInterface
             'Dolcelino Pisano'  => array('Meat-Olive' => 1, 'New York-Style' => 1),
             'Steffen Bader'     => array('Salmon-Potato' => 1, 'Onion-Ricotta' => 1, 'Tomato Bianco' => 3, 'New York-Style' => 1),
         ) as $i => $ii) {
-            $address = $manager->getRepository('AcmePizza:Address')->findOneByName($i);
+            $address = $manager->getRepository('AcmePizzaBundle:Address')->findOneByName($i);
 
             $items = array();
 
             foreach ($ii as $j => $jj) {
 
-                $pizza = $manager->getRepository('AcmePizza:Pizza')->findOneByName($j);
+                $pizza = $manager->getRepository('AcmePizzaBundle:Pizza')->findOneByName($j);
                 $item = new PizzaItem($pizza, $jj);
                 $items[] = $item;
             }

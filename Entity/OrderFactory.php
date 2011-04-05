@@ -91,7 +91,7 @@ class OrderFactory
     public function isValidAddress($context)
     {
         if ($this->knownCustomer) {
-            $this->address = $this->em->getRepository('AcmePizza:Address')->findOneBy(array('phone' => $this->knownPhone));
+            $this->address = $this->em->getRepository('AcmePizzaBundle:Address')->findOneBy(array('phone' => $this->knownPhone));
         } else {
             $context->getGraphWalker()->walkReference(
                 $this->address,

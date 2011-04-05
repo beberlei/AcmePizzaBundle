@@ -57,7 +57,7 @@ class PizzaController extends Controller
     public function editAction($id)
     {
         $em = $this->get('doctrine.orm.entity_manager');
-        $pizza = $em->find('AcmePizza:Pizza', $id);
+        $pizza = $em->find('AcmePizzaBundle:Pizza', $id);
         if (!$pizza) {
             throw new NotFoundHttpException("Invalid pizza.");
         }
@@ -91,7 +91,7 @@ class PizzaController extends Controller
     public function listAction()
     {
         $pizzas = $this->get('doctrine.orm.entity_manager')
-            ->createQuery('SELECT p FROM AcmePizza:Pizza p ORDER BY p.name ASC')
+            ->createQuery('SELECT p FROM AcmePizzaBundle:Pizza p ORDER BY p.name ASC')
             ->getResult()
             ;
 
