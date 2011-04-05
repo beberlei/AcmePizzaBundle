@@ -13,7 +13,10 @@ class OrderType extends AbstractType
     {
         $builder
             ->add('address', new AddressType())
-            ->add('items', 'collection', array('type' => new PizzaItemType(), 'modifiable' => true))
+            ->add('items', 'collection', array(
+                'type'       => new PizzaItemType(),
+                'modifiable' => true,
+            ))
             ->end()
             ;
     }

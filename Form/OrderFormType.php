@@ -13,9 +13,13 @@ class OrderFormType extends AbstractType
     {
         $builder
             ->add('knownCustomer', 'choice', array(
-                'choices'  => array(0 => 'No', 1 => 'Yes'),
-                'expanded' => true,
+                'choices'  => array(
+                    0 => 'No',
+                    1 => 'Yes',
+                ),
+                'expanded' => !true, // bug with checking radio button :(
             ))
+            //->add('knownPhone', 'text', array('required' => false))
             ->add('knownPhone', 'text')
             ->add('address', new Type\AddressType())
             ->add('items', 'collection', array(

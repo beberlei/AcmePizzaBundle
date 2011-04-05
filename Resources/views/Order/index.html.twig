@@ -63,7 +63,8 @@
 <script type="text/javascript">
 <!--
     /* ...known customer (yes/no) */
-    $('input[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
+    /* asterisk is used to match input or select */
+    $('*[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
         if ($(this).val() == 1) {
             var $$ = $(".order-known-customer");
             $$.find('input').attr('disabled', false);
@@ -83,7 +84,12 @@
         }
     });
 
+    $('*[name="OrderFormType[knownCustomer]"]').change();
+
+    {#
     $('input[name="OrderFormType[knownCustomer]"]:checked').change();
+    #}
+
 
     /* ...another pizzas */
 

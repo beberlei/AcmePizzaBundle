@@ -10,8 +10,7 @@ class OrderFactory
     /**
      * @var bool
      */
-    //private $knownCustomer = false;
-    private $knownCustomer = 0; // we must set it to integer type in order to be well rendered in the form
+    private $knownCustomer = false;
 
     /**
      * Phone number of known customer.
@@ -100,6 +99,7 @@ class OrderFactory
                 true
             );
         }
+
         if (!($this->address instanceof Address)) {
             $context->addViolation('Invalid address given', array(), $this->address);
         }
