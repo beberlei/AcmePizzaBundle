@@ -8,6 +8,21 @@
 
 <p>Hello customer! We want to serve you a yummy-yummy Pizza!</p>
 
+<hr />
+
+{% if true %}
+
+{{ form.setTemplate("AcmePizzaBundle::dl_layout.html.twig") }}
+
+<form method="post" action="{{ path("pizza_order_index") }}" {{ form.enctype }}>
+    {{ form.widget }}
+
+    {{ form.rest }}
+    <input type="submit" />
+</form>
+
+{% else %}
+
 <form method="post" action="{{ path("pizza_order_index") }}">
 
     <div class="error">
@@ -59,6 +74,8 @@
     <input type="submit" value="Gimme this Pizza, Pronto!" />
 
 </form>
+
+{% endif %}
 
 <script type="text/javascript">
 <!--
