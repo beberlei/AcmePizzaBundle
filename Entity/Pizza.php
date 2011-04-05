@@ -23,6 +23,7 @@ class Pizza
 
     /**
      * @orm:Column(type="decimal", scale=2, precision=5)
+     * @assert:NotBlank()
      * @assert:Min(2)
      */
     private $price;

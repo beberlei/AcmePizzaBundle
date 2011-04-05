@@ -6,7 +6,12 @@
 
 <h1>Create a Pizza</h1>
 
+{#
 {{ form.setTemplate("AcmePizzaBundle::table_layout.html.twig") }}
+{{ form.setTemplate("AcmePizzaBundle::div_layout.html.twig") }}
+#}
+
+{{ form.setTemplate("AcmePizzaBundle::dl_layout.html.twig") }}
 
 {#
 <form method="post" action="#" {{ form.enctype }}>

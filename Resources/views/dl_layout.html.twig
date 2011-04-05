@@ -3,11 +3,13 @@
 {# -------------------------------------------------------------------------- #}
 
 {% block field__row %}
-    <div>
-        {{ renderer.label }}
-        {{ renderer.errors }}
-        {{ renderer.widget }}
-    </div>
+    <dl>
+        <dt>{{ renderer.label }}</dt>
+        <dd>
+            {{ renderer.widget }}
+            {{ renderer.errors }}
+        </dd>
+    </dl>
 {% endblock field__row %}
 
 {# -------------------------------------------------------------------------- #}
