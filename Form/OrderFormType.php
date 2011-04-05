@@ -17,7 +17,7 @@ class OrderFormType extends AbstractType
                     0 => 'No',
                     1 => 'Yes',
                 ),
-                'expanded' => !true, // bug with checking radio button :(
+                'expanded' => !true, // FIXME: bug with checking radio button :(
             ))
             //->add('knownPhone', 'text', array('required' => false))
             ->add('knownPhone', 'text')

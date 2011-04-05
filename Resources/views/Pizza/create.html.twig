@@ -6,10 +6,28 @@
 
 <h1>Create a Pizza</h1>
 
-<form method="post" action="{{ path("pizza_pizza_create") }}">
-{{ form.widget }}
+{{ form.setTemplate("AcmePizzaBundle::table_layout.html.twig") }}
 
-<input type="submit" value="Put this tasty Pizza on the menu!" />
+{#
+<form method="post" action="#" {{ form.enctype }}>
+    {{ form.errors }}
+
+    {% for field in form %}
+        {{ field.label('My label') }}
+        {{ field.errors }}
+        {{ field.widget }}
+    {% endfor %}
+
+    {{ form.rest }}
+    <input type="submit" />
+</form>
+#}
+
+<form method="post" action="{{ path("pizza_pizza_create") }}" {{ form.enctype }}>
+    {{ form.widget }}
+
+    {{ form.rest }}
+    <input type="submit" />
 </form>
 
 {% endblock %}

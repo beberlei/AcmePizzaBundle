@@ -46,6 +46,7 @@ class OrderFactory
     public function setKnownPhone($phone)
     {
         $this->knownPhone = $phone;
+        // TODO: because phone is know we must disable address validation
     }
 
     public function getKnownPhone()
@@ -89,6 +90,8 @@ class OrderFactory
      */
     public function isValidAddress($context)
     {
+//var_dump($context->getPropertyPath());
+
         if ($this->knownCustomer) {
             $this->address = $this->em->getRepository('AcmePizzaBundle:Address')->findOneBy(array('phone' => $this->knownPhone));
         } else {

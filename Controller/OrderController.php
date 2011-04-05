@@ -39,7 +39,48 @@ class OrderController extends Controller
 
             $form->bindRequest($request);
 
+/*
+var_dump('post');
+var_dump($form->getErrors());
+var_dump($form->hasErrors());
+var_dump($form->isBound());
+var_dump(get_class($form));
+
+foreach ($form->getChildren() as $child) {
+//    var_dump($child->getErrors());
+//    var_dump($form->isBound());
+    //var_dump($form->hasErrors());
+    //var_dump($child->isValid());
+    echo $child->getName();
+
+    if ($child->isValid() === false) {
+
+        echo ">>>> pas valide!\n\n";
+        foreach ($child->getChildren() as $c) {
+            print_r(array(
+                'name' => $child->getName(),
+                'valid' => $child->isValid(),
+                'errors' => $child->hasErrors(),
+                'isbound' => $child->isBound(),
+            ));
+
+//            var_dump($child->isValid());
+//            var_dump("bound", $child->isBound());
+//            var_dump($child->hasErrors());
+            foreach ($c->getChildren() as $c0) {
+                var_dump($c0->isValid());
+                echo "children";
+            }
+        }
+    }
+
+    echo "\n\n";
+}
+*/
+//var_dump(get_class_methods(get_class($form)));
+
             if ($form->isValid()) {
+
                 $em = $this->get('doctrine.orm.entity_manager');
                 $em->persist($orderFactory->createOrder());
                 $em->flush();
@@ -47,7 +88,7 @@ class OrderController extends Controller
                 return $this->redirect($this->generateUrl('pizza_order_list'));
             }
         }
-
+//exit();
         return array(
             'form' => $factory->createRenderer($form, 'twig')
         );

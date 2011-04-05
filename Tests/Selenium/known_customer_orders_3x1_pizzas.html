@@ -4,13 +4,13 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="selenium.base" href="http://gateau/" />
-    <title>pizza_order_create</title>
+    <title>known_customer_orders_3x1_pizzas</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
     <thead>
         <tr>
-            <td rowspan="1" colspan="3">pizza_order_create</td>
+            <td rowspan="1" colspan="3">known_customer_orders_3x1_pizzas</td>
         </tr>
     </thead>
     <tbody>
@@ -20,29 +20,19 @@
             <td></td>
         </tr>
         <tr>
-            <td>type</td>
-            <td>OrderFormType_address_name</td>
-            <td>Arnaud Chassé</td>
+            <td>select</td>
+            <td>OrderFormType_knownCustomer</td>
+            <td>label=Yes</td>
         </tr>
         <tr>
             <td>type</td>
-            <td>OrderFormType_address_street</td>
-            <td>17, rue de Lille</td>
-        </tr>
-        <tr>
-            <td>type</td>
-            <td>OrderFormType_address_city</td>
-            <td>62000 ARRAS</td>
-        </tr>
-        <tr>
-            <td>type</td>
-            <td>OrderFormType_address_phone</td>
-            <td>03.37.63.90.80</td>
+            <td>OrderFormType_knownPhone</td>
+            <td>04.62.86.54.80</td>
         </tr>
         <tr>
             <td>select</td>
             <td>OrderFormType_items_0_pizza</td>
-            <td>label=Puttanesca(10.5)</td>
+            <td>label=Quattro Stagioni(7.9)</td>
         </tr>
         <tr>
             <td>type</td>
@@ -57,19 +47,33 @@
         <tr>
             <td>select</td>
             <td>OrderFormType_items_1_pizza</td>
-            <td>label=Eggplant(7.9)</td>
+            <td>label=Onion-Ricotta(7.9)</td>
         </tr>
         <tr>
             <td>type</td>
             <td>OrderFormType_items_1_count</td>
-            <td>3</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>click</td>
+            <td>link=Another pizza</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>select</td>
+            <td>OrderFormType_items_2_pizza</td>
+            <td>label=Meatball(9.9)</td>
+        </tr>
+        <tr>
+            <td>type</td>
+            <td>OrderFormType_items_2_count</td>
+            <td>1</td>
         </tr>
         <tr>
             <td>clickAndWait</td>
-            <td>//input[@value='Gimme this Pizza, Pronto!']</td>
+            <td>//input[@type='submit']</td>
             <td></td>
         </tr>
-
     </tbody>
 </table>
 </body>

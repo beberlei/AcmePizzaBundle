@@ -1,0 +1,170 @@
+{% block field__rows %}
+    {{ renderer.errors }}
+    {% for field in renderer %}
+        {{ field.row }}
+    {% endfor %}
+{% endblock field__rows %}
+
+{% block field__enctype %}
+    {% if multipart %}enctype="multipart/form-data"{% endif %}
+{% endblock field__enctype %}
+
+{% block field__errors %}
+    {% if errors|length > 0 %}
+    <ul>
+        {% for error in errors %}
+            <li>{% trans error.messageTemplate with error.messageParameters from 'validators' %}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}  	
+{% endblock field__errors %}
+
+{% block field__rest %}
+    {% for field in renderer %}
+        {% if not field.rendered %}
+            {{ field.row }}
+        {% endif %}
+    {% endfor %}
+{% endblock field__rest %}
+
+{% block field__label %}
+    <label for="{{ id }}">{% trans label %}</label>
+{% endblock field__label %}
+
+{% block attributes %}
+    id="{{ id }}" name="{{ name }}"{% if class %} class="{{ class }}"{% endif %}{% if read_only %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if size %} size="{{ size }}"{% endif %}
+    {% for attrname,attrvalue in attr %}{{attrname}}="{{attrvalue}}" {% endfor %}
+{% endblock attributes %}
+
+{% block field__widget %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('attributes') }} value="{{ value }}" />
+{% endblock field__widget %}
+
+{% block text__widget %}
+    {% set type = type|default('text') %}
+    {{ block('field__widget') }}
+{% endblock text__widget %}
+
+{% block password__widget %}
+    {% set type = type|default('password') %}
+    {{ block('field__widget') }}
+{% endblock password__widget %}
+
+{% block hidden__widget %}
+    {% set type = type|default('hidden') %}
+    {{ block('field__widget') }}
+{% endblock hidden__widget %}
+
+{% block hidden__row %}
+    {{ renderer.widget }}
+{% endblock hidden__row %}
+
+{% block textarea__widget %}
+    <textarea {{ block('attributes') }}>{{ value }}</textarea>
+{% endblock textarea__widget %}
+
+{% block options %}
+    {% for choice, label in options %}
+        {% if renderer.choiceGroup(label) %}
+            <optgroup label="{{ choice }}">
+                {% for nestedChoice, nestedLabel in label %}
+                    <option value="{{ nestedChoice }}"{% if renderer.choiceSelected(nestedChoice) %} selected="selected"{% endif %}>{{ nestedLabel }}</option>
+                {% endfor %}
+            </optgroup>
+        {% else %}
+            <option value="{{ choice }}"{% if renderer.choiceSelected(choice) %} selected="selected"{% endif %}>{{ label }}</option>
+        {% endif %}
+    {% endfor %}
+{% endblock options %}
+
+{% block choice__widget %}
+    {% if expanded %}
+        {% for choice, field in renderer %}
+            {{ field.widget }}
+            {{ field.label(renderer.choiceLabel(choice)) }}
+        {% endfor %}
+    {% else %}
+    <select {{ block('attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {% if not required %}
+            <option value="">{{ empty_value }}</option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+            {% set options = preferred_choices %}
+            {{ block('options') }}
+            <option disabled="disabled">{{ separator }}</option>
+        {% endif %}
+        {% set options = choices %}
+        {{ block('options') }}
+    </select>
+    {% endif %}
+{% endblock choice__widget %}
+
+{% block checkbox__widget %}
+    <input type="checkbox" {{ block('attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{% endblock checkbox__widget %}
+
+{% block radio__widget %}
+    <input type="radio" {{ block('attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+{% endblock radio__widget %}
+
+{% block date_time__widget %}
+    {{ renderer.date.errors }}
+    {{ renderer.time.errors }}
+    {{ renderer.date.widget }}
+    {{ renderer.time.widget }}
+{% endblock date_time__widget %}
+
+{% block date__widget %}
+    {% if widget == 'text' %}
+        {{ block('text__widget') }}
+    {% else %}
+        {{ date_pattern|replace({ 
+            '{{ year }}': renderer.year.widget, 
+            '{{ month }}': renderer.month.widget, 
+            '{{ day }}': renderer.day.widget 
+        })|raw }}
+    {% endif %}
+{% endblock date__widget %}
+
+{% block time__widget %}
+    {{ renderer.hour.widget({ 'size': '1' }) }}:{{ renderer.minute.widget({ 'size': '1' }) }}{% if with_seconds %}:{{ renderer.second.widget({ 'size': '1' }) }}{% endif %}
+{% endblock time__widget %}
+
+{% block number__widget %}
+    {% set type = type|default('number') %}
+    {{ block('field__widget') }}
+{% endblock number__widget %}
+
+{% block integer__widget %}
+    {% set type = type|default('number') %}
+    {{ block('field__widget') }}
+{% endblock integer__widget %}
+
+{% block money__widget %}
+    {{ money_pattern|replace({ '{{ widget }}': block('field__widget') })|raw }}
+{% endblock money__widget %}
+
+{% block url__widget %}
+    {% set type = type|default('url') %}
+    {{ block('field__widget') }}
+{% endblock url__widget %}
+
+{% block percent__widget %}
+    {% set type = type|default('text') %}
+    {{ block('field__widget') }} %
+{% endblock percent__widget %}
+
+{% block file__widget %}
+    {{ renderer.file.widget }}
+    {{ renderer.token.widget }}
+    {{ renderer.name.widget }}
+{% endblock file__widget %}
+
+{% block collection__widget %}
+    {{ block('form__widget') }}
+{% endblock collection__widget %}
+
+{% block repeated__row %}
+    {{ block('field__rows') }}
+{% endblock repeated__row %}

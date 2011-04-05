@@ -64,6 +64,7 @@
 <!--
     /* ...known customer (yes/no) */
     /* asterisk is used to match input or select */
+
     $('*[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
         if ($(this).val() == 1) {
             var $$ = $(".order-known-customer");
@@ -90,7 +91,6 @@
     $('input[name="OrderFormType[knownCustomer]"]:checked').change();
     #}
 
-
     /* ...another pizzas */
 
     var button;
@@ -113,7 +113,10 @@
     prototype.parent().append(button);
     prototype.hide();
 
-    button.click();
+    /* if no pizzas already in list */
+    if (prototype.parent().find(' > div.item').length == 1) {
+        button.click();
+    }
 -->
 </script>
 

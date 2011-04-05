@@ -37,6 +37,7 @@ class Order
     {
         $this->date    = new \DateTime("now");
         $this->address = $address;
+//var_dump($address->getId());
         $this->items   = new ArrayCollection($items);
         foreach ($this->items as $item) {
             $item->setOrder($this);
