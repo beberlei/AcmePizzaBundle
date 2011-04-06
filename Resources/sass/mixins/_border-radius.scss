@@ -1,0 +1,5 @@
+@mixin border-radius ($radius) {
+       -moz-border-radius: $radius; // FF1+
+    -webkit-border-radius: $radius; // Saf3-4, iOS 1+, Android 1.5+
+            border-radius: $radius; // Opera 10.5, IE9, Saf5, Chrome, FF4
+}

@@ -1,5 +1,8 @@
 
 @import "toucan-0.1.9";
+@import "css3-please";
+
+// -----------------------------------------------------------------------------
 
 body {
     margin: 20px;
@@ -19,3 +22,40 @@ form .error ul {
     background-color: #FBE3E4;
     color: #8A1F11;
 }
+
+// -----------------------------------------------------------------------------
+
+@mixin indent($i) {
+    $step: 40px;
+    padding-left: $i * $step;
+    width: (4 * $step) - ($i * $step);
+}
+
+form {
+    @include border-radius(10px);
+    border: 1px solid black;
+    padding: 20px;
+    background: rgba(gray, 0.25);
+
+    div {
+        label {
+            @include indent(0);
+            font-weight: bold;
+            display: inline-block;
+        }
+    }
+
+    div div {
+        label {
+            @include indent(1);
+        }
+    }
+
+    div div div {
+        label {
+            @include indent(2);
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
