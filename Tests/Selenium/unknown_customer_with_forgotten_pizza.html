@@ -2,51 +2,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://gateau/" />
-<title>unknown_customer_with_forgotten_pizza</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="selenium.base" href="http://localhost/" />
+	<title>unknown_customer_with_forgotten_pizza</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
-<thead>
-<tr><td rowspan="1" colspan="3">unknown_customer_with_forgotten_pizza</td></tr>
-</thead><tbody>
-<tr>
-	<td>open</td>
-	<td>/AcmePizza/web/app_dev.php/pizza/order/index</td>
-	<td></td>
-</tr>
-<tr>
-	<td>select</td>
-	<td>OrderFormType_knownCustomer</td>
-	<td>label=No</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>OrderFormType_address_name</td>
-	<td>Naomi L. Danforth</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>OrderFormType_address_street</td>
-	<td>1746 Walnut Hill Drive</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>OrderFormType_address_city</td>
-	<td>Cincinnati, OH 45230</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>OrderFormType_address_phone</td>
-	<td>513-231-4344</td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//input[@value='Gimme this Pizza, Pronto!']</td>
-	<td></td>
-</tr>
-
-</tbody></table>
+	<thead>
+		<tr>
+			<td rowspan="1" colspan="3">unknown_customer_with_forgotten_pizza</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>open</td>
+			<td>/AcmePizza/web/app_dev.php/pizza/order/index</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>select</td>
+			<td>OrderFormType_knownCustomer</td>
+			<td>label=No</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>OrderFormType_address_name</td>
+			<td>Naomi L. Danforth</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>OrderFormType_address_street</td>
+			<td>1746 Walnut Hill Drive</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>OrderFormType_address_city</td>
+			<td>Cincinnati, OH 45230</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>OrderFormType_address_phone</td>
+			<td>513-231-4344</td>
+		</tr>
+        <tr>
+            <td>clickAndWait</td>
+            <td>//input[@type='submit']</td>
+            <td></td>
+        </tr>
+	</tbody>
+</table>
 </body>
 </html>
