@@ -28,19 +28,20 @@
         if ($(this).val() == 1) {
             var $$ = $('label:contains("Knownphone"):first').closest('div');
             $$.find('input').attr('disabled', false);
-            $$.show();
+            //$$.show();
 
             var $$ = $('label:contains("Address"):first').closest('div');
-            $$.find('input').attr('disabled', true)
-            $$.hide();
+            //$$.find('input').attr('disabled', true);
+            $$.find('input').attr('disabled', true);
+            //$$.hide();
         } else {
             var $$ = $('label:contains("Address"):first').closest('div');
             $$.find('input').attr('disabled', false);
-            $$.show();
+            //$$.show();
 
             var $$ = $('label:contains("Knownphone"):first').closest('div');
-            $$.find('input').attr('disabled', true)
-            $$.hide();
+            $$.find('input').attr('disabled', true);
+            //$$.hide();
         }
     });
 
