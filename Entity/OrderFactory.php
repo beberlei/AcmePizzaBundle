@@ -2,6 +2,8 @@
 
 namespace Acme\PizzaBundle\Entity;
 
+use Symfony\Component\Validator\ExecutionContext;
+
 /**
  * @assert:callback(methods={"isValidAddress", "pickedPizzaItems"})
  */
@@ -90,10 +92,15 @@ class OrderFactory
      */
     public function isValidAddress($context)
     {
-//var_dump($context->getPropertyPath());
-
         if ($this->knownCustomer) {
-            $this->address = $this->em->getRepository('AcmePizzaBundle:Address')->findOneBy(array('phone' => $this->knownPhone));
+
+            $this->address = $this->em
+                ->getRepository('AcmePizzaBundle:Address')
+                ->findOneBy(array(
+                    'phone' => $this->knownPhone,
+                ))
+                ;
+
         } else {
             $context->getGraphWalker()->walkReference(
                 $this->address,
@@ -112,7 +119,7 @@ class OrderFactory
      * @param  ExecutionContext $context
      * @return void
      */
-    public function pickedPizzaItems($context)
+    public function pickedPizzaItems(ExecutionContext $context)
     {
         $count = 0;
 
@@ -121,7 +128,10 @@ class OrderFactory
         }
 
         if ($count === 0) {
-            $context->setPropertyPath($context->getPropertyPath() . '.items');
+            $property_path = $context->getPropertyPath() . '.address.phone';
+            $property_path = $context->getPropertyPath() . '.items';
+
+            $context->setPropertyPath($property_path);
             $context->addViolation('You have to pick at least one pizza...', array(), null);
         }
     }

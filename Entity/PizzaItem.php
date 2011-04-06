@@ -29,6 +29,7 @@ class PizzaItem
     /**
      * @orm:Column(type="integer")
      * @assert:Min(0)
+     * @assert:NotNull()
      * @var int
      */
     private $count;
@@ -36,7 +37,7 @@ class PizzaItem
     public function __construct(Pizza $pizza = null, $count = 0)
     {
         $this->pizza = $pizza;
-        $this->count = $count;
+        $this->count = (int) $count;
     }
 
     public function getPizza()

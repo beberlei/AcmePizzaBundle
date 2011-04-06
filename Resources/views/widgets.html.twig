@@ -16,7 +16,7 @@
             <li>{% trans error.messageTemplate with error.messageParameters from 'validators' %}</li>
         {% endfor %}
     </ul>
-    {% endif %}  	
+    {% endif %}
 {% endblock field__errors %}
 
 {% block field__rest %}
@@ -119,10 +119,10 @@
     {% if widget == 'text' %}
         {{ block('text__widget') }}
     {% else %}
-        {{ date_pattern|replace({ 
-            '{{ year }}': renderer.year.widget, 
-            '{{ month }}': renderer.month.widget, 
-            '{{ day }}': renderer.day.widget 
+        {{ date_pattern|replace({
+            '{{ year }}': renderer.year.widget,
+            '{{ month }}': renderer.month.widget,
+            '{{ day }}': renderer.day.widget
         })|raw }}
     {% endif %}
 {% endblock date__widget %}
