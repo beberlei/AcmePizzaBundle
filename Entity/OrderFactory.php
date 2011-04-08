@@ -92,7 +92,9 @@ class OrderFactory
      */
     public function isValidAddress($context)
     {
-        if ($this->knownCustomer) {
+    	// https://gist.github.com/888267
+
+        if (true === $this->knownCustomer) {
 
             $this->address = $this->em
                 ->getRepository('AcmePizzaBundle:Address')
@@ -101,18 +103,36 @@ class OrderFactory
                 ))
                 ;
 
+            if (false === ($this->address instanceof Address)) {
+		        $property_path = $context->getPropertyPath() . '.knownPhone';
+
+				$context->setPropertyPath($property_path);
+				$context->addViolation('Phone number is not registered', array(), null);                	
+			}
+
         } else {
+
+        	/*
+        	$context->setGroup('MyTest');
+        	var_dump($context->getGroup());
+        	*/
+
+        	$group = $context->getGroup();
+        	$group = 'Address';
+
             $context->getGraphWalker()->walkReference(
                 $this->address,
-                $context->getGroup(),
+                $group,
                 $context->getPropertyPath() . ".address",
                 true
             );
         }
 
+        /*
         if (!($this->address instanceof Address)) {
             $context->addViolation('Invalid address given', array(), $this->address);
         }
+        */
     }
 
     /**

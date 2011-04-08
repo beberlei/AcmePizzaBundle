@@ -16,25 +16,25 @@ class Address
 
     /**
      * @orm:Column(type="string")
-     * @assert:NotBlank
+     * @assert:NotBlank(groups="Address")
      */
     private $name;
 
     /**
      * @orm:Column(type="string")
-     * @assert:NotBlank
+     * @assert:NotBlank(groups="Address")
      */
     private $street;
 
     /**
      * @orm:Column(type="string")
-     * @assert:NotBlank
+     * @assert:NotBlank(groups="Address")
      */
     private $city;
 
     /**
      * @orm:Column(type="string")
-     * @assert:NotBlank
+     * @assert:NotBlank(groups="Address")
      */
     private $phone;
 
