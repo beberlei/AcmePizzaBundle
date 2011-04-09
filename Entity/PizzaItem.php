@@ -29,7 +29,6 @@ class PizzaItem
     /**
      * @orm:Column(type="integer")
      * @assert:Min(0)
-     * @assert:NotNull()
      * @var int
      */
     private $count;

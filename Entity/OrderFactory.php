@@ -2,7 +2,9 @@
 
 namespace Acme\PizzaBundle\Entity;
 
-use Symfony\Component\Validator\ExecutionContext;
+use
+    Symfony\Component\Validator\ExecutionContext
+    ;
 
 /**
  * @assert:callback(methods={"isValidAddress", "pickedPizzaItems"})
@@ -19,7 +21,7 @@ class OrderFactory
      *
      * @var string
      */
-    private $knownPhone = "";
+    private $knownPhone = '';
 
     /**
      * @var Address
@@ -48,7 +50,6 @@ class OrderFactory
     public function setKnownPhone($phone)
     {
         $this->knownPhone = $phone;
-        // TODO: because phone is know we must disable address validation
     }
 
     public function getKnownPhone()
@@ -90,7 +91,7 @@ class OrderFactory
      * @param  ExecutionContext $context
      * @return bool
      */
-    public function isValidAddress($context)
+    public function isValidAddress(ExecutionContext $context)
     {
     	// https://gist.github.com/888267
 
@@ -149,7 +150,11 @@ class OrderFactory
 
         if ($count === 0) {
             $property_path = $context->getPropertyPath() . '.address.phone';
-            $property_path = $context->getPropertyPath() . '.items';
+            $property_path = $context->getPropertyPath() . '.items[0].count';
+            $property_path = $context->getPropertyPath() . '.items.0.count';
+            $property_path = $context->getPropertyPath() . '.items.[0].count'; // ok
+            //$property_path = $context->getPropertyPath() . '.items.[0].pizza'; // ok
+            //$property_path = $context->getPropertyPath() . '.items.[0]';
 
             $context->setPropertyPath($property_path);
             $context->addViolation('You have to pick at least one pizza...', array(), null);
