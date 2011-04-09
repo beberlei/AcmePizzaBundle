@@ -3,68 +3,83 @@
 namespace Acme\PizzaBundle\Entity;
 
 /**
- * @orm:entity
+ * @orm:Entity
  */
 class Address
 {
     /**
-     * @orm:generatedValue @orm:id @orm:column(type="integer")
+     * @orm:GeneratedValue
+     * @orm:Id
+     * @orm:Column(type="integer")
      */
     private $id;
+
     /**
-     * @orm:column(type="string")
-     * @assert:NotBlank
+     * @orm:Column(type="string")
+     * @assert:NotBlank(groups="Address")
      */
     private $name;
+
     /**
-     * @orm:column(type="string")
-     * @assert:NotBlank
+     * @orm:Column(type="string")
+     * @assert:NotBlank(groups="Address")
      */
     private $street;
+
     /**
-     * @orm:column(type="string")
-     * @assert:NotBlank
+     * @orm:Column(type="string")
+     * @assert:NotBlank(groups="Address")
      */
     private $city;
+
     /**
-     * @orm:column(type="string")
-     * @assert:NotBlank
+     * @orm:Column(type="string")
+     * @assert:NotBlank(groups="Address")
      */
     private $phone;
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
-    public function getStreet() {
+    public function getStreet()
+    {
         return $this->street;
     }
 
-    public function setStreet($street) {
+    public function setStreet($street)
+    {
         $this->street = $street;
     }
 
-    public function getCity() {
+    public function getCity()
+    {
         return $this->city;
     }
 
-    public function setCity($city) {
+    public function setCity($city)
+    {
         $this->city = $city;
     }
 
-    public function getPhone() {
+    public function getPhone()
+    {
         return $this->phone;
     }
 
-    public function setPhone($phone) {
+    public function setPhone($phone)
+    {
         $this->phone = $phone;
     }
 }

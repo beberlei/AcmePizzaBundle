@@ -1,16 +1,21 @@
 <?php
 
-namespace Acme\PizzaBundle\Form;
+namespace Acme\PizzaBundle\Form\Type;
 
-use Symfony\Component\Form\Type\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use
+    Symfony\Component\Form\Type\AbstractType,
+    Symfony\Component\Form\FormBuilder
+    ;
 
 class PizzaType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('name', 'text');
-        $builder->add('price', 'money');
+        $builder
+            ->add('name', 'text')
+            ->add('price', 'text')
+            ->end()
+            ;
     }
 
     public function getDefaultOptions(array $options)

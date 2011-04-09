@@ -15,7 +15,8 @@ Symfony has to be loaded from [bschussek's experimental branch](https://github.c
 
     cd vendor/
     rm -rf symfony/
-    git clone --depth 1 -b experimental git://github.com/bschussek/symfony.git
+    git clone -b experimental git://github.com/bschussek/symfony.git
+    git reset --hard bbeddf7
 
 Installation
 ------------
@@ -51,8 +52,13 @@ Installation
 ### Enable routing configuration
 
     # app/config/routing.yml
-    pizza:
-        resource: "@AcmePizzaBundle/Resources/config/routing.yml"
+    _pizza_pizza:
+        resource: "@AcmePizzaBundle/Controller/PizzaController.php"
+        type:     annotation
+    
+    _pizza_order:
+        resource: "@AcmePizzaBundle/Controller/OrderController.php"
+        type:     annotation
 
 ### Refresh asset folder
 
@@ -61,4 +67,4 @@ Installation
 Usage
 -----
 
-Go to `app_dev.php/pizza`
+Go to `app_dev.php/pizza/order/index`

@@ -5,15 +5,20 @@ namespace Acme\PizzaBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @orm:entity
- * @orm:table(name="PizzaOrder")
+ * @orm:Entity
+ * @orm:Table(name="PizzaOrder")
  */
 class Order
 {
-    /** @orm:generatedValue @orm:id @orm:column(type="integer") */
-    private $id;
     /**
-     * @orm:column(type="datetime")
+     * @orm:GeneratedValue
+     * @orm:Id
+     * @orm:Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @orm:Column(type="datetime")
      */
     private $date;
 
@@ -22,6 +27,7 @@ class Order
      * @var Address
      */
     private $address;
+
     /**
      * @orm:OneToMany(targetEntity="PizzaItem", mappedBy="order", cascade={"persist"})
      */
@@ -29,20 +35,32 @@ class Order
 
     public function __construct(Address $address, array $items)
     {
+        $this->date    = new \DateTime("now");
         $this->address = $address;
-        $this->items = new ArrayCollection($items);
-        $this->date = new \DateTime("now");
+//var_dump($address->getId());
+        $this->items   = new ArrayCollection($items);
+        foreach ($this->items as $item) {
+            $item->setOrder($this);
+        }
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getDate() {
+    public function getDate()
+    {
         return $this->date;
     }
 
-    public function getAddress() {
+    public function getAddress()
+    {
         return $this->address;
+    }
+
+    public function getItems()
+    {
+        return $this->items;
     }
 }

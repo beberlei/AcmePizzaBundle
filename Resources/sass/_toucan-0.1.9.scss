@@ -1,0 +1,220 @@
+// =============================================================================
+// TOUCAN CSS RESET | v0.1.9
+// http://borderleft.com/labs/
+// -----------------------------------------------------------------------------
+
+// - General -------------------------------------------------------------------
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0; }
+
+p, blockquote, q, pre, address, hr, code, samp, dl, ol, ul, form, table, fieldset, menu {
+    margin-bottom: 1.5em; }
+
+// - Structure -----------------------------------------------------------------
+
+html {
+    font-size: 100%; }
+
+body {
+    font-family: georgia, palatino, "palatino linotype", times, "times new roman", serif;
+    font-size: .875em;
+    line-height: 1.5; }
+
+// - Text ----------------------------------------------------------------------
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold; }
+
+h1 {
+    font-size: 3em;
+    line-height: 1.1;
+    margin-bottom: .238em; }
+
+h2 {
+    font-size: 2em;
+    line-height: 1.15;
+    margin-bottom: .357em; }
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.2;
+    margin-bottom: .476em; }
+
+h4, h5, h6 {
+    font-size: 1em;
+    margin-bottom: .715em; }
+
+em, i {
+    font-style: italic; }
+
+strong, b {
+    font-weight: bold; }
+
+blockquote, q, cite {
+    font-style: italic; }
+
+blockquote, q {
+    quotes: none; }
+
+blockquote {
+    &:before, &:after {
+        content: "";
+        content: none; } }
+
+q {
+    &:before, &:after {
+        content: "";
+        content: none; } }
+
+code, kbd, pre, samp, tt {
+    font-family: "andale mono", consolas, monaco, "lucida console", "courier new", courier, monospace;
+    line-height: 1.3; }
+
+pre {
+    /* word-wrap: break-word; */
+    white-space: pre-wrap; }
+
+abbr, acronym, dfn {
+    border-bottom: 1px dotted;
+    cursor: help;
+    font-style: normal;
+    font-variant: normal; }
+
+var {
+    font-style: normal; }
+
+center {
+    text-align: center; }
+
+// - Hypertext -----------------------------------------------------------------
+
+a {
+    &:link {
+    }
+    
+    &:visited {
+    }
+    
+    &:hover {
+    }
+    
+    &:active {
+    }
+    
+    &:focus {
+        outline: 1px dotted; }
+}
+
+// - Image ---------------------------------------------------------------------
+
+img {
+    border: 0; }
+
+// - List ----------------------------------------------------------------------
+
+ul {
+    list-style: disc outside none; }
+
+ol {
+    list-style: decimal outside none; }
+
+li {
+    margin-left: 2em;
+    ul, ol {
+        margin-bottom: 0; } }
+
+dt {
+    font-weight: bold; }
+
+dd {
+    margin-bottom: 1em; }
+
+// - Presentation --------------------------------------------------------------
+
+hr {
+    border: 0;
+    border-bottom: 1px solid; }
+
+big {
+    font-size: 1.25em; }
+
+small, sub, sup {
+    font-size: .85em; }
+
+sub, sup {
+    line-height: 1; }
+
+sub {
+    vertical-align: bottom; }
+
+sup {
+    vertical-align: top; }
+
+del, s, strike {
+    text-decoration: line-through; }
+
+ins {
+    border-bottom: 1px dotted;
+    text-decoration: none; }
+
+bdo {
+    border-bottom: 1px dotted; }
+
+u {
+    text-decoration: underline; }
+
+// - Form ----------------------------------------------------------------------
+
+fieldset {
+    padding: 1em; }
+
+legend {
+    font-weight: bold;
+    padding: 0 .25em; }
+
+input, textarea, select, button {
+    font-family: inherit;
+    font-size: 1em; }
+
+input {
+    &[type=button], &[type=file], &[type=image], &[type=reset], &[type=submit] {
+        cursor: pointer;
+        line-height: 1; } }
+
+button {
+    &[type=button], &[type=reset], &[type=submit] {
+        cursor: pointer;
+        line-height: 1; } }
+
+input {
+    &[type=text], &[type=password] {
+        padding: 1px; } }
+
+textarea {
+    padding: 1px;
+    line-height: 1.25;
+    text-align: left; }
+
+// - Table ---------------------------------------------------------------------
+
+table {
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    line-height: 1.3; }
+
+caption, th, td {
+    text-align: left;
+    vertical-align: top; }
+
+th, td {
+    border: 1px solid;
+    padding: .5em 1em; }
+
+caption {
+    padding-bottom: 1em; }
+
+th {
+    font-weight: bold; }

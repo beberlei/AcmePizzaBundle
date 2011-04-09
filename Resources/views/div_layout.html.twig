@@ -1,0 +1,18 @@
+{% extends "AcmePizzaBundle::widgets.html.twig" %}
+
+{# -------------------------------------------------------------------------- #}
+
+{% block field__row %}
+    <div>
+        {{ renderer.label  }}
+        {{ renderer.widget }}
+        {{ renderer.errors }}
+    </div>
+{% endblock field__row %}
+
+{# -------------------------------------------------------------------------- #}
+
+{% block form__widget %}
+    {{ block('field__rows') }}
+    {{ renderer.rest }}
+{% endblock form__widget %}

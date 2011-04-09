@@ -8,18 +8,27 @@ namespace Acme\PizzaBundle\Entity;
 class PizzaItem
 {
     /**
-     * @orm:generatedValue @orm:id @orm:column(type="integer")
+     * @orm:GeneratedValue
+     * @orm:Id
+     * @orm:Column(type="integer")
      */
     private $id;
+
+    /**
+     * @orm:ManyToOne(targetEntity="Order", inversedBy="items")
+     */
+    private $order;
+
     /**
      * @var Pizza
-     * @assert:Type(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
      * @orm:ManyToOne(targetEntity="Pizza")
+     * @assert:Type(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
      */
     private $pizza;
+
     /**
      * @orm:Column(type="integer")
-     * @assert:min(1)
+     * @assert:Min(0)
      * @var int
      */
     private $count;
@@ -27,22 +36,36 @@ class PizzaItem
     public function __construct(Pizza $pizza = null, $count = 0)
     {
         $this->pizza = $pizza;
-        $this->count = $count;
+        $this->count = (int) $count;
     }
 
-    public function getPizza() {
+    public function getPizza()
+    {
         return $this->pizza;
     }
 
-    public function setPizza($pizza) {
+    public function setPizza($pizza)
+    {
         $this->pizza = $pizza;
     }
 
-    public function getCount() {
+    public function getCount()
+    {
         return $this->count;
     }
 
-    public function setCount($count) {
+    public function setCount($count)
+    {
         $this->count = $count;
+    }
+
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    public function setOrder(Order $order)
+    {
+        $this->order = $order;
     }
 }

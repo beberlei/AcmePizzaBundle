@@ -1,15 +1,14 @@
 {% extends "AcmePizzaBundle::layout.html.twig" %}
 
-{% block title parent() ~ " - Edit" %}
+{% block title parent() ~ " - Pizza - Edit" %}
 
 {% block content %}
 
-<h1>Edit Pizza "{{pizza.name}}"</h1>
+<h1>Edit Pizza "{{ pizza.name }}"</h1>
 
-<form method="post" action="{{ path("pizza_edit", {"id": pizza.id}) }}">
-{{ form.widget }}
-
-<input type="submit" value="Update this tasty Pizza!" />
+<form method="post" action="{{ path("pizza_pizza_edit", {"id": pizza.id}) }}">
+    {{ form.widget }}
+    <input type="submit" value="Update this tasty Pizza!" />
 </form>
 
 {% endblock %}

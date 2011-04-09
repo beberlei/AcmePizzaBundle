@@ -2,6 +2,10 @@
 
 namespace Acme\PizzaBundle\Entity;
 
+use
+    Symfony\Component\Validator\ExecutionContext
+    ;
+
 /**
  * @assert:callback(methods={"isValidAddress", "pickedPizzaItems"})
  */
@@ -17,7 +21,7 @@ class OrderFactory
      *
      * @var string
      */
-    private $knownPhone = "";
+    private $knownPhone = '';
 
     /**
      * @var Address
@@ -60,7 +64,7 @@ class OrderFactory
 
     public function setKnownCustomer($bool)
     {
-        $this->knownCustomer = (bool)$bool;
+        $this->knownCustomer = (bool) $bool;
     }
 
     public function setAddress(Address $address)
@@ -87,36 +91,73 @@ class OrderFactory
      * @param  ExecutionContext $context
      * @return bool
      */
-    public function isValidAddress($context)
+    public function isValidAddress(ExecutionContext $context)
     {
-        if ($this->knownCustomer) {
-            $this->address = $this->em->getRepository('Acme\PizzaBundle\Entity\Address')->findOneBy(array('phone' => $this->knownPhone));
+    	// https://gist.github.com/888267
+
+        if (true === $this->knownCustomer) {
+
+            $this->address = $this->em
+                ->getRepository('AcmePizzaBundle:Address')
+                ->findOneBy(array(
+                    'phone' => $this->knownPhone,
+                ))
+                ;
+
+            if (false === ($this->address instanceof Address)) {
+		        $property_path = $context->getPropertyPath() . '.knownPhone';
+
+				$context->setPropertyPath($property_path);
+				$context->addViolation('Phone number is not registered', array(), null);                	
+			}
+
         } else {
+
+        	/*
+        	$context->setGroup('MyTest');
+        	var_dump($context->getGroup());
+        	*/
+
+        	$group = $context->getGroup();
+        	$group = 'Address';
+
             $context->getGraphWalker()->walkReference(
                 $this->address,
-                $context->getGroup(),
+                $group,
                 $context->getPropertyPath() . ".address",
                 true
             );
         }
+
+        /*
         if (!($this->address instanceof Address)) {
             $context->addViolation('Invalid address given', array(), $this->address);
         }
+        */
     }
 
     /**
      * @param  ExecutionContext $context
      * @return void
      */
-    public function pickedPizzaItems($context)
+    public function pickedPizzaItems(ExecutionContext $context)
     {
         $count = 0;
-        foreach ($this->items AS $item) {
+
+        foreach ($this->items as $item) {
             $count += $item->getCount();
         }
+
         if ($count === 0) {
-            $context->setPropertyPath($context->getPropertyPath().'.items');
-            $context->addViolation('You have pick at least one pizza', array(), null);
+            $property_path = $context->getPropertyPath() . '.address.phone';
+            $property_path = $context->getPropertyPath() . '.items[0].count';
+            $property_path = $context->getPropertyPath() . '.items.0.count';
+            $property_path = $context->getPropertyPath() . '.items.[0].count'; // ok
+            //$property_path = $context->getPropertyPath() . '.items.[0].pizza'; // ok
+            //$property_path = $context->getPropertyPath() . '.items.[0]';
+
+            $context->setPropertyPath($property_path);
+            $context->addViolation('You have to pick at least one pizza...', array(), null);
         }
     }
 

@@ -1,0 +1,40 @@
+{% extends "AcmePizzaBundle::widgets.html.twig" %}
+
+{# -------------------------------------------------------------------------- #}
+
+{% block field__row %}
+    <tr>
+        <td>{{ renderer.label }}</td>
+        <td>
+            {{ renderer.widget }}
+            {{ renderer.errors }}
+        </td>
+    </tr>
+{% endblock field__row %}
+
+{# -------------------------------------------------------------------------- #}
+
+{% block form__errors %}
+    {% if errors|length > 0 %}
+    <tr>
+        <td colspan="2">
+            {{ block('field__errors') }}
+        </td>
+    </tr>
+    {% endif %}
+{% endblock form__errors %}
+
+{# -------------------------------------------------------------------------- #}
+
+{% block repeated__errors %}
+    {{ block('form__errors') }}
+{% endblock repeated__errors %}
+
+{# -------------------------------------------------------------------------- #}
+
+{% block form__widget %}
+    <table>
+        {{ block('field__rows') }}
+        {{ renderer.rest }}
+    </table>
+{% endblock form__widget %}

@@ -8,51 +8,127 @@
 
 <p>Hello customer! We want to serve you a yummy-yummy Pizza!</p>
 
-<form method="post" action="{{ path("pizza_order") }}">
+{% if true %}
 
-{{ form.errors }}
+{{ form.setTemplate("AcmePizzaBundle::div_layout.html.twig") }}
 
-<div>
-{{ form.knownCustomer.label("Have you ordered at ACME Pizza before?") }}
-</div>
+<form method="post" action="{{ path("pizza_order_index") }}" {{ form.enctype }}>
+    {{ form.widget }}
 
-<div>
-{{form.knownCustomer.errors}}
+    {{ form.rest }}
+    <input type="submit" />
+</form>
 
-{{ form.knownCustomer.widget({"class":"customerKnownBefore"}) }}
-</div>
+<script type="text/javascript">
+<!--
+    /* ...known customer (yes/no) */
+    /* asterisk is used to match input or select */
 
-<div class="order-known-customer" style="display:none;">
-    <p>{{ form.knownPhone.label("Please enter your phone-number so we can find your address:") }}</p>
+    $('*[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
+        if ($(this).val() == 1) {
+            var $$ = $('label:contains("Knownphone"):first').closest('div');
+            $$.find('input').attr('disabled', false);
+            //$$.show();
 
-    {{form.knownPhone.errors}}
+            var $$ = $('label:contains("Address"):first').closest('div');
+            //$$.find('input').attr('disabled', true);
+            $$.find('input').attr('disabled', true);
+            //$$.hide();
+        } else {
+            var $$ = $('label:contains("Address"):first').closest('div');
+            $$.find('input').attr('disabled', false);
+            //$$.show();
 
-    {{form.knownPhone.widget}}
-</div>
+            var $$ = $('label:contains("Knownphone"):first').closest('div');
+            $$.find('input').attr('disabled', true);
+            //$$.hide();
+        }
+    });
 
-<div class="order-new-customer" style="display:none;">
-    <p>Please enter your address:</p>
+    $('*[name="OrderFormType[knownCustomer]"]').change();
 
-    {{ form.address.row }}
-</div>
+    {#
+    $('input[name="OrderFormType[knownCustomer]"]:checked').change();
+    #}
 
-<div>
-    <h3>{{form.items.label("Select your choice of Pizza")}}</h3>
+    /* ...another pizzas */
 
-    {{form.items.errors}}
+    var button;
+    button = $('<a href="#">Another pizza</a>');
+    button.click(function(event) {
+        event.preventDefault();
 
-<div class="order-pizza-items">
-{% for key,item in form.items %}
-    <div {% if key == "$$name$$" %}class="order-pizza-prototype" style="display:none";{% endif %}>
-        {{item.widget}}
+        var index = prototype.parent().find(' > div').size() - 1;
+
+        var html = prototype.html();
+        html = html.replace(/ disabled=".*?"/g, "");
+        html = html.replace(/\$\$name\$\$/g, index)
+
+        $(this).before("<div>" + html + "</div>");
+    });
+
+    var prototype;
+    prototype = $('label:contains("$$name$$"):first').closest('div');
+    prototype.find('input, select').attr('disabled', true);
+    prototype.parent().append(button);
+    prototype.hide();
+
+    /* if no pizzas already in list */
+    if (prototype.parent().find(' > div').length == 1) {
+        button.click();
+    }
+-->
+</script>
+
+{% else %}
+
+<form method="post" action="{{ path("pizza_order_index") }}">
+
+    <div class="error">
+        {{ form.errors }}
     </div>
-{% endfor %}
-</div>
 
-    <a href="#" class="order-more-pizza">Another pizza</a>
-</div>
+    <div>
+        {{ form.knownCustomer.label("Have you ordered at ACME Pizza before?") }}
+    </div>
 
-    {{form.rest}}
+    <div>
+        <div class="error">
+            {{ form.knownCustomer.errors }}
+        </div>
+        {{ form.knownCustomer.widget({"class": "customerKnownBefore"}) }}
+    </div>
+
+    <div class="order-known-customer">
+        <p>{{ form.knownPhone.label("Please enter your phone-number so we can find your address:") }}</p>
+        <div class="error">
+            {{ form.knownPhone.errors }}
+        </div>
+        {{ form.knownPhone.widget }}
+    </div>
+
+    <div class="order-new-customer">
+        <p>Please enter your address:</p>
+        {{ form.address.row }}
+    </div>
+
+    <hr />
+
+    <div>
+        <h3>{{ form.items.label("Select your choice of Pizza") }}</h3>
+
+        {{ form.items.errors }}
+
+        {% for item in form.items %}
+            <div class="item">
+                {{ item.widget }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <hr />
+
+    {{ form.rest }}
 
     <input type="submit" value="Gimme this Pizza, Pronto!" />
 
@@ -60,25 +136,64 @@
 
 <script type="text/javascript">
 <!--
-    $(document).ready(function() {
-        $("#{{form.knownCustomer.var('id')}}").change(function() {
-            var val = parseInt($(this).val());
-            if (val == 1) {
-                $(".order-known-customer").show();
-                $(".order-new-customer").hide();
-            } else {
-                $(".order-known-customer").hide();
-                $(".order-new-customer").show();
-            }
-        }).trigger('change');
-        $(".order-more-pizza").click(function() {
-            var numPizzas = $(this).find("div").length;
-            var pizza = $(".order-pizza-prototype").first().clone().css('display', '');
-            $(".order-pizza-items").append(pizza.html().replace('$$name$$', "pizza"+numPizzas, 'g'));
-            return false;
-        });
+    /* ...known customer (yes/no) */
+    /* asterisk is used to match input or select */
+
+    $('*[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
+        if ($(this).val() == 1) {
+            var $$ = $(".order-known-customer");
+            $$.find('input').attr('disabled', false);
+            $$.show();
+
+            var $$ = $(".order-new-customer");
+            $$.find('input').attr('disabled', true)
+            $$.hide();
+        } else {
+            var $$ = $(".order-new-customer");
+            $$.find('input').attr('disabled', false);
+            $$.show();
+
+            var $$ = $(".order-known-customer");
+            $$.find('input').attr('disabled', true)
+            $$.hide();
+        }
     });
+
+    $('*[name="OrderFormType[knownCustomer]"]').change();
+
+    {#
+    $('input[name="OrderFormType[knownCustomer]"]:checked').change();
+    #}
+
+    /* ...another pizzas */
+
+    var button;
+    button = $('<a href="#">Another pizza</a>');
+    button.click(function(event) {
+        event.preventDefault();
+
+        var index = prototype.parent().find(' > div').size() - 1;
+
+        var html = prototype.html();
+        html = html.replace(/ disabled=".*?"/g, "");
+        html = html.replace(/\$\$name\$\$/g, index)
+
+        $(this).before("<div>" + html + "</div>");
+    });
+
+    var prototype;
+    prototype = $('div.item:first');
+    prototype.find('input, select').attr('disabled', true);
+    prototype.parent().append(button);
+    prototype.hide();
+
+    /* if no pizzas already in list */
+    if (prototype.parent().find(' > div.item').length == 1) {
+        button.click();
+    }
 -->
 </script>
+
+{% endif %}
 
 {% endblock %}
