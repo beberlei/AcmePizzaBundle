@@ -41,7 +41,7 @@ class PizzaController extends Controller
                 $em->persist($pizza);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('pizza_pizza_list'));
+                return $this->redirect($this->generateUrl('acmepizza_pizza_list'));
             }
         }
 
@@ -98,5 +98,25 @@ class PizzaController extends Controller
         return array(
             'pizzas' => $pizzas,
         );
+    }
+
+    /**
+     * @extra:Route("/delete/{id}", name="acmepizza_pizza_delete")
+     * @extra:Template()
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        $pizza = $em->find('AcmePizzaBundle:Pizza', $id);
+
+        if (!$pizza) {
+            throw new NotFoundHttpException("Invalid pizza.");
+        }
+
+        $em->remove($pizza);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('acmepizza_pizza_list'));
     }
 }

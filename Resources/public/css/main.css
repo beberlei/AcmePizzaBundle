@@ -210,3 +210,12 @@ form {
   form div div div label {
     padding-left: 80px;
     width: 80px; }
+
+table ul {
+  list-style: none;
+  margin-bottom: 0; }
+  table ul li {
+    margin-left: 0;
+    display: inline-block; }
+    table ul li:not(:last-child):after {
+      content: " | "; }
