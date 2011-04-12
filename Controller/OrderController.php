@@ -16,12 +16,12 @@ use
     ;
 
 /**
- * @extra:Route("/pizza/order")
+ * @extra:Route("/acme-pizza/order")
  */
 class OrderController extends Controller
 {
     /**
-     * @extra:Route("/index", name="pizza_order_index")
+     * @extra:Route("/index", name="acmepizza_order_index")
      * @extra:Template()
      */
     public function indexAction()
@@ -57,7 +57,7 @@ class OrderController extends Controller
     }
 
     /**
-     * @extra:Route("/list", name="pizza_order_list")
+     * @extra:Route("/list", name="acmepizza_order_list")
      * @extra:Template()
      */
     public function listAction()
@@ -73,7 +73,7 @@ class OrderController extends Controller
     }
 
     /**
-     * @extra:Route("/edit/{id}", name="pizza_order_edit")
+     * @extra:Route("/edit/{id}", name="acmepizza_order_edit")
      * @extra:Template()
      */
     public function editAction($id)

@@ -13,12 +13,12 @@ use
     ;
 
 /**
- * @extra:Route("/pizza/pizza")
+ * @extra:Route("/acme-pizza/pizza")
  */
 class PizzaController extends Controller
 {
     /**
-     * @extra:Route("/create", name="pizza_pizza_create")
+     * @extra:Route("/create", name="acmepizza_pizza_create")
      * @extra:Template()
      */
     public function createAction()
@@ -51,7 +51,7 @@ class PizzaController extends Controller
     }
 
     /**
-     * @extra:Route("/edit/{id}", name="pizza_pizza_edit")
+     * @extra:Route("/edit/{id}", name="acmepizza_pizza_edit")
      * @extra:Template()
      */
     public function editAction($id)
@@ -85,7 +85,7 @@ class PizzaController extends Controller
     }
 
     /**
-     * @extra:Route("/list", name="pizza_pizza_list")
+     * @extra:Route("/list", name="acmepizza_pizza_list")
      * @extra:Template()
      */
     public function listAction()

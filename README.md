@@ -13,10 +13,10 @@ Requirements
 
 Symfony has to be loaded from [bschussek's experimental branch](https://github.com/bschussek/symfony/tree/experimental)
 
+    ./bin/vendors.sh --min
     cd vendor/
     rm -rf symfony/
     git clone -b experimental git://github.com/bschussek/symfony.git
-    git reset --hard bbeddf7
 
 Installation
 ------------
@@ -52,11 +52,11 @@ Installation
 ### Enable routing configuration
 
     # app/config/routing.yml
-    _pizza_pizza:
+    acme-pizza_pizza:
         resource: "@AcmePizzaBundle/Controller/PizzaController.php"
         type:     annotation
     
-    _pizza_order:
+    acme-pizza_order:
         resource: "@AcmePizzaBundle/Controller/OrderController.php"
         type:     annotation
 
@@ -67,4 +67,4 @@ Installation
 Usage
 -----
 
-Go to `app_dev.php/pizza/order/index`
+Go to `app_dev.php/acme-pizza/pizza/list` and start selling pizzas.
