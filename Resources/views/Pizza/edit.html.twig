@@ -10,11 +10,7 @@
     <h2>Creating new pizza</h2>
 {% endif %}
 
-{#
-// could be better to have the real path action
-<form method="post" action="{{ path("acmepizza_pizza_edit", {"id": pizza.id}) }}">
-#}
-<form method="post" action="#">
+<form method="post" action="{{ app.request.requestUri }}" {{ form.enctype }}>
     {{ form.widget }}
     <input type="submit" />
 </form>
