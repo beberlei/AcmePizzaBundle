@@ -6,6 +6,8 @@
 
 {% for order in orders %}
 
+    <h2>Order #{{ order.id }}</h2>
+
     <dl>
         <dt>Name</dt>
         <dd>{{ order.address.name }}<dd>

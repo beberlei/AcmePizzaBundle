@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1>Create a Pizza</h1>
+<h2>Create a Pizza</h2>
 
 {#
 {{ form.setTemplate("AcmePizzaBundle::table_layout.html.twig") }}
@@ -28,7 +28,7 @@
 </form>
 #}
 
-<form method="post" action="{{ path("pizza_pizza_create") }}" {{ form.enctype }}>
+<form method="post" action="{{ path("acmepizza_pizza_create") }}" {{ form.enctype }}>
     {{ form.widget }}
 
     {{ form.rest }}

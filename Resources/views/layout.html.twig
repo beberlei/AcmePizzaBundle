@@ -8,13 +8,18 @@
     </head>
     <body>
 
-        <div class="nav">
-            <ul>
-                <li><a href="{{ path("acmepizza_order_index")  }}">New Order</a></li>
-                <li><a href="{{ path("acmepizza_order_list")   }}">All Orders</a></li>
-                <li><a href="{{ path("acmepizza_pizza_create") }}">New Pizza</a></li>
-                <li><a href="{{ path("acmepizza_pizza_list")   }}">All Pizzas</a></li>
-            </ul>
+        <div class="header">
+            <div class="hgroup">
+                <h1>Acme Pizza</h1>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="{{ path("acmepizza_order_index")  }}">New Order</a></li>
+                    <li><a href="{{ path("acmepizza_order_list")   }}">All Orders</a></li>
+                    <li><a href="{{ path("acmepizza_pizza_create") }}">New Pizza</a></li>
+                    <li><a href="{{ path("acmepizza_pizza_list")   }}">All Pizzas</a></li>
+                </ul>
+            </div>
         </div>
 
         <hr />
