@@ -18,26 +18,33 @@ use
 class PizzaController extends Controller
 {
     /**
-     * @extra:Route("/create", name="acmepizza_pizza_create")
+     * @extra:Routes({
+     *     @extra:Route("/create", name="acmepizza_pizza_create"),
+     *     @extra:Route("/update/{id}", name="acmepizza_pizza_update", requirements={"id" = "\d+"})
+     * })
      * @extra:Template()
      */
-    public function createAction()
+    public function editAction($id = null)
     {
-        $request = $this->get('request');
-        $factory = $this->get('form.factory');
-        /* @var $pizzaForm \Symfony\Component\Form\Form */
-        $form = $factory->create(new PizzaType());
+        $em = $this->get('doctrine.orm.entity_manager');
 
-        $pizza = new Pizza();
+        if (isset($id)) {
+            $pizza = $em->find('AcmePizzaBundle:Pizza', $id);
+
+            if (!$pizza) {
+                throw new NotFoundHttpException("Invalid pizza.");
+            }
+        } else {
+            $pizza = new Pizza();
+        }
+
+        $form = $this->get('form.factory')->create(new PizzaType());
         $form->setData($pizza);
 
-        $validation = $this->get('validator');
-
-        if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+        if ($this->get('request')->getMethod() == 'POST') {
+            $form->bindRequest($this->get('request'));
 
             if ($form->isValid()) {
-                $em = $this->get('doctrine.orm.entity_manager');
                 $em->persist($pizza);
                 $em->flush();
 
@@ -46,40 +53,7 @@ class PizzaController extends Controller
         }
 
         return array(
-            'form' => $factory->createRenderer($form, 'twig')
-        );
-    }
-
-    /**
-     * @extra:Route("/edit/{id}", name="acmepizza_pizza_edit")
-     * @extra:Template()
-     */
-    public function editAction($id)
-    {
-        $em = $this->get('doctrine.orm.entity_manager');
-        $pizza = $em->find('AcmePizzaBundle:Pizza', $id);
-        if (!$pizza) {
-            throw new NotFoundHttpException("Invalid pizza.");
-        }
-
-        $request = $this->get('request');
-        $factory = $this->get('form.factory');
-        /* @var $pizzaForm \Symfony\Component\Form\Form */
-        $form = $factory->create(new PizzaType());
-        $form->setData($pizza);
-
-        if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
-
-            if ($form->isValid()) {
-                $em->flush();
-
-                return $this->redirect($this->generateUrl('acmepizza_pizza_list'));
-            }
-        }
-
-        return array(
-            'form'  => $factory->createRenderer($form, 'twig'),
+            'form'  => $this->get('form.factory')->createRenderer($form, 'twig'),
             'pizza' => $pizza,
         );
     }

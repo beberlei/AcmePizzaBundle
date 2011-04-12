@@ -4,19 +4,19 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="selenium.base" href="http://localhost/" />
-    <title>create_a_new_pizza</title>
+    <title>pizza » create</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
     <thead>
         <tr>
-            <td rowspan="1" colspan="3">create_a_new_pizza</td>
+            <td rowspan="1" colspan="3">pizza » create</td>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>open</td>
-            <td>/AcmePizza/web/app_dev.php/pizza/pizza/create</td>
+            <td>/AcmePizza/web/app_dev.php/acme-pizza/pizza/create</td>
             <td></td>
         </tr>
         <tr>
@@ -32,6 +32,16 @@
         <tr>
             <td>clickAndWait</td>
             <td>//input[@type='submit']</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>assertTextPresent</td>
+            <td>Absolutely Tasty</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>assertTextPresent</td>
+            <td>14.99</td>
             <td></td>
         </tr>
     </tbody>

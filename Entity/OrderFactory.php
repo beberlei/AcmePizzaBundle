@@ -93,7 +93,7 @@ class OrderFactory
      */
     public function isValidAddress(ExecutionContext $context)
     {
-    	// https://gist.github.com/888267
+        // https://gist.github.com/888267
 
         if (true === $this->knownCustomer) {
 
@@ -105,21 +105,21 @@ class OrderFactory
                 ;
 
             if (false === ($this->address instanceof Address)) {
-		        $property_path = $context->getPropertyPath() . '.knownPhone';
+                $property_path = $context->getPropertyPath() . '.knownPhone';
 
-				$context->setPropertyPath($property_path);
-				$context->addViolation('Phone number is not registered', array(), null);                	
-			}
+                $context->setPropertyPath($property_path);
+                $context->addViolation('Phone number is not registered', array(), null);
+            }
 
         } else {
 
-        	/*
-        	$context->setGroup('MyTest');
-        	var_dump($context->getGroup());
-        	*/
+            /*
+            $context->setGroup('MyTest');
+            var_dump($context->getGroup());
+            */
 
-        	$group = $context->getGroup();
-        	$group = 'Address';
+            $group = $context->getGroup();
+            $group = 'Address';
 
             $context->getGraphWalker()->walkReference(
                 $this->address,

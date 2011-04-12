@@ -37,8 +37,8 @@ class OrderController extends Controller
 
         if ($request->getMethod() == 'POST') {
 
-        	//$form->setValidationGroups('new');
-        	
+            //$form->setValidationGroups('new');
+
             $form->bindRequest($request);
 
             if ($form->isValid()) {

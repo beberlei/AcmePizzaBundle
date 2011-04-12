@@ -3,25 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="selenium.base" href="http://cake/" />
-	<title>update_an_existing_pizza</title>
+	<link rel="selenium.base" href="http://localhost/" />
+	<title>pizza » update</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 	<thead>
 		<tr>
-			<td rowspan="1" colspan="3">update_an_existing_pizza</td>
+			<td rowspan="1" colspan="3">pizza » update</td>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>open</td>
-			<td>/AcmePizza/web/app_dev.php/pizza/pizza/list</td>
+			<td>/AcmePizza/web/app_dev.php/acme-pizza/pizza/list</td>
 			<td></td>
 		</tr>
 		<tr>
 		    <td>clickAndWait</td>
-		    <td>//td[contains(text(), 'Banana')]/../td/a[text()='Edit']</td>
+		    <td>//td[contains(text(), 'Banana')]/../td//a[text()='Update']</td>
 		    <td></td>
 		</tr>
 		<tr>
@@ -39,6 +39,16 @@
 			<td>//input[@type='submit']</td>
 			<td></td>
 		</tr>
+        <tr>
+            <td>assertTextPresent</td>
+            <td>Banana and Chocolate</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>assertTextPresent</td>
+            <td>13.40</td>
+            <td></td>
+        </tr>
 	</tbody>
 </table>
 </body>
