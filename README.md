@@ -64,6 +64,14 @@ Installation
 
     ./app/console assets:install web/
 
+### Data fixtures (optional)
+
+First, make sure that your db parameters are correctly set in `app/config/parameters.ini`.
+You'll need to install [Doctrine Data Fixtures](git://github.com/doctrine/data-fixtures.git)
+(don't forget to add the path to `AppKernel.php`) and then run:
+
+    ./app/console doctrine:data:load
+
 Usage
 -----
 
