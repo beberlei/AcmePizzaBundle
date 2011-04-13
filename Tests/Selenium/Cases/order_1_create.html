@@ -4,19 +4,19 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="selenium.base" href="http://localhost/" />
-    <title>unknown_customer_orders_2x1_pizzas</title>
+    <title>order » create</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
     <thead>
         <tr>
-            <td rowspan="1" colspan="3">unknown_customer_orders_2x1_pizzas</td>
+            <td rowspan="1" colspan="3">order » create</td>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>open</td>
-            <td>/AcmePizza/web/app_dev.php/pizza/order/index</td>
+            <td>/AcmePizza/web/app_dev.php/acme-pizza/order/index</td>
             <td></td>
         </tr>
         <tr>
@@ -42,7 +42,7 @@
         <tr>
             <td>select</td>
             <td>OrderFormType_items_0_pizza</td>
-            <td>label=Puttanesca(10.5)</td>
+            <td>label=Big Sicilian(13.4)</td>
         </tr>
         <tr>
             <td>type</td>
@@ -50,26 +50,15 @@
             <td>1</td>
         </tr>
         <tr>
-            <td>click</td>
-            <td>link=Another pizza</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>select</td>
-            <td>OrderFormType_items_1_pizza</td>
-            <td>label=Eggplant(7.9)</td>
-        </tr>
-        <tr>
-            <td>type</td>
-            <td>OrderFormType_items_1_count</td>
-            <td>1</td>
-        </tr>
-        <tr>
             <td>clickAndWait</td>
             <td>//input[@type='submit']</td>
             <td></td>
         </tr>
-
+        <tr>
+            <td>assertTextPresent</td>
+            <td>Arnaud Chassé</td>
+            <td></td>
+        </tr>
     </tbody>
 </table>
 </body>

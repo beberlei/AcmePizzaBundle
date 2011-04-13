@@ -47,7 +47,7 @@ class OrderController extends Controller
                 $em->persist($orderFactory->createOrder());
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('pizza_order_list'));
+                return $this->redirect($this->generateUrl('acmepizza_order_list'));
             }
         }
 
@@ -96,7 +96,9 @@ class OrderController extends Controller
 
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('pizza_order_edit', array('id' => $pizza->getId())));
+                return $this->redirect($this->generateUrl('acmepizza_order_edit', array(
+                    'id' => $pizza->getId(),
+                )));
             }
         }
 
