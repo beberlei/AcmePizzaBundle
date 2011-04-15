@@ -53,7 +53,7 @@ class PizzaController extends Controller
         }
 
         return array(
-            'form'  => $form->getView(),
+            'form'  => $form->createView(),
             'pizza' => $pizza,
         );
     }

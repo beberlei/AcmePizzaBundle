@@ -52,7 +52,7 @@ class OrderController extends Controller
         }
 
         return array(
-            'form' => $form->getView(),
+            'form'  => $form->createView(),
         );
     }
 
@@ -103,7 +103,7 @@ class OrderController extends Controller
         }
 
         return array(
-            'form'  => $this->get('form.factory')->createRenderer($form, 'twig'),
+            'form'  => $form->createView(),
             'order' => $order,
         );
     }
