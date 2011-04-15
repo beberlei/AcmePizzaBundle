@@ -52,7 +52,7 @@ class OrderController extends Controller
         }
 
         return array(
-            'form' => $factory->createRenderer($form, 'twig')
+            'form' => $form->getView(),
         );
     }
 

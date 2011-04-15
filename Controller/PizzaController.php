@@ -53,7 +53,7 @@ class PizzaController extends Controller
         }
 
         return array(
-            'form'  => $this->get('form.factory')->createRenderer($form, 'twig'),
+            'form'  => $form->getView(),
             'pizza' => $pizza,
         );
     }

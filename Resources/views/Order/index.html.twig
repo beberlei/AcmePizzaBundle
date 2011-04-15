@@ -10,12 +10,12 @@
 
 {% if true %}
 
-{{ form.setTemplate("AcmePizzaBundle::div_layout.html.twig") }}
+{# {{ form.setTemplate("AcmePizzaBundle::div_layout.html.twig") }} #}
 
-<form method="post" action="{{ path("acmepizza_order_index") }}" {{ form.enctype }}>
-    {{ form.widget }}
+<form method="post" action="{{ path("acmepizza_order_index") }}" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
 
-    {{ form.rest }}
+    {{ form_rest(form) }}
     <input type="submit" />
 </form>
 

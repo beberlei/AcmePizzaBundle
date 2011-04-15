@@ -10,8 +10,8 @@
     <h2>Creating new pizza</h2>
 {% endif %}
 
-<form method="post" action="{{ app.request.requestUri }}" {{ form.enctype }}>
-    {{ form.widget }}
+<form method="post" action="{{ app.request.requestUri }}" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
     <input type="submit" />
 </form>
 

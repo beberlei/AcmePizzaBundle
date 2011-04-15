@@ -109,5 +109,6 @@ steps:
     </selenium>
     [...]
 
-Now you can run test (assuming that Selenium RC is running `java -jar selenium-server-standalone-2.0b3.jar`) with `phpunit -c app/phpunit.xml.dist`
+Now you can run test (assuming that Selenium RC is running `java -jar selenium-server-standalone-2.0b3.jar`)
+with `phpunit -c app/phpunit.xml.dist src/Acme/PizzaBundle/Tests/Selenium/`
 If you want you can submit other missing tests.
