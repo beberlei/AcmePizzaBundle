@@ -94,9 +94,15 @@ steps:
     # app/phpunit.xml.dist
     [...]
     <php>
-        <server name="KERNEL_DIR" value="/var/www/AcmePizza/app/" />
-        <server name="HTTP_HOST" value="localhost" />
-        <server name="SCRIPT_NAME" value="/AcmePizza/web/app_dev.php" />
+        <server
+            name  = "KERNEL_DIR"
+            value = "/var/www/AcmePizza/app/" />
+        <server
+            name  = "HTTP_HOST"
+            value = "localhost" />
+        <server
+            name  = "SCRIPT_NAME"
+            value = "/AcmePizza/web/app_dev.php" />
     </php>
     [...]
 

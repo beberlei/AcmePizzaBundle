@@ -24,7 +24,7 @@
     /* ...known customer (yes/no) */
     /* asterisk is used to match input or select */
 
-    $('*[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
+    $('*[name="{{ form.knownCustomer.get('name') }}"]').change(function() {
         if ($(this).val() == 1) {
             var $$ = $('label:contains("Knownphone"):first').closest('div');
             $$.find('input').attr('disabled', false);
