@@ -22,10 +22,8 @@ abstract class AbstractSeleniumTest extends \PHPUnit_Extensions_SeleniumTestCase
         $this->kernel->boot();
 
         $this->router = $this->kernel->getContainer()->get('router');
-        $this->router->setContext(array(
-            'host'     => $_SERVER['HTTP_HOST'],
-            'base_url' => $_SERVER['SCRIPT_NAME'],
-        ));
+        $this->router->getContext()->setHost($_SERVER['HTTP_HOST']);
+        $this->router->getContext()->setBaseUrl($_SERVER['SCRIPT_NAME']);
 
         $this->setBrowserUrl("http://{$_SERVER['HTTP_HOST']}");
         //$this->setSleep(1);

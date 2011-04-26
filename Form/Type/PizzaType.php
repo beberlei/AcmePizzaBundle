@@ -3,7 +3,7 @@
 namespace Acme\PizzaBundle\Form\Type;
 
 use
-    Symfony\Component\Form\Type\AbstractType,
+    Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilder
     ;
 
@@ -14,7 +14,6 @@ class PizzaType extends AbstractType
         $builder
             ->add('name', 'text')
             ->add('price', 'text')
-            ->end()
             ;
     }
 

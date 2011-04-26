@@ -3,7 +3,7 @@
 namespace Acme\PizzaBundle\Form\Type;
 
 use
-    Symfony\Component\Form\Type\AbstractType,
+    Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilder
     ;
 
@@ -16,7 +16,6 @@ class AddressType extends AbstractType
             ->add('street', 'text')
             ->add('city', 'text')
             ->add('phone', 'text')
-            ->end()
             ;
     }
 

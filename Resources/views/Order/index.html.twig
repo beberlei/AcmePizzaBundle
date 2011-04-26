@@ -45,7 +45,7 @@
         }
     });
 
-    $('*[name="OrderFormType[knownCustomer]"]').change();
+    $('*[name="{{ form.knownCustomer.get('name') }}"]').change();
 
     {#
     $('input[name="OrderFormType[knownCustomer]"]:checked').change();
