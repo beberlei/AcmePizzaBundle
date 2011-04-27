@@ -31,19 +31,6 @@ Installation
     );
     [...]
 
-### Doctrine ORM Mappings Configuration
-
-    # app/config/config.yml
-    doctrine:
-        [...]
-        orm:
-            [...]
-            entity_managers:
-                default:
-                    mappings:
-                        [...]
-                        AcmePizzaBundle: ~
-
 ### Create database and schema
 
     app/console doctrine:database:create
