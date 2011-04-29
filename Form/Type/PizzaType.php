@@ -13,7 +13,7 @@ class PizzaType extends AbstractType
     {
         $builder
             ->add('name', 'text')
-            ->add('price', 'text')
+            ->add('price', 'money')
             ;
     }
 

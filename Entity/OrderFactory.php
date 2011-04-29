@@ -59,7 +59,7 @@ class OrderFactory
 
     public function isKnownCustomer()
     {
-        return $this->knownCustomer;
+        return (integer) $this->knownCustomer;
     }
 
     public function setKnownCustomer($bool)

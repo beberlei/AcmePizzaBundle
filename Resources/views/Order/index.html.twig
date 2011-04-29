@@ -22,34 +22,30 @@
 <script type="text/javascript">
 <!--
     /* ...known customer (yes/no) */
-    /* asterisk is used to match input or select */
 
-    $('*[name="{{ form.knownCustomer.get('name') }}"]').change(function() {
+    var toggle = !true;
+
+    $('input[name="{{ form.knownCustomer.get('name') }}"]').change(function() {
         if ($(this).val() == 1) {
             var $$ = $('label:contains("Knownphone"):first').closest('div');
             $$.find('input').attr('disabled', false);
-            //$$.show();
+            if (toggle) $$.show();
 
             var $$ = $('label:contains("Address"):first').closest('div');
-            //$$.find('input').attr('disabled', true);
             $$.find('input').attr('disabled', true);
-            //$$.hide();
+            if (toggle) $$.hide();
         } else {
             var $$ = $('label:contains("Address"):first').closest('div');
             $$.find('input').attr('disabled', false);
-            //$$.show();
+            if (toggle) $$.show();
 
             var $$ = $('label:contains("Knownphone"):first').closest('div');
             $$.find('input').attr('disabled', true);
-            //$$.hide();
+            if (toggle) $$.hide();
         }
     });
 
-    $('*[name="{{ form.knownCustomer.get('name') }}"]').change();
-
-    {#
-    $('input[name="OrderFormType[knownCustomer]"]:checked').change();
-    #}
+    $('input[name="{{ form.knownCustomer.get('name') }}"]:checked').change()
 
     /* ...another pizzas */
 
