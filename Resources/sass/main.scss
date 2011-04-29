@@ -37,7 +37,7 @@ form {
     padding: 20px;
     background: rgba(gray, 0.25);
 
-    div {
+    div div {
         label {
             @include indent(0);
             font-weight: bold;
@@ -45,13 +45,13 @@ form {
         }
     }
 
-    div div {
+    div div div {
         label {
             @include indent(1);
         }
     }
 
-    div div div {
+    div div div div {
         label {
             @include indent(2);
         }

@@ -21,13 +21,15 @@
 
 <script type="text/javascript">
 <!--
-    /* ...known customer (yes/no) */
+    /* ...known customer... */
 
     var toggle = !true;
 
     $('input[name="{{ form.knownCustomer.get('name') }}"]').change(function() {
-        if ($(this).val() == 1) {
-            var $$ = $('label:contains("Knownphone"):first').closest('div');
+
+        if ($(this).is(':checked')) {
+
+            var $$ = $('input[name="{{ form.knownPhone.get('name') }}"]:first').closest('div');
             $$.find('input').attr('disabled', false);
             if (toggle) $$.show();
 
@@ -39,15 +41,16 @@
             $$.find('input').attr('disabled', false);
             if (toggle) $$.show();
 
-            var $$ = $('label:contains("Knownphone"):first').closest('div');
+            var $$ = $('input[name="{{ form.knownPhone.get('name') }}"]:first').closest('div');
             $$.find('input').attr('disabled', true);
             if (toggle) $$.hide();
         }
+
     });
 
-    $('input[name="{{ form.knownCustomer.get('name') }}"]:checked').change()
+    $('input[name="{{ form.knownCustomer.get('name') }}"]').change()
 
-    /* ...another pizzas */
+    /* ...another pizzas... */
 
     var button;
     button = $('<a href="#">Another pizza</a>');

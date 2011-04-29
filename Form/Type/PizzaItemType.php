@@ -13,7 +13,7 @@ class PizzaItemType extends AbstractType
     {
         $builder
             ->add('pizza', 'entity', array('class' => 'Acme\PizzaBundle\Entity\Pizza'))
-            ->add('count', 'text')
+            ->add('count', 'integer')
             ;
     }
 
