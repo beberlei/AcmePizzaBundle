@@ -1,9 +1,11 @@
 <?php
 
-namespace Acme\PizzaBundle\Entity;
+namespace Acme\PizzaBundle\Entity\Factory;
 
 use
-    Symfony\Component\Validator\ExecutionContext
+    Symfony\Component\Validator\ExecutionContext,
+    Acme\PizzaBundle\Entity\Order,
+    Acme\PizzaBundle\Entity\Address
     ;
 
 /**

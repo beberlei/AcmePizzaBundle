@@ -8,7 +8,7 @@ use
     ;
 
 use
-    Acme\PizzaBundle\Entity\OrderFactory,
+    Acme\PizzaBundle\Entity\Factory\OrderFactory,
     Acme\PizzaBundle\Entity\Pizza,
     Acme\PizzaBundle\Entity\PizzaItem,
     Acme\PizzaBundle\Form\OrderFormType,
