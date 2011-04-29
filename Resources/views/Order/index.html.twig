@@ -10,8 +10,6 @@
 
 {% if true %}
 
-{# {{ form.setTemplate("AcmePizzaBundle::div_layout.html.twig") }} #}
-
 <form method="post" action="{{ path("acmepizza_order_index") }}" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
 
@@ -81,58 +79,59 @@
 
 {% else %}
 
-<form method="post" action="{{ path("pizza_order_index") }}">
+<form method="post" action="{{ path("acmepizza_order_index") }}">
 
     <div class="error">
-        {{ form.errors }}
+        {{ form_errors(form) }}
     </div>
 
     <div>
-        {{ form.known_customer.label("Have you ordered at ACME Pizza before?") }}
+        {{ form_label(form.known_customer, "Have you ordered at ACME Pizza before?") }}
     </div>
 
     <div>
         <div class="error">
-            {{ form.known_customer.errors }}
+            {{ form_errors(form.known_customer) }}
         </div>
-        {{ form.known_customer.widget({"class": "customerKnownBefore"}) }}
+        {{ form_widget(form.known_customer, {"class": "customerKnownBefore"}) }}
     </div>
 
     <div class="order-known-customer">
-        <p>{{ form.known_phone.label("Please enter your phone-number so we can find your address:") }}</p>
+        <p>{{ form_label(form.known_phone, "Please enter your phone-number so we can find your address:") }}</p>
         <div class="error">
-            {{ form.known_phone.errors }}
+            {{ form_errors(form.known_phone) }}
         </div>
-        {{ form.known_phone.widget }}
+        {{ form_widget(form.known_phone) }}
     </div>
 
     <div class="order-new-customer">
         <p>Please enter your address:</p>
-        {{ form.address.row }}
+        {{ form_row(form.address) }}
     </div>
 
     <hr />
 
     <div>
-        <h3>{{ form.items.label("Select your choice of Pizza") }}</h3>
+        <h3>{{ form_label(form.items, "Select your choice of Pizza") }}</h3>
 
-        {{ form.items.errors }}
+        {{ form_errors(form.items) }}
 
         {% for item in form.items %}
             <div class="item">
-                {{ item.widget }}
+                {{ form_widget(item) }}
             </div>
         {% endfor %}
     </div>
 
     <hr />
 
-    {{ form.rest }}
+    {{ form_rest(form) }}
 
     <input type="submit" value="Gimme this Pizza, Pronto!" />
 
 </form>
 
+{#
 <script type="text/javascript">
 <!--
     /* ...known customer (yes/no) */
@@ -159,10 +158,6 @@
     });
 
     $('*[name="OrderFormType[known_customer]"]').change();
-
-    {#
-    $('input[name="OrderFormType[known_customer]"]:checked').change();
-    #}
 
     /* ...another pizzas */
 
@@ -192,6 +187,7 @@
     }
 -->
 </script>
+#}
 
 {% endif %}
 
