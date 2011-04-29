@@ -12,13 +12,10 @@ class OrderFormType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('knownCustomer', 'checkbox', array(
-                'label'    => 'Known customer',
+            ->add('known_customer', 'checkbox', array(
                 'required' => false,
             ))
-            ->add('knownPhone', 'text', array(
-                'label' => 'Known phone',
-            ))
+            ->add('known_phone', 'text')
             ->add('address', new Type\AddressType())
             ->add('items', 'collection', array(
                 'type'       => new Type\PizzaItemType(),

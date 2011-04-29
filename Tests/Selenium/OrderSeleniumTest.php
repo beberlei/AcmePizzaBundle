@@ -69,8 +69,8 @@ class OrderSeleniumTest extends AbstractSeleniumTest
         $url = $this->router->generate('acmepizza_order_index');
 
         $this->open($url);
-        $this->click("order_knownCustomer");
-        $this->type("order_knownPhone", "03.37.63.90.80");
+        $this->click("order_known_customer");
+        $this->type("order_known_phone", "03.37.63.90.80");
         $this->select("order_items_0_pizza", "label=Sweet Potato(7.9)");
         $this->type("order_items_0_count", "2");
         $this->click("link=Another pizza");

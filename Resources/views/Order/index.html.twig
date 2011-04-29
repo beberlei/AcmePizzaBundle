@@ -25,11 +25,11 @@
 
     var toggle = !true;
 
-    $('input[name="{{ form.knownCustomer.get('name') }}"]').change(function() {
+    $('input[name="{{ form.known_customer.get('name') }}"]').change(function() {
 
         if ($(this).is(':checked')) {
 
-            var $$ = $('input[name="{{ form.knownPhone.get('name') }}"]:first').closest('div');
+            var $$ = $('input[name="{{ form.known_phone.get('name') }}"]:first').closest('div');
             $$.find('input').attr('disabled', false);
             if (toggle) $$.show();
 
@@ -41,14 +41,14 @@
             $$.find('input').attr('disabled', false);
             if (toggle) $$.show();
 
-            var $$ = $('input[name="{{ form.knownPhone.get('name') }}"]:first').closest('div');
+            var $$ = $('input[name="{{ form.known_phone.get('name') }}"]:first').closest('div');
             $$.find('input').attr('disabled', true);
             if (toggle) $$.hide();
         }
 
     });
 
-    $('input[name="{{ form.knownCustomer.get('name') }}"]').change()
+    $('input[name="{{ form.known_customer.get('name') }}"]').change()
 
     /* ...another pizzas... */
 
@@ -88,22 +88,22 @@
     </div>
 
     <div>
-        {{ form.knownCustomer.label("Have you ordered at ACME Pizza before?") }}
+        {{ form.known_customer.label("Have you ordered at ACME Pizza before?") }}
     </div>
 
     <div>
         <div class="error">
-            {{ form.knownCustomer.errors }}
+            {{ form.known_customer.errors }}
         </div>
-        {{ form.knownCustomer.widget({"class": "customerKnownBefore"}) }}
+        {{ form.known_customer.widget({"class": "customerKnownBefore"}) }}
     </div>
 
     <div class="order-known-customer">
-        <p>{{ form.knownPhone.label("Please enter your phone-number so we can find your address:") }}</p>
+        <p>{{ form.known_phone.label("Please enter your phone-number so we can find your address:") }}</p>
         <div class="error">
-            {{ form.knownPhone.errors }}
+            {{ form.known_phone.errors }}
         </div>
-        {{ form.knownPhone.widget }}
+        {{ form.known_phone.widget }}
     </div>
 
     <div class="order-new-customer">
@@ -138,7 +138,7 @@
     /* ...known customer (yes/no) */
     /* asterisk is used to match input or select */
 
-    $('*[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
+    $('*[name="{{ form.known_customer.var('name') }}"]').change(function() {
         if ($(this).val() == 1) {
             var $$ = $(".order-known-customer");
             $$.find('input').attr('disabled', false);
@@ -158,10 +158,10 @@
         }
     });
 
-    $('*[name="OrderFormType[knownCustomer]"]').change();
+    $('*[name="OrderFormType[known_customer]"]').change();
 
     {#
-    $('input[name="OrderFormType[knownCustomer]"]:checked').change();
+    $('input[name="OrderFormType[known_customer]"]:checked').change();
     #}
 
     /* ...another pizzas */

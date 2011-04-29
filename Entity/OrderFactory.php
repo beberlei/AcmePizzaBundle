@@ -14,14 +14,14 @@ class OrderFactory
     /**
      * @var bool
      */
-    private $knownCustomer = false;
+    private $known_customer = false;
 
     /**
      * Phone number of known customer.
      *
      * @var string
      */
-    private $knownPhone = '';
+    private $known_phone = '';
 
     /**
      * @var Address
@@ -49,22 +49,22 @@ class OrderFactory
 
     public function setKnownPhone($phone)
     {
-        $this->knownPhone = $phone;
+        $this->known_phone = $phone;
     }
 
     public function getKnownPhone()
     {
-        return $this->knownPhone;
+        return $this->known_phone;
     }
 
     public function isKnownCustomer()
     {
-        return $this->knownCustomer;
+        return $this->known_customer;
     }
 
-    public function setKnownCustomer($bool)
+    public function setKnownCustomer($boolean)
     {
-        $this->knownCustomer = (bool) $bool;
+        $this->known_customer = $boolean;
     }
 
     public function setAddress(Address $address)
@@ -95,17 +95,17 @@ class OrderFactory
     {
         // https://gist.github.com/888267
 
-        if (true === $this->knownCustomer) {
+        if (true === $this->known_customer) {
 
             $this->address = $this->em
                 ->getRepository('AcmePizzaBundle:Address')
                 ->findOneBy(array(
-                    'phone' => $this->knownPhone,
+                    'phone' => $this->known_phone,
                 ))
                 ;
 
             if (false === ($this->address instanceof Address)) {
-                $property_path = $context->getPropertyPath() . '.knownPhone';
+                $property_path = $context->getPropertyPath() . '.known_phone';
 
                 $context->setPropertyPath($property_path);
                 $context->addViolation('Phone number is not registered', array(), null);
