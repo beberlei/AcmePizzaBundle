@@ -12,7 +12,10 @@ class PizzaItemType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('pizza', 'entity', array('class' => 'Acme\PizzaBundle\Entity\Pizza'))
+            ->add('pizza', 'entity', array(
+                'class'         => 'Acme\PizzaBundle\Entity\Pizza',
+                'query_builder' => function ($repository) { return $repository->createQueryBuilder('p')->orderBy('p.name', 'ASC'); },
+            ))
             ->add('count', 'integer')
             ;
     }
