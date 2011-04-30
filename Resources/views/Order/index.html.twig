@@ -1,5 +1,12 @@
 {% extends "AcmePizzaBundle::layout.html.twig" %}
 
+
+{#
+{% form_theme form "AcmePizzaBundle::table_layout.html.twig" %}
+#}
+{% form_theme form "AcmePizzaBundle::div_layout.html.twig" %}
+
+
 {% block title parent() ~ " - Order" %}
 
 {% block content %}
@@ -16,6 +23,7 @@
     {{ form_rest(form) }}
     <input type="submit" />
 </form>
+
 
 <script type="text/javascript">
 <!--
@@ -124,6 +132,23 @@
     </div>
 
     <hr />
+
+    <table>
+        <thead>
+            <tr>
+                <th>Pizza</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in form.items %}
+            <tr>
+                <td>{{ form_row(item.pizza) }}</td>
+                <td>{{ form_row(item.count) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     {{ form_rest(form) }}
 
