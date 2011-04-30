@@ -49,9 +49,9 @@ class OrderFactory
         $this->address = new Address();
     }
 
-    public function setKnownPhone($phone)
+    public function setKnownPhone($known_phone)
     {
-        $this->known_phone = $phone;
+        $this->known_phone = $known_phone;
     }
 
     public function getKnownPhone()
@@ -151,23 +151,24 @@ class OrderFactory
         }
 
         if ($count === 0) {
+            /*
             $property_path = $context->getPropertyPath() . '.address.phone';
             $property_path = $context->getPropertyPath() . '.items[0].count';
             $property_path = $context->getPropertyPath() . '.items.0.count';
+            */
             $property_path = $context->getPropertyPath() . '.items.[0].count'; // ok
-            //$property_path = $context->getPropertyPath() . '.items.[0].pizza'; // ok
-            //$property_path = $context->getPropertyPath() . '.items.[0]';
-
             $context->setPropertyPath($property_path);
             $context->addViolation('You have to pick at least one pizza...', array(), null);
         }
     }
 
     /**
-     * @return Order
+     * @return \Acme\PizzaBundle\Entity\Order
      */
-    public function createOrder()
+    public function make()
     {
-        return new Order($this->address, $this->items);
+        $order = new Order($this->address, $this->items);
+
+        return $order;
     }
 }

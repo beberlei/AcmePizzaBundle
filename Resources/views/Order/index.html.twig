@@ -71,8 +71,14 @@
         <tbody>
             {% for item in form.items %}
             <tr>
-                <td>{{ form_widget(item.pizza) }}</td>
-                <td>{{ form_widget(item.count) }}</td>
+                <td>
+                    {{ form_widget(item.pizza) }}
+                    {{ form_errors(item.pizza) }}
+                </td>
+                <td>
+                    {{ form_widget(item.count) }}
+                    {{ form_errors(item.count) }}
+                </td>
                 <td>
                     <ul>
                         <li><a href="#">Add</a></li>

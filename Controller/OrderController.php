@@ -29,11 +29,10 @@ class OrderController extends Controller
         $request = $this->get('request');
         $em = $this->get('doctrine.orm.entity_manager');
 
-        $orderFactory = new OrderFactory($em);
+        $factory = new OrderFactory($em);
 
-        $factory = $this->get('form.factory');
-        $form = $factory->create(new OrderFormType());
-        $form->setData($orderFactory);
+        $form = $this->get('form.factory')->create(new OrderFormType());
+        $form->setData($factory);
 
         if ($request->getMethod() == 'POST') {
 
@@ -44,7 +43,7 @@ class OrderController extends Controller
             if ($form->isValid()) {
 
                 $em = $this->get('doctrine.orm.entity_manager');
-                $em->persist($orderFactory->createOrder());
+                $em->persist($factory->make());
                 $em->flush();
 
                 return $this->redirect($this->generateUrl('acmepizza_order_list'));
