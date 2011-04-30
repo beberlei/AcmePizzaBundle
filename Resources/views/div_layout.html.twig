@@ -10,13 +10,13 @@
 {% endblock field_enctype %}
 
 {% block field_errors %}
-    {% if errors|length > 0 %}
+    {%- if errors|length > 0 %}
     <ul>
         {% for error in errors %}
-            <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
+        <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
         {% endfor %}
     </ul>
-    {% endif %}
+    {%- endif %}
 {% endblock field_errors %}
 
 {% block field_rest %}
