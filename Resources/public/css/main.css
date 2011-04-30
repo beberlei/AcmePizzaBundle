@@ -199,15 +199,15 @@ form {
   border: 1px solid black;
   padding: 20px;
   background: rgba(128, 128, 128, 0.25); }
-  form div div label {
+  form div label {
     padding-left: 0px;
     width: 160px;
     font-weight: bold;
     display: inline-block; }
-  form div div div label {
+  form div div label {
     padding-left: 40px;
     width: 120px; }
-  form div div div div label {
+  form div div div label {
     padding-left: 80px;
     width: 80px; }
 

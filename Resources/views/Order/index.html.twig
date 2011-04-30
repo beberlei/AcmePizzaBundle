@@ -2,8 +2,8 @@
 
 {#
 {% form_theme form "AcmePizzaBundle::table_layout.html.twig" %}
-#}
 {% form_theme form "AcmePizzaBundle::div_layout.html.twig" %}
+#}
 
 {% block title parent() ~ " - Order" %}
 
@@ -13,7 +13,7 @@
 
 <p>Hello customer! We want to serve you a yummy-yummy Pizza!</p>
 
-{% if true %}
+{% if not true %}
 
 <form method="post" action="{{ path("acmepizza_order_index") }}" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
@@ -22,9 +22,109 @@
     <input type="submit" />
 </form>
 
+<script>
+    /* ...another pizzas... */
 
-<script type="text/javascript">
-<!--
+    var button;
+    button = $('<a href="#">Another pizza</a>');
+    button.click(function(event) {
+        event.preventDefault();
+
+        var index = prototype.parent().find(' > div').size() - 1;
+
+        var html = prototype.html();
+        html = html.replace(/ disabled=".*?"/g, "");
+        html = html.replace(/\$\$name\$\$/g, index)
+
+        $(this).before("<div>" + html + "</div>");
+    });
+
+    var prototype;
+    prototype = $('label:contains("$$name$$"):first').closest('div');
+    prototype.find('input, select').attr('disabled', true);
+    prototype.parent().append(button);
+    prototype.hide();
+
+    /* if no pizzas already in list */
+    if (prototype.parent().find(' > div').length == 1) {
+        button.click();
+    }
+</script>
+
+{% else %}
+
+<form method="post" action="{{ path("acmepizza_order_index") }}" {{ form_enctype(form) }}>
+
+    {{ form_row(form.known_customer) }}
+    {{ form_row(form.known_phone)    }}
+    {{ form_row(form.address)        }}
+
+    <table>
+        <caption>{{ form_label(form.items) }}</caption>
+        <thead>
+            <tr>
+                <th>Pizza</th> {#- should be better to get the label #}
+                <th>Count</th> {#- here too #}
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in form.items %}
+            <tr>
+                <td>{{ form_widget(item.pizza) }}</td>
+                <td>{{ form_widget(item.count) }}</td>
+                <td>
+                    <ul>
+                        <li><a href="#">Add</a></li>
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {{ form_rest(form) }}
+
+    <input type="submit" />
+
+</form>
+
+<script>
+    var prototype;
+    prototype = $('*[name*="$$name$$"]:first').closest('tr');
+    prototype.find('input, select').attr('disabled', true);
+    prototype.hide();
+
+    var button = prototype.find('a');
+    button.click(function(event) {
+        event.preventDefault();
+
+        var index = prototype.parent().find(' > tr').size() - 1;
+
+        row = prototype.clone(true);
+        row.find('*[disabled]').removeAttr('disabled');
+        row.find('*[name*="$$name$$"]').each(function() {
+
+            var attribute;
+
+            attribute = 'id';
+            $(this).attr(attribute, $(this).attr(attribute).replace(/\$\$name\$\$/g, index));
+
+            attribute = 'name';
+            $(this).attr(attribute, $(this).attr(attribute).replace(/\$\$name\$\$/g, index));
+        });
+        prototype.closest('tbody').append(row);
+        row.show();
+    });
+
+    if (prototype.parent().find(' > tr').length == 1) {
+        button.click();
+    }
+</script>
+
+{% endif %}
+
+<script>
     /* ...known customer... */
 
     var toggle = !true;
@@ -53,165 +153,6 @@
     });
 
     $('input[name="{{ form.known_customer.get('name') }}"]').change()
-
-    /* ...another pizzas... */
-
-    var button;
-    button = $('<a href="#">Another pizza</a>');
-    button.click(function(event) {
-        event.preventDefault();
-
-        var index = prototype.parent().find(' > div').size() - 1;
-
-        var html = prototype.html();
-        html = html.replace(/ disabled=".*?"/g, "");
-        html = html.replace(/\$\$name\$\$/g, index)
-
-        $(this).before("<div>" + html + "</div>");
-    });
-
-    var prototype;
-    prototype = $('label:contains("$$name$$"):first').closest('div');
-    prototype.find('input, select').attr('disabled', true);
-    prototype.parent().append(button);
-    prototype.hide();
-
-    /* if no pizzas already in list */
-    if (prototype.parent().find(' > div').length == 1) {
-        button.click();
-    }
--->
 </script>
-
-{% else %}
-
-<form method="post" action="{{ path("acmepizza_order_index") }}">
-
-    <div class="error">
-        {{ form_errors(form) }}
-    </div>
-
-    <div>
-        {{ form_label(form.known_customer, "Have you ordered at ACME Pizza before?") }}
-    </div>
-
-    <div>
-        <div class="error">
-            {{ form_errors(form.known_customer) }}
-        </div>
-        {{ form_widget(form.known_customer, {"class": "customerKnownBefore"}) }}
-    </div>
-
-    <div class="order-known-customer">
-        <p>{{ form_label(form.known_phone, "Please enter your phone-number so we can find your address:") }}</p>
-        <div class="error">
-            {{ form_errors(form.known_phone) }}
-        </div>
-        {{ form_widget(form.known_phone) }}
-    </div>
-
-    <div class="order-new-customer">
-        <p>Please enter your address:</p>
-        {{ form_row(form.address) }}
-    </div>
-
-    <hr />
-
-    <div>
-        <h3>{{ form_label(form.items, "Select your choice of Pizza") }}</h3>
-
-        {{ form_errors(form.items) }}
-
-        {% for item in form.items %}
-            <div class="item">
-                {{ form_widget(item) }}
-            </div>
-        {% endfor %}
-    </div>
-
-    <hr />
-
-    <table>
-        <thead>
-            <tr>
-                <th>Pizza</th>
-                <th>Count</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in form.items %}
-            <tr>
-                <td>{{ form_row(item.pizza) }}</td>
-                <td>{{ form_row(item.count) }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    {{ form_rest(form) }}
-
-    <input type="submit" value="Gimme this Pizza, Pronto!" />
-
-</form>
-
-{#
-<script type="text/javascript">
-<!--
-    /* ...known customer (yes/no) */
-    /* asterisk is used to match input or select */
-
-    $('*[name="{{ form.known_customer.var('name') }}"]').change(function() {
-        if ($(this).val() == 1) {
-            var $$ = $(".order-known-customer");
-            $$.find('input').attr('disabled', false);
-            $$.show();
-
-            var $$ = $(".order-new-customer");
-            $$.find('input').attr('disabled', true)
-            $$.hide();
-        } else {
-            var $$ = $(".order-new-customer");
-            $$.find('input').attr('disabled', false);
-            $$.show();
-
-            var $$ = $(".order-known-customer");
-            $$.find('input').attr('disabled', true)
-            $$.hide();
-        }
-    });
-
-    $('*[name="OrderFormType[known_customer]"]').change();
-
-    /* ...another pizzas */
-
-    var button;
-    button = $('<a href="#">Another pizza</a>');
-    button.click(function(event) {
-        event.preventDefault();
-
-        var index = prototype.parent().find(' > div').size() - 1;
-
-        var html = prototype.html();
-        html = html.replace(/ disabled=".*?"/g, "");
-        html = html.replace(/\$\$name\$\$/g, index)
-
-        $(this).before("<div>" + html + "</div>");
-    });
-
-    var prototype;
-    prototype = $('div.item:first');
-    prototype.find('input, select').attr('disabled', true);
-    prototype.parent().append(button);
-    prototype.hide();
-
-    /* if no pizzas already in list */
-    if (prototype.parent().find(' > div.item').length == 1) {
-        button.click();
-    }
--->
-</script>
-#}
-
-{% endif %}
 
 {% endblock %}

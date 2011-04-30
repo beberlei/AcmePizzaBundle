@@ -73,7 +73,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
         $this->type("order_known_phone", "03.37.63.90.80");
         $this->select("order_items_0_pizza", "label=Sweet Potato(7.9)");
         $this->type("order_items_0_count", "2");
-        $this->click("link=Another pizza");
+        $this->click("link=Add");
         $this->select("order_items_1_pizza", "label=Big Sicilian(13.4)");
         $this->type("order_items_1_count", "1");
         $this->click("//input[@type='submit']");
