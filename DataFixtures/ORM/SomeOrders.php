@@ -22,7 +22,7 @@ class SomeOrders extends AbstractFixture implements OrderedFixtureInterface
     {
         foreach (array(
             'Patricia S. Kemp'  => array('Baked Ziti' => 1, 'Sausage-Broccoli Rabe' => 1),
-            'Wilfredo N. Croft' => array('Bianco Mortadella' => 1, 'Pepperoni' => 2, 'Sicilian' => 1),
+            'Wilfredo N. Croft' => array('Bianco Mortadella' => 1, 'Pepperoni' => 2, 'Lamb-Feta' => 1),
             'Marc Beauchemin'   => array('Pepper Lattice' => 1),
             'Hugues Bureau'     => array('Eggplant' => 1),
             'Dolcelino Pisano'  => array('Meat-Olive' => 1, 'New York-Style' => 1),

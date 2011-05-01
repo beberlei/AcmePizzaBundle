@@ -6,6 +6,8 @@
 
 {% for order in orders %}
 
+    <h2>Order #{{ order.id }}</h2>
+
     <dl>
         <dt>Name</dt>
         <dd>{{ order.address.name }}<dd>
@@ -26,9 +28,7 @@
                 <th>Pizza</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                {#
                 <th>Total</th>
-                #}
             </tr>
         </thead>
         <tbody>
@@ -37,23 +37,21 @@
                 <td>{{ item.pizza.name  }}</td>
                 <td>{{ item.count       }}</td>
                 <td>{{ item.pizza.price }}</td>
-                {#
                 <td>{{ item.total }}</td>
-                #}
             </tr>
             {% endfor %}
         </tbody>
         <tfoot>
             <tr>
                 <th colspan="3">Total</th>
-                {#
                 <td>{{ order.total }}</td>
-                #}
             </tr>
         </tfoot>
     </table>
 
-    <a href="{{ path("pizza_order_edit", {"id": order.id}) }}">Edit</a>
+    {#
+    <a href="{{ path("acmepizza_order_edit", {"id": order.id}) }}">Edit</a>
+    #}
 
     <hr />
 

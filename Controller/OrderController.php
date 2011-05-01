@@ -8,7 +8,7 @@ use
     ;
 
 use
-    Acme\PizzaBundle\Entity\OrderFactory,
+    Acme\PizzaBundle\Entity\Factory\OrderFactory,
     Acme\PizzaBundle\Entity\Pizza,
     Acme\PizzaBundle\Entity\PizzaItem,
     Acme\PizzaBundle\Form\OrderFormType,
@@ -16,12 +16,12 @@ use
     ;
 
 /**
- * @extra:Route("/pizza/order")
+ * @extra:Route("/acme-pizza/order")
  */
 class OrderController extends Controller
 {
     /**
-     * @extra:Route("/index", name="pizza_order_index")
+     * @extra:Route("/index", name="acmepizza_order_index")
      * @extra:Template()
      */
     public function indexAction()
@@ -29,35 +29,34 @@ class OrderController extends Controller
         $request = $this->get('request');
         $em = $this->get('doctrine.orm.entity_manager');
 
-        $orderFactory = new OrderFactory($em);
+        $factory = new OrderFactory($em);
 
-        $factory = $this->get('form.factory');
-        $form = $factory->create(new OrderFormType());
-        $form->setData($orderFactory);
+        $form = $this->get('form.factory')->create(new OrderFormType());
+        $form->setData($factory);
 
         if ($request->getMethod() == 'POST') {
 
-        	//$form->setValidationGroups('new');
-        	
+            //$form->setValidationGroups('new');
+
             $form->bindRequest($request);
 
             if ($form->isValid()) {
 
                 $em = $this->get('doctrine.orm.entity_manager');
-                $em->persist($orderFactory->createOrder());
+                $em->persist($factory->make());
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('pizza_order_list'));
+                return $this->redirect($this->generateUrl('acmepizza_order_list'));
             }
         }
 
         return array(
-            'form' => $factory->createRenderer($form, 'twig')
+            'form'  => $form->createView(),
         );
     }
 
     /**
-     * @extra:Route("/list", name="pizza_order_list")
+     * @extra:Route("/list", name="acmepizza_order_list")
      * @extra:Template()
      */
     public function listAction()
@@ -73,7 +72,7 @@ class OrderController extends Controller
     }
 
     /**
-     * @extra:Route("/edit/{id}", name="pizza_order_edit")
+     * @extra:Route("/edit/{id}", name="acmepizza_order_edit")
      * @extra:Template()
      */
     public function editAction($id)
@@ -96,12 +95,14 @@ class OrderController extends Controller
 
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('pizza_order_edit', array('id' => $pizza->getId())));
+                return $this->redirect($this->generateUrl('acmepizza_order_edit', array(
+                    'id' => $pizza->getId(),
+                )));
             }
         }
 
         return array(
-            'form'  => $this->get('form.factory')->createRenderer($form, 'twig'),
+            'form'  => $form->createView(),
             'order' => $order,
         );
     }

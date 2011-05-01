@@ -68,4 +68,9 @@ class PizzaItem
     {
         $this->order = $order;
     }
+
+    public function getTotal()
+    {
+        return $this->pizza->getPrice() * $this->count;
+    }
 }

@@ -1,57 +1,29 @@
 {% extends "AcmePizzaBundle::layout.html.twig" %}
 
+{#
+{% form_theme form "AcmePizzaBundle::table_layout.html.twig" %}
+{% form_theme form "AcmePizzaBundle::div_layout.html.twig" %}
+#}
+
 {% block title parent() ~ " - Order" %}
 
 {% block content %}
 
-<h1>Order a Pizza</h1>
+<h2>Order a Pizza</h2>
 
 <p>Hello customer! We want to serve you a yummy-yummy Pizza!</p>
 
-{% if true %}
+{% if not true %}
 
-{{ form.setTemplate("AcmePizzaBundle::div_layout.html.twig") }}
+<form method="post" action="{{ path("acmepizza_order_index") }}" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
 
-<form method="post" action="{{ path("pizza_order_index") }}" {{ form.enctype }}>
-    {{ form.widget }}
-
-    {{ form.rest }}
+    {{ form_rest(form) }}
     <input type="submit" />
 </form>
 
-<script type="text/javascript">
-<!--
-    /* ...known customer (yes/no) */
-    /* asterisk is used to match input or select */
-
-    $('*[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
-        if ($(this).val() == 1) {
-            var $$ = $('label:contains("Knownphone"):first').closest('div');
-            $$.find('input').attr('disabled', false);
-            //$$.show();
-
-            var $$ = $('label:contains("Address"):first').closest('div');
-            //$$.find('input').attr('disabled', true);
-            $$.find('input').attr('disabled', true);
-            //$$.hide();
-        } else {
-            var $$ = $('label:contains("Address"):first').closest('div');
-            $$.find('input').attr('disabled', false);
-            //$$.show();
-
-            var $$ = $('label:contains("Knownphone"):first').closest('div');
-            $$.find('input').attr('disabled', true);
-            //$$.hide();
-        }
-    });
-
-    $('*[name="OrderFormType[knownCustomer]"]').change();
-
-    {#
-    $('input[name="OrderFormType[knownCustomer]"]:checked').change();
-    #}
-
-    /* ...another pizzas */
+<script>
+    /* ...another pizzas... */
 
     var button;
     button = $('<a href="#">Another pizza</a>');
@@ -77,123 +49,116 @@
     if (prototype.parent().find(' > div').length == 1) {
         button.click();
     }
--->
 </script>
 
 {% else %}
 
-<form method="post" action="{{ path("pizza_order_index") }}">
+<form method="post" action="{{ path("acmepizza_order_index") }}" {{ form_enctype(form) }}>
 
-    <div class="error">
-        {{ form.errors }}
-    </div>
+    {{ form_row(form.known_customer) }}
+    {{ form_row(form.known_phone)    }}
+    {{ form_row(form.address)        }}
 
-    <div>
-        {{ form.knownCustomer.label("Have you ordered at ACME Pizza before?") }}
-    </div>
+    <table>
+        <caption>{{ form_label(form.items) }}</caption>
+        <thead>
+            <tr>
+                <th>Pizza</th> {#- should be better to get the label #}
+                <th>Count</th> {#- here too #}
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in form.items %}
+            <tr>
+                <td>
+                    {{ form_widget(item.pizza) }}
+                    {{ form_errors(item.pizza) }}
+                </td>
+                <td>
+                    {{ form_widget(item.count) }}
+                    {{ form_errors(item.count) }}
+                </td>
+                <td>
+                    <ul>
+                        <li><a href="#">Add</a></li>
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-    <div>
-        <div class="error">
-            {{ form.knownCustomer.errors }}
-        </div>
-        {{ form.knownCustomer.widget({"class": "customerKnownBefore"}) }}
-    </div>
+    {{ form_rest(form) }}
 
-    <div class="order-known-customer">
-        <p>{{ form.knownPhone.label("Please enter your phone-number so we can find your address:") }}</p>
-        <div class="error">
-            {{ form.knownPhone.errors }}
-        </div>
-        {{ form.knownPhone.widget }}
-    </div>
-
-    <div class="order-new-customer">
-        <p>Please enter your address:</p>
-        {{ form.address.row }}
-    </div>
-
-    <hr />
-
-    <div>
-        <h3>{{ form.items.label("Select your choice of Pizza") }}</h3>
-
-        {{ form.items.errors }}
-
-        {% for item in form.items %}
-            <div class="item">
-                {{ item.widget }}
-            </div>
-        {% endfor %}
-    </div>
-
-    <hr />
-
-    {{ form.rest }}
-
-    <input type="submit" value="Gimme this Pizza, Pronto!" />
+    <input type="submit" />
 
 </form>
 
-<script type="text/javascript">
-<!--
-    /* ...known customer (yes/no) */
-    /* asterisk is used to match input or select */
+<script>
+    var prototype;
+    prototype = $('*[name*="$$name$$"]:first').closest('tr');
+    prototype.find('input, select').attr('disabled', true);
+    prototype.hide();
 
-    $('*[name="{{ form.knownCustomer.var('name') }}"]').change(function() {
-        if ($(this).val() == 1) {
-            var $$ = $(".order-known-customer");
-            $$.find('input').attr('disabled', false);
-            $$.show();
-
-            var $$ = $(".order-new-customer");
-            $$.find('input').attr('disabled', true)
-            $$.hide();
-        } else {
-            var $$ = $(".order-new-customer");
-            $$.find('input').attr('disabled', false);
-            $$.show();
-
-            var $$ = $(".order-known-customer");
-            $$.find('input').attr('disabled', true)
-            $$.hide();
-        }
-    });
-
-    $('*[name="OrderFormType[knownCustomer]"]').change();
-
-    {#
-    $('input[name="OrderFormType[knownCustomer]"]:checked').change();
-    #}
-
-    /* ...another pizzas */
-
-    var button;
-    button = $('<a href="#">Another pizza</a>');
+    var button = prototype.find('a');
     button.click(function(event) {
         event.preventDefault();
 
-        var index = prototype.parent().find(' > div').size() - 1;
+        var index = prototype.parent().find(' > tr').size() - 1;
 
-        var html = prototype.html();
-        html = html.replace(/ disabled=".*?"/g, "");
-        html = html.replace(/\$\$name\$\$/g, index)
+        row = prototype.clone(true);
+        row.find('*[disabled]').removeAttr('disabled');
+        row.find('*[name*="$$name$$"]').each(function() {
 
-        $(this).before("<div>" + html + "</div>");
+            var attribute;
+
+            attribute = 'id';
+            $(this).attr(attribute, $(this).attr(attribute).replace(/\$\$name\$\$/g, index));
+
+            attribute = 'name';
+            $(this).attr(attribute, $(this).attr(attribute).replace(/\$\$name\$\$/g, index));
+        });
+        prototype.closest('tbody').append(row);
+        row.show();
     });
 
-    var prototype;
-    prototype = $('div.item:first');
-    prototype.find('input, select').attr('disabled', true);
-    prototype.parent().append(button);
-    prototype.hide();
-
-    /* if no pizzas already in list */
-    if (prototype.parent().find(' > div.item').length == 1) {
+    if (prototype.parent().find(' > tr').length == 1) {
         button.click();
     }
--->
 </script>
 
 {% endif %}
+
+<script>
+    /* ...known customer... */
+
+    var toggle = !true;
+
+    $('input[name="{{ form.known_customer.get('name') }}"]').change(function() {
+
+        if ($(this).is(':checked')) {
+
+            var $$ = $('input[name="{{ form.known_phone.get('name') }}"]:first').closest('div');
+            $$.find('input').attr('disabled', false);
+            if (toggle) $$.show();
+
+            var $$ = $('label:contains("Address"):first').closest('div');
+            $$.find('input').attr('disabled', true);
+            if (toggle) $$.hide();
+        } else {
+            var $$ = $('label:contains("Address"):first').closest('div');
+            $$.find('input').attr('disabled', false);
+            if (toggle) $$.show();
+
+            var $$ = $('input[name="{{ form.known_phone.get('name') }}"]:first').closest('div');
+            $$.find('input').attr('disabled', true);
+            if (toggle) $$.hide();
+        }
+
+    });
+
+    $('input[name="{{ form.known_customer.get('name') }}"]').change()
+</script>
 
 {% endblock %}

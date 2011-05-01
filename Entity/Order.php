@@ -63,4 +63,15 @@ class Order
     {
         return $this->items;
     }
+
+    public function getTotal()
+    {
+        $total = 0.0;
+
+        foreach ($this->items as $item) {
+            $total+= $item->getTotal();
+        }
+
+        return $total;
+    }
 }
