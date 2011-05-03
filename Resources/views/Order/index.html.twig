@@ -1,9 +1,46 @@
-{% extends "AcmePizzaBundle::layout.html.twig" %}
+{% form_theme form _self %}
+{% use 'TwigBundle:Form:div_layout.html.twig' %}
 
-{#
-{% form_theme form "AcmePizzaBundle::table_layout.html.twig" %}
-{% form_theme form "AcmePizzaBundle::div_layout.html.twig" %}
-#}
+{% block _order_items_row %}
+<table>
+    <caption>{{ form_label(form) }}</caption>
+    <thead>
+        <tr>
+            {# what happens if not expandable #}
+            <th>{{ form_label(form.children['$$name$$'].pizza) }}</th>
+            <th>{{ form_label(form.children['$$name$$'].count) }}</th>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for child in form.children %}
+        <tr>
+            <td>
+                {{ form_errors(child.pizza) }}
+                {{ form_widget(child.pizza) }}
+            </td>
+            <td>
+                {{ form_errors(child.count) }}
+                {{ form_widget(child.count) }}
+            </td>
+            <td>
+                <ul>
+                    <li><a href="#">Add</a></li>
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{{ form_rest(form) }}
+{% endblock %}
+
+{% block form_widget %}
+    {{ block('field_rows') }}
+    {{ form_rest(form) }}
+{% endblock %}
+
+{% extends "AcmePizzaBundle::layout.html.twig" %}
 
 {% block title parent() ~ " - Order" %}
 
@@ -13,86 +50,9 @@
 
 <p>Hello customer! We want to serve you a yummy-yummy Pizza!</p>
 
-{% if not true %}
-
 <form method="post" action="{{ path("acmepizza_order_index") }}" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
-
-    {{ form_rest(form) }}
     <input type="submit" />
-</form>
-
-<script>
-    /* ...another pizzas... */
-
-    var button;
-    button = $('<a href="#">Another pizza</a>');
-    button.click(function(event) {
-        event.preventDefault();
-
-        var index = prototype.parent().find(' > div').size() - 1;
-
-        var html = prototype.html();
-        html = html.replace(/ disabled=".*?"/g, "");
-        html = html.replace(/\$\$name\$\$/g, index)
-
-        $(this).before("<div>" + html + "</div>");
-    });
-
-    var prototype;
-    prototype = $('label:contains("$$name$$"):first').closest('div');
-    prototype.find('input, select').attr('disabled', true);
-    prototype.parent().append(button);
-    prototype.hide();
-
-    /* if no pizzas already in list */
-    if (prototype.parent().find(' > div').length == 1) {
-        button.click();
-    }
-</script>
-
-{% else %}
-
-<form method="post" action="{{ path("acmepizza_order_index") }}" {{ form_enctype(form) }}>
-
-    {{ form_row(form.known_customer) }}
-    {{ form_row(form.known_phone)    }}
-    {{ form_row(form.address)        }}
-
-    <table>
-        <caption>{{ form_label(form.items) }}</caption>
-        <thead>
-            <tr>
-                <th>Pizza</th> {#- should be better to get the label #}
-                <th>Count</th> {#- here too #}
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in form.items %}
-            <tr>
-                <td>
-                    {{ form_widget(item.pizza) }}
-                    {{ form_errors(item.pizza) }}
-                </td>
-                <td>
-                    {{ form_widget(item.count) }}
-                    {{ form_errors(item.count) }}
-                </td>
-                <td>
-                    <ul>
-                        <li><a href="#">Add</a></li>
-                    </ul>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    {{ form_rest(form) }}
-
-    <input type="submit" />
-
 </form>
 
 <script>
@@ -126,11 +86,7 @@
     if (prototype.parent().find(' > tr').length == 1) {
         button.click();
     }
-</script>
 
-{% endif %}
-
-<script>
     /* ...known customer... */
 
     var toggle = !true;
