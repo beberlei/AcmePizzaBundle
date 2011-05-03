@@ -1,3 +1,4 @@
+{#
 {% form_theme form _self %}
 {% use 'TwigBundle:Form:div_layout.html.twig' %}
 
@@ -6,7 +7,6 @@
     <caption>{{ form_label(form) }}</caption>
     <thead>
         <tr>
-            {# what happens if not expandable #}
             <th>{{ form_label(form.children['$$name$$'].pizza) }}</th>
             <th>{{ form_label(form.children['$$name$$'].count) }}</th>
             <td></td>
@@ -39,6 +39,7 @@
     {{ block('field_rows') }}
     {{ form_rest(form) }}
 {% endblock %}
+#}
 
 {% extends "AcmePizzaBundle::layout.html.twig" %}
 
@@ -51,7 +52,43 @@
 <p>Hello customer! We want to serve you a yummy-yummy Pizza!</p>
 
 <form method="post" action="{{ path("acmepizza_order_index") }}" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+
+    {{ form_row(form.known_customer) }}
+    {{ form_row(form.known_phone)    }}
+    {{ form_row(form.address)        }}
+
+    <table>
+        <caption>{{ form_label(form.items) }}</caption>
+        <thead>
+            <tr>
+                <th>Pizza</th> {#- should be better to get the label #}
+                <th>Count</th> {#- here too #}
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in form.items %}
+            <tr>
+                <td>
+                    {{ form_widget(item.pizza) }}
+                    {{ form_errors(item.pizza) }}
+                </td>
+                <td>
+                    {{ form_widget(item.count) }}
+                    {{ form_errors(item.count) }}
+                </td>
+                <td>
+                    <ul>
+                        <li><a href="#">Add</a></li>
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {{ form_rest(form) }}
+
     <input type="submit" />
 </form>
 
