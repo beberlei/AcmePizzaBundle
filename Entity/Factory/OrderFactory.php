@@ -167,7 +167,12 @@ class OrderFactory
      */
     public function make()
     {
-        $order = new Order($this->address, $this->items);
+        $order = new Order();
+        $order->setAddress($this->address);
+
+        foreach ($this->items as $item) {
+            $order->addItem($item);
+        }
 
         return $order;
     }

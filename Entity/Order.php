@@ -40,25 +40,11 @@ class Order
      */
     private $items;
 
-    public function __construct(Address $address, array $items)
+    public function __construct()
     {
-        $this->date    = new \DateTime("now");
-        $this->address = $address;
-//var_dump($address->getId());
-        $this->items   = new ArrayCollection($items);
-        foreach ($this->items as $item) {
-            $item->setOrder($this);
-        }
+        $this->date  = new \DateTime('now');
+        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-    //    /**
-    //     * Class constructor.
-    //     * Initializes -to-many associations
-    //     */
-    //    public function __construct()
-    //    {
-    //        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
-    //    }
 
     /**
      * @return integer
@@ -122,6 +108,7 @@ class Order
     public function addItem(\Acme\PizzaBundle\Entity\PizzaItem $item)
     {
         $this->items->add($item);
+        $item->setOrder($this);
     }
 
     /**
