@@ -2,8 +2,6 @@
 
 namespace Acme\PizzaBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * @orm:Entity
  * @orm:Table(name="PizzaOrder")
