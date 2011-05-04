@@ -7,7 +7,7 @@ use
     ;
 
 use
-    Acme\PizzaBundle\Entity\PizzaItem,
+    Acme\PizzaBundle\Entity\OrderItem,
     Acme\PizzaBundle\Entity\Order
     ;
 
@@ -35,7 +35,10 @@ class SomeOrders extends AbstractFixture implements OrderedFixtureInterface
             foreach ($ii as $j => $jj) {
 
                 $pizza = $manager->getRepository('AcmePizzaBundle:Pizza')->findOneByName($j);
-                $item = new PizzaItem($pizza, $jj);
+                $item = new OrderItem();
+                $item->setPizza($pizza);
+                $item->setCount($jj);
+
                 $items[] = $item;
             }
 

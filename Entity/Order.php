@@ -34,7 +34,7 @@ class Order
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection $items
      *
-     * @orm:OneToMany(targetEntity="PizzaItem", mappedBy="order", cascade={"persist"})
+     * @orm:OneToMany(targetEntity="OrderItem", mappedBy="order", cascade={"persist"})
      */
     private $items;
 
@@ -101,18 +101,18 @@ class Order
     }
 
     /**
-     * @param Acme\PizzaBundle\Entity\PizzaItem $item
+     * @param Acme\PizzaBundle\Entity\OrderItem $item
      */
-    public function addItem(\Acme\PizzaBundle\Entity\PizzaItem $item)
+    public function addItem(\Acme\PizzaBundle\Entity\OrderItem $item)
     {
         $this->items->add($item);
         $item->setOrder($this);
     }
 
     /**
-     * @param Acme\PizzaBundle\Entity\PizzaItem $item
+     * @param Acme\PizzaBundle\Entity\OrderItem $item
      */
-    public function removeItem(\Acme\PizzaBundle\Entity\PizzaItem $item)
+    public function removeItem(\Acme\PizzaBundle\Entity\OrderItem $item)
     {
         $this->items->removeElement($item);
     }

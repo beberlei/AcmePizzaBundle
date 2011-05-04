@@ -18,7 +18,7 @@ class OrderFormType extends AbstractType
             ->add('known_phone', 'text')
             ->add('customer', new Type\CustomerType())
             ->add('items', 'collection', array(
-                'type'       => new Type\PizzaItemType(),
+                'type'       => new Type\OrderItemType(),
                 'modifiable' => true,
             ))
             ;

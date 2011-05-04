@@ -6,7 +6,7 @@ namespace Acme\PizzaBundle\Entity;
  * @orm:Entity
  * @orm:Table(name="order_item")
  */
-class PizzaItem
+class OrderItem
 {
     /**
      * @var integer $id
@@ -39,12 +39,6 @@ class PizzaItem
      * @assert:Min(0)
      */
     private $count;
-
-    public function __construct(Pizza $pizza = null, $count = 0)
-    {
-        $this->pizza = $pizza;
-        $this->count = (int) $count;
-    }
 
     /**
      * @return integer

@@ -9,7 +9,7 @@ use
     ;
 
 /**
- * @assert:callback(methods={"isValidCustomer", "pickedPizzaItems"})
+ * @assert:callback(methods={"isValidCustomer", "pickedOrderItems"})
  */
 class OrderFactory
 {
@@ -142,7 +142,7 @@ class OrderFactory
      * @param  ExecutionContext $context
      * @return void
      */
-    public function pickedPizzaItems(ExecutionContext $context)
+    public function pickedOrderItems(ExecutionContext $context)
     {
         $count = 0;
 
