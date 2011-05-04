@@ -5,7 +5,7 @@ namespace Acme\PizzaBundle\Entity;
 /**
  * @orm:Entity
  */
-class Address
+class Customer
 {
     /**
      * @var integer $id
@@ -20,7 +20,7 @@ class Address
      * @var string $name
      * 
      * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Address")
+     * @assert:NotBlank(groups="Customer")
      */
     private $name;
 
@@ -28,7 +28,7 @@ class Address
      * @var string $street
      * 
      * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Address")
+     * @assert:NotBlank(groups="Customer")
      */
     private $street;
 
@@ -36,7 +36,7 @@ class Address
      * @var string $city
      * 
      * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Address")
+     * @assert:NotBlank(groups="Customer")
      */
     private $city;
 
@@ -44,7 +44,7 @@ class Address
      * @var string $phone
      * 
      * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Address")
+     * @assert:NotBlank(groups="Customer")
      */
     private $phone;
 

@@ -55,7 +55,7 @@
 
     {{ form_row(form.known_customer) }}
     {{ form_row(form.known_phone)    }}
-    {{ form_row(form.address)        }}
+    {{ form_row(form.customer)       }}
 
     <table>
         <caption>{{ form_label(form.items) }}</caption>
@@ -136,11 +136,11 @@
             $$.find('input').attr('disabled', false);
             if (toggle) $$.show();
 
-            var $$ = $('label:contains("Address"):first').closest('div');
+            var $$ = $('label:contains("{{ form.customer.get('label') }}"):first').closest('div');
             $$.find('input').attr('disabled', true);
             if (toggle) $$.hide();
         } else {
-            var $$ = $('label:contains("Address"):first').closest('div');
+            var $$ = $('label:contains("{{ form.customer.get('label') }}"):first').closest('div');
             $$.find('input').attr('disabled', false);
             if (toggle) $$.show();
 

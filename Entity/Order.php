@@ -25,11 +25,11 @@ class Order
     private $date;
 
     /**
-     * @var \Acme\PizzaBundle\Entity\Address $address
+     * @var \Acme\PizzaBundle\Entity\Customer $customer
      * 
-     * @orm:ManyToOne(targetEntity="Address", cascade={"persist"})
+     * @orm:ManyToOne(targetEntity="Customer", cascade={"persist"})
      */
-    private $address;
+    private $customer;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection $items
@@ -69,19 +69,19 @@ class Order
     }
 
     /**
-     * @return \Acme\PizzaBundle\Entity\Address The related entity
+     * @return \Acme\PizzaBundle\Entity\Customer The related entity
      */
-    public function getAddress()
+    public function getCustomer()
     {
-        return $this->address;
+        return $this->customer;
     }
 
     /**
-     * @param \Acme\PizzaBundle\Entity\Address $address The related entity
+     * @param \Acme\PizzaBundle\Entity\Customer $customer The related entity
      */
-    public function setAddress(\Acme\PizzaBundle\Entity\Address $address)
+    public function setCustomer(\Acme\PizzaBundle\Entity\Customer $customer)
     {
-        $this->address = $address;
+        $this->customer = $customer;
     }
 
     /**

@@ -7,7 +7,7 @@ use
     ;
 
 use
-    Acme\PizzaBundle\Entity\Address
+    Acme\PizzaBundle\Entity\Customer
     ;
 
 class SomeCustomers extends AbstractFixture implements OrderedFixtureInterface
@@ -56,16 +56,16 @@ class SomeCustomers extends AbstractFixture implements OrderedFixtureInterface
                 'city'   => '13059 Berlin Hohenschönhausen',
                 'phone'  => '030 18 17 74',
             ),
-        ) as $customer) {
+        ) as $data) {
 
-            $address = new Address();
+            $customer = new Customer();
 
-            $address->setName($customer['name']);
-            $address->setStreet($customer['street']);
-            $address->setCity($customer['city']);
-            $address->setPhone($customer['phone']);
+            $customer->setName($data['name']);
+            $customer->setStreet($data['street']);
+            $customer->setCity($data['city']);
+            $customer->setPhone($data['phone']);
 
-            $manager->persist($address);
+            $manager->persist($customer);
         }
 
         $manager->flush();

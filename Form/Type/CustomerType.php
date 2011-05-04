@@ -7,7 +7,7 @@ use
     Symfony\Component\Form\FormBuilder
     ;
 
-class AddressType extends AbstractType
+class CustomerType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
@@ -22,7 +22,7 @@ class AddressType extends AbstractType
     public function getDefaultOptions(array $options)
     {
         return array(
-            'data_class' => 'Acme\PizzaBundle\Entity\Address',
+            'data_class' => 'Acme\PizzaBundle\Entity\Customer',
         );
     }
 }
