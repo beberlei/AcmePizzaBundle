@@ -5,11 +5,11 @@ namespace Acme\PizzaBundle\Entity\Factory;
 use
     Symfony\Component\Validator\ExecutionContext,
     Acme\PizzaBundle\Entity\Order,
-    Acme\PizzaBundle\Entity\Address
+    Acme\PizzaBundle\Entity\Customer
     ;
 
 /**
- * @assert:callback(methods={"isValidAddress", "pickedPizzaItems"})
+ * @assert:callback(methods={"isValidCustomer", "pickedOrderItems"})
  */
 class OrderFactory
 {
@@ -26,9 +26,9 @@ class OrderFactory
     private $known_phone = '';
 
     /**
-     * @var Address
+     * @var Customer
      */
-    private $address;
+    private $customer;
 
     /**
      * @assert:Valid()
@@ -46,7 +46,7 @@ class OrderFactory
     public function __construct($em)
     {
         $this->em = $em;
-        $this->address = new Address();
+        $this->customer = new Customer();
     }
 
     public function setKnownPhone($known_phone)
@@ -69,14 +69,14 @@ class OrderFactory
         $this->known_customer = $boolean;
     }
 
-    public function setAddress(Address $address)
+    public function setCustomer(Customer $customer)
     {
-        $this->address = $address;
+        $this->customer = $customer;
     }
 
-    public function getAddress()
+    public function getCustomer()
     {
-        return $this->address;
+        return $this->customer;
     }
 
     public function getItems()
@@ -93,20 +93,20 @@ class OrderFactory
      * @param  ExecutionContext $context
      * @return bool
      */
-    public function isValidAddress(ExecutionContext $context)
+    public function isValidCustomer(ExecutionContext $context)
     {
         // https://gist.github.com/888267
 
         if (true === $this->known_customer) {
 
-            $this->address = $this->em
-                ->getRepository('AcmePizzaBundle:Address')
+            $this->customer = $this->em
+                ->getRepository('AcmePizzaBundle:Customer')
                 ->findOneBy(array(
                     'phone' => $this->known_phone,
                 ))
                 ;
 
-            if (false === ($this->address instanceof Address)) {
+            if (false === ($this->customer instanceof Customer)) {
                 $property_path = $context->getPropertyPath() . '.known_phone';
 
                 $context->setPropertyPath($property_path);
@@ -121,19 +121,19 @@ class OrderFactory
             */
 
             $group = $context->getGroup();
-            $group = 'Address';
+            $group = 'Customer';
 
             $context->getGraphWalker()->walkReference(
-                $this->address,
+                $this->customer,
                 $group,
-                $context->getPropertyPath() . ".address",
+                $context->getPropertyPath() . ".customer",
                 true
             );
         }
 
         /*
-        if (!($this->address instanceof Address)) {
-            $context->addViolation('Invalid address given', array(), $this->address);
+        if (!($this->customer instanceof Customer)) {
+            $context->addViolation('Invalid customer given', array(), $this->customer);
         }
         */
     }
@@ -142,7 +142,7 @@ class OrderFactory
      * @param  ExecutionContext $context
      * @return void
      */
-    public function pickedPizzaItems(ExecutionContext $context)
+    public function pickedOrderItems(ExecutionContext $context)
     {
         $count = 0;
 
@@ -152,7 +152,7 @@ class OrderFactory
 
         if ($count === 0) {
             /*
-            $property_path = $context->getPropertyPath() . '.address.phone';
+            $property_path = $context->getPropertyPath() . '.customer.phone';
             $property_path = $context->getPropertyPath() . '.items[0].count';
             $property_path = $context->getPropertyPath() . '.items.0.count';
             */
@@ -168,7 +168,7 @@ class OrderFactory
     public function make()
     {
         $order = new Order();
-        $order->setAddress($this->address);
+        $order->setCustomer($this->customer);
 
         foreach ($this->items as $item) {
             $order->addItem($item);

@@ -4,12 +4,13 @@ namespace Acme\PizzaBundle\Entity;
 
 /**
  * @orm:Entity
+ * @orm:Table(name="customer")
  */
-class Address
+class Customer
 {
     /**
      * @var integer $id
-     * 
+     *
      * @orm:GeneratedValue
      * @orm:Id
      * @orm:Column(type="integer")
@@ -18,33 +19,33 @@ class Address
 
     /**
      * @var string $name
-     * 
+     *
      * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Address")
+     * @assert:NotBlank(groups="Customer")
      */
     private $name;
 
     /**
      * @var string $street
-     * 
+     *
      * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Address")
+     * @assert:NotBlank(groups="Customer")
      */
     private $street;
 
     /**
      * @var string $city
-     * 
+     *
      * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Address")
+     * @assert:NotBlank(groups="Customer")
      */
     private $city;
 
     /**
      * @var string $phone
-     * 
+     *
      * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Address")
+     * @assert:NotBlank(groups="Customer")
      */
     private $phone;
 

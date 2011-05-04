@@ -10,7 +10,6 @@ use
 use
     Acme\PizzaBundle\Entity\Factory\OrderFactory,
     Acme\PizzaBundle\Entity\Pizza,
-    Acme\PizzaBundle\Entity\PizzaItem,
     Acme\PizzaBundle\Form\OrderFormType,
     Acme\PizzaBundle\Form\OrderType
     ;

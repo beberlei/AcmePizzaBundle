@@ -3,13 +3,14 @@
 namespace Acme\PizzaBundle\Entity;
 
 /**
- * @orm:entity
+ * @orm:Entity
+ * @orm:Table(name="order_item")
  */
-class PizzaItem
+class OrderItem
 {
     /**
      * @var integer $id
-     * 
+     *
      * @orm:GeneratedValue
      * @orm:Id
      * @orm:Column(type="integer")
@@ -18,14 +19,14 @@ class PizzaItem
 
     /**
      * @var \Acme\PizzaBundle\Entity\Order $order
-     * 
+     *
      * @orm:ManyToOne(targetEntity="Order", inversedBy="items")
      */
     private $order;
 
     /**
      * @var \Acme\PizzaBundle\Entity\Pizza $pizza
-     * 
+     *
      * @orm:ManyToOne(targetEntity="Pizza")
      * @assert:Type(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
      */
@@ -33,17 +34,11 @@ class PizzaItem
 
     /**
      * @var integer $count
-     * 
+     *
      * @orm:Column(type="integer")
      * @assert:Min(0)
      */
     private $count;
-
-    public function __construct(Pizza $pizza = null, $count = 0)
-    {
-        $this->pizza = $pizza;
-        $this->count = (int) $count;
-    }
 
     /**
      * @return integer

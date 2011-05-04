@@ -7,7 +7,7 @@ use
     ;
 
 use
-    Acme\PizzaBundle\Entity\PizzaItem,
+    Acme\PizzaBundle\Entity\OrderItem,
     Acme\PizzaBundle\Entity\Order
     ;
 
@@ -28,18 +28,26 @@ class SomeOrders extends AbstractFixture implements OrderedFixtureInterface
             'Dolcelino Pisano'  => array('Meat-Olive' => 1, 'New York-Style' => 1),
             'Steffen Bader'     => array('Salmon-Potato' => 1, 'Onion-Ricotta' => 1, 'Tomato Bianco' => 3, 'New York-Style' => 1),
         ) as $i => $ii) {
-            $address = $manager->getRepository('AcmePizzaBundle:Address')->findOneByName($i);
+            $customer = $manager->getRepository('AcmePizzaBundle:Customer')->findOneByName($i);
 
             $items = array();
 
             foreach ($ii as $j => $jj) {
 
                 $pizza = $manager->getRepository('AcmePizzaBundle:Pizza')->findOneByName($j);
-                $item = new PizzaItem($pizza, $jj);
+                $item = new OrderItem();
+                $item->setPizza($pizza);
+                $item->setCount($jj);
+
                 $items[] = $item;
             }
 
-            $order = new Order($address, $items);
+            $order = new Order();
+            $order->setCustomer($customer);
+            foreach ($items as $item) {
+                $order->addItem($item);
+            }
+
             $manager->persist($order);
         }
 

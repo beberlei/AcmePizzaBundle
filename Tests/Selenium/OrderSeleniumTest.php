@@ -46,7 +46,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
     public function testOrder1Create()
     {
         $order = array(
-            'address' => array(
+            'customer' => array(
                 'name'   => 'Arnaud Chassé',
                 'street' => '17, rue de Lille',
                 'city'   => '62000 ARRAS',
@@ -63,16 +63,16 @@ class OrderSeleniumTest extends AbstractSeleniumTest
         $url = $this->router->generate('acmepizza_order_index');
 
         $this->open($url);
-        $this->type  ('order_address_name',   $order['address']['name'  ]);
-        $this->type  ('order_address_street', $order['address']['street']);
-        $this->type  ('order_address_city',   $order['address']['city'  ]);
-        $this->type  ('order_address_phone',  $order['address']['phone' ]);
+        $this->type  ('order_customer_name',   $order['customer']['name'  ]);
+        $this->type  ('order_customer_street', $order['customer']['street']);
+        $this->type  ('order_customer_city',   $order['customer']['city'  ]);
+        $this->type  ('order_customer_phone',  $order['customer']['phone' ]);
         $this->select('order_items_0_pizza',  'label='.$order['items'][0]['pizza']);
         $this->type  ('order_items_0_count',  $order['items'][0]['count']);
         $this->click("//input[@type='submit']");
         $this->waitForPageToLoad(30000);
 
-        $this->assertTrue($this->isTextPresent($order['address']['name']));
+        $this->assertTrue($this->isTextPresent($order['customer']['name']));
     }
 
     public function testPizza2Create()

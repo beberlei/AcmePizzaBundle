@@ -4,12 +4,13 @@ namespace Acme\PizzaBundle\Entity;
 
 /**
  * @orm:Entity
+ * @orm:Table(name="pizza")
  */
 class Pizza
 {
     /**
      * @var integer $id
-     * 
+     *
      * @orm:GeneratedValue
      * @orm:Id
      * @orm:Column(type="integer")
@@ -18,7 +19,7 @@ class Pizza
 
     /**
      * @var string $name
-     * 
+     *
      * @orm:Column(type="string")
      * @assert:NotBlank()
      * @assert:MinLength(5)
@@ -27,7 +28,7 @@ class Pizza
 
     /**
      * @var decimal $price
-     * 
+     *
      * @orm:Column(type="decimal", scale=2, precision=5)
      * @assert:NotBlank()
      * @assert:Min(2)

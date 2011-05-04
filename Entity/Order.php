@@ -4,13 +4,13 @@ namespace Acme\PizzaBundle\Entity;
 
 /**
  * @orm:Entity
- * @orm:Table(name="PizzaOrder")
+ * @orm:Table(name="order_")
  */
 class Order
 {
     /**
      * @var integer $id
-     * 
+     *
      * @orm:GeneratedValue
      * @orm:Id
      * @orm:Column(type="integer")
@@ -19,22 +19,22 @@ class Order
 
     /**
      * @var \DateTime $date
-     * 
+     *
      * @orm:Column(type="datetime")
      */
     private $date;
 
     /**
-     * @var \Acme\PizzaBundle\Entity\Address $address
-     * 
-     * @orm:ManyToOne(targetEntity="Address", cascade={"persist"})
+     * @var \Acme\PizzaBundle\Entity\Customer $customer
+     *
+     * @orm:ManyToOne(targetEntity="Customer", cascade={"persist"})
      */
-    private $address;
+    private $customer;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection $items
-     * 
-     * @orm:OneToMany(targetEntity="PizzaItem", mappedBy="order", cascade={"persist"})
+     *
+     * @orm:OneToMany(targetEntity="OrderItem", mappedBy="order", cascade={"persist"})
      */
     private $items;
 
@@ -69,19 +69,19 @@ class Order
     }
 
     /**
-     * @return \Acme\PizzaBundle\Entity\Address The related entity
+     * @return \Acme\PizzaBundle\Entity\Customer The related entity
      */
-    public function getAddress()
+    public function getCustomer()
     {
-        return $this->address;
+        return $this->customer;
     }
 
     /**
-     * @param \Acme\PizzaBundle\Entity\Address $address The related entity
+     * @param \Acme\PizzaBundle\Entity\Customer $customer The related entity
      */
-    public function setAddress(\Acme\PizzaBundle\Entity\Address $address)
+    public function setCustomer(\Acme\PizzaBundle\Entity\Customer $customer)
     {
-        $this->address = $address;
+        $this->customer = $customer;
     }
 
     /**
@@ -101,18 +101,18 @@ class Order
     }
 
     /**
-     * @param Acme\PizzaBundle\Entity\PizzaItem $item
+     * @param Acme\PizzaBundle\Entity\OrderItem $item
      */
-    public function addItem(\Acme\PizzaBundle\Entity\PizzaItem $item)
+    public function addItem(\Acme\PizzaBundle\Entity\OrderItem $item)
     {
         $this->items->add($item);
         $item->setOrder($this);
     }
 
     /**
-     * @param Acme\PizzaBundle\Entity\PizzaItem $item
+     * @param Acme\PizzaBundle\Entity\OrderItem $item
      */
-    public function removeItem(\Acme\PizzaBundle\Entity\PizzaItem $item)
+    public function removeItem(\Acme\PizzaBundle\Entity\OrderItem $item)
     {
         $this->items->removeElement($item);
     }
