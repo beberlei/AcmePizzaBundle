@@ -10,7 +10,7 @@ class Order
 {
     /**
      * @var integer $id
-     * 
+     *
      * @orm:GeneratedValue
      * @orm:Id
      * @orm:Column(type="integer")
@@ -19,21 +19,21 @@ class Order
 
     /**
      * @var \DateTime $date
-     * 
+     *
      * @orm:Column(type="datetime")
      */
     private $date;
 
     /**
      * @var \Acme\PizzaBundle\Entity\Customer $customer
-     * 
+     *
      * @orm:ManyToOne(targetEntity="Customer", cascade={"persist"})
      */
     private $customer;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection $items
-     * 
+     *
      * @orm:OneToMany(targetEntity="PizzaItem", mappedBy="order", cascade={"persist"})
      */
     private $items;

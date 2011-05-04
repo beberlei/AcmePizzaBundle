@@ -9,7 +9,7 @@ class Customer
 {
     /**
      * @var integer $id
-     * 
+     *
      * @orm:GeneratedValue
      * @orm:Id
      * @orm:Column(type="integer")
@@ -18,7 +18,7 @@ class Customer
 
     /**
      * @var string $name
-     * 
+     *
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
@@ -26,7 +26,7 @@ class Customer
 
     /**
      * @var string $street
-     * 
+     *
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
@@ -34,7 +34,7 @@ class Customer
 
     /**
      * @var string $city
-     * 
+     *
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
@@ -42,7 +42,7 @@ class Customer
 
     /**
      * @var string $phone
-     * 
+     *
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
