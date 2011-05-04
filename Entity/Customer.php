@@ -4,6 +4,7 @@ namespace Acme\PizzaBundle\Entity;
 
 /**
  * @orm:Entity
+ * @orm:Table(name="customer")
  */
 class Customer
 {

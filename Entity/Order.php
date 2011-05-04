@@ -4,7 +4,7 @@ namespace Acme\PizzaBundle\Entity;
 
 /**
  * @orm:Entity
- * @orm:Table(name="PizzaOrder")
+ * @orm:Table(name="order_")
  */
 class Order
 {

@@ -3,7 +3,8 @@
 namespace Acme\PizzaBundle\Entity;
 
 /**
- * @orm:entity
+ * @orm:Entity
+ * @orm:Table(name="order_item")
  */
 class PizzaItem
 {
