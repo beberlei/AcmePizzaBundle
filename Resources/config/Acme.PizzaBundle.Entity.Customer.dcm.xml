@@ -7,13 +7,13 @@
 
     <entity name="Acme\PizzaBundle\Entity\Customer" table="customer">
         <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
-        <id name="id" type="integer" column="id">
+        <id name="id" type="integer">
             <generator strategy="IDENTITY"/>
         </id>
-        <field name="name" type="string" column="name" precision="0" scale="0" />
-        <field name="street" type="string" column="street" precision="0" scale="0" />
-        <field name="city" type="string" column="city" precision="0" scale="0" />
-        <field name="phone" type="string" column="phone" precision="0" scale="0" />
+        <field name="name" type="string" />
+        <field name="street" type="string" />
+        <field name="city" type="string" />
+        <field name="phone" type="string" />
         <lifecycle-callbacks />
     </entity>
 

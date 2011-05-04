@@ -7,10 +7,10 @@
 
     <entity name="Acme\PizzaBundle\Entity\OrderItem" table="order_item">
         <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
-        <id name="id" type="integer" column="id">
+        <id name="id" type="integer">
             <generator strategy="IDENTITY"/>
         </id>
-        <field name="count" type="integer" column="count" precision="0" scale="0"/>
+        <field name="count" type="integer" />
         <many-to-one field="order" target-entity="Acme\PizzaBundle\Entity\Order" inversed-by="items" orphan-removal="">
             <join-columns>
                 <join-column name="order_id" referenced-column-name="id"/>

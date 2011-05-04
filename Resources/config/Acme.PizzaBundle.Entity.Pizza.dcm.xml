@@ -7,11 +7,11 @@
 
     <entity name="Acme\PizzaBundle\Entity\Pizza" table="pizza">
         <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
-        <id name="id" type="integer" column="id">
+        <id name="id" type="integer">
             <generator strategy="IDENTITY"/>
         </id>
-        <field name="name" type="string" column="name" precision="0" scale="0"/>
-        <field name="price" type="decimal" column="price" precision="5" scale="2"/>
+        <field name="name" type="string" />
+        <field name="price" type="decimal" precision="5" scale="2" />
         <lifecycle-callbacks/>
     </entity>
 
