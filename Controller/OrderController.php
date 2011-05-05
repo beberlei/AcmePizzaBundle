@@ -41,7 +41,7 @@ class OrderController extends Controller
 
             if ($form->isValid()) {
 
-                $em = $this->get('doctrine.orm.entity_manager');
+                //$em = $this->get('doctrine.orm.entity_manager');
                 $em->persist($factory->make());
                 $em->flush();
 
