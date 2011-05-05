@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping
+    xmlns              = "http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation = "http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Acme\PizzaBundle\Entity\Order" table="order_">
+        <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+        <id name="id" type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="date" type="datetime" column="date" />
+        <many-to-one field="customer" target-entity="Acme\PizzaBundle\Entity\Customer" orphan-removal="">
+            <join-columns>
+                <join-column name="customer_id" referenced-column-name="id"/>
+            </join-columns>
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </many-to-one>
+        <one-to-many field="items" target-entity="Acme\PizzaBundle\Entity\OrderItem" mapped-by="order" orphan-removal="">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+        <lifecycle-callbacks/>
+    </entity>
+
+</doctrine-mapping>

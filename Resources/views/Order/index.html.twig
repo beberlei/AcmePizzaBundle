@@ -53,7 +53,7 @@
 
 <form method="post" action="{{ path("acmepizza_order_index") }}" {{ form_enctype(form) }}>
 
-    {{ form_row(form.known_customer) }}
+    {{ form_row(form.known_customer, { "label": "Is known customer?" }) }}
     {{ form_row(form.known_phone)    }}
     {{ form_row(form.customer)       }}
 

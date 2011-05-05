@@ -18,8 +18,9 @@ class OrderFormType extends AbstractType
             ->add('known_phone', 'text')
             ->add('customer', new Type\CustomerType())
             ->add('items', 'collection', array(
-                'type'       => new Type\OrderItemType(),
-                'modifiable' => true,
+                'type'         => new Type\OrderItemType(),
+                'allow_add'    => true,
+                'allow_delete' => true,
             ))
             ;
     }

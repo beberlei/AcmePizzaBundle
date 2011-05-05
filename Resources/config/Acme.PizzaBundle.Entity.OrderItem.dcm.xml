@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping
+    xmlns              = "http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi          = "http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation = "http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Acme\PizzaBundle\Entity\OrderItem" table="order_item">
+        <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+        <id name="id" type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="count" type="integer" />
+        <many-to-one field="order" target-entity="Acme\PizzaBundle\Entity\Order" inversed-by="items" orphan-removal="">
+            <join-columns>
+                <join-column name="order_id" referenced-column-name="id"/>
+            </join-columns>
+        </many-to-one>
+        <many-to-one field="pizza" target-entity="Acme\PizzaBundle\Entity\Pizza" orphan-removal="">
+            <join-columns>
+                <join-column name="pizza_id" referenced-column-name="id"/>
+            </join-columns>
+        </many-to-one>
+        <lifecycle-callbacks/>
+    </entity>
+
+</doctrine-mapping>
