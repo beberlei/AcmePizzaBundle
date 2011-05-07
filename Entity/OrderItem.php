@@ -11,9 +11,9 @@ class OrderItem
     /**
      * @var integer
      * 
-     * @orm:GeneratedValue
-     * @orm:Id
      * @orm:Column(type="integer")
+     * @orm:Id
+     * @orm:GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
 

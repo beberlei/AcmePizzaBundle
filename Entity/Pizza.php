@@ -11,9 +11,9 @@ class Pizza
     /**
      * @var integer
      * 
-     * @orm:GeneratedValue
-     * @orm:Id
      * @orm:Column(type="integer")
+     * @orm:Id
+     * @orm:GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
 
@@ -29,7 +29,7 @@ class Pizza
     /**
      * @var decimal
      * 
-     * @orm:Column(type="decimal", scale=2, precision=5)
+     * @orm:Column(type="decimal", precision="5", scale="2")
      * @assert:NotBlank()
      * @assert:Min(2)
      */
@@ -78,7 +78,7 @@ class Pizza
     /**
      * Set the price
      * 
-     * @param float $price
+     * @param double $price
      */
     public function setPrice($price)
     {

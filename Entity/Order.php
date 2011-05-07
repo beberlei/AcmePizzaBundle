@@ -11,9 +11,9 @@ class Order
     /**
      * @var integer
      * 
-     * @orm:GeneratedValue
-     * @orm:Id
      * @orm:Column(type="integer")
+     * @orm:Id
+     * @orm:GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
 
@@ -70,7 +70,7 @@ class Order
     /**
      * Set the date
      * 
-     * @param \DateTime
+     * @param \DateTime $date
      */
     public function setDate(\DateTime $date)
     {
