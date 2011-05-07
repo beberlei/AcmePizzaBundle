@@ -120,7 +120,7 @@ class Order
     /**
      * Add a item to the collection of related items
      * 
-     * @param Acme\PizzaBundle\Entity\OrderItem $item
+     * @param \Acme\PizzaBundle\Entity\OrderItem $item
      */
     public function addItem(\Acme\PizzaBundle\Entity\OrderItem $item)
     {
@@ -131,7 +131,7 @@ class Order
     /**
      * Remove a item from the collection of related items
      * 
-     * @param Acme\PizzaBundle\Entity\OrderItem $item
+     * @param \Acme\PizzaBundle\Entity\OrderItem $item
      */
     public function removeItem(\Acme\PizzaBundle\Entity\OrderItem $item)
     {
