@@ -9,33 +9,35 @@ namespace Acme\PizzaBundle\Entity;
 class Pizza
 {
     /**
-     * @var integer $id
-     *
+     * @var integer
+     * 
      * @orm:GeneratedValue
      * @orm:Id
      * @orm:Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var string $name
-     *
+     * @var string
+     * 
      * @orm:Column(type="string")
      * @assert:NotBlank()
      * @assert:MinLength(5)
      */
-    private $name;
+    protected $name;
 
     /**
-     * @var decimal $price
-     *
+     * @var decimal
+     * 
      * @orm:Column(type="decimal", scale=2, precision=5)
      * @assert:NotBlank()
      * @assert:Min(2)
      */
-    private $price;
+    protected $price;
 
     /**
+     * Get the id
+     * 
      * @return integer
      */
     public function getId()
@@ -44,6 +46,8 @@ class Pizza
     }
 
     /**
+     * Get the name
+     * 
      * @return string
      */
     public function getName()
@@ -52,7 +56,9 @@ class Pizza
     }
 
     /**
-     * @param $name string
+     * Set the name
+     * 
+     * @param string $name
      */
     public function setName($name)
     {
@@ -60,6 +66,8 @@ class Pizza
     }
 
     /**
+     * Get the price
+     * 
      * @return decimal
      */
     public function getPrice()
@@ -68,7 +76,9 @@ class Pizza
     }
 
     /**
-     * @param $price decimal
+     * Set the price
+     * 
+     * @param float $price
      */
     public function setPrice($price)
     {

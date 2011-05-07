@@ -9,47 +9,49 @@ namespace Acme\PizzaBundle\Entity;
 class Customer
 {
     /**
-     * @var integer $id
-     *
+     * @var integer
+     * 
      * @orm:GeneratedValue
      * @orm:Id
      * @orm:Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var string $name
-     *
+     * @var string
+     * 
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
-    private $name;
+    protected $name;
 
     /**
-     * @var string $street
-     *
+     * @var string
+     * 
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
-    private $street;
+    protected $street;
 
     /**
-     * @var string $city
-     *
+     * @var string
+     * 
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
-    private $city;
+    protected $city;
 
     /**
-     * @var string $phone
-     *
+     * @var string
+     * 
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
-    private $phone;
+    protected $phone;
 
     /**
+     * Get the id
+     * 
      * @return integer
      */
     public function getId()
@@ -58,6 +60,8 @@ class Customer
     }
 
     /**
+     * Get the name
+     * 
      * @return string
      */
     public function getName()
@@ -66,7 +70,9 @@ class Customer
     }
 
     /**
-     * @param $name string
+     * Set the name
+     * 
+     * @param string $name
      */
     public function setName($name)
     {
@@ -74,6 +80,8 @@ class Customer
     }
 
     /**
+     * Get the street
+     * 
      * @return string
      */
     public function getStreet()
@@ -82,7 +90,9 @@ class Customer
     }
 
     /**
-     * @param $street string
+     * Set the street
+     * 
+     * @param string $street
      */
     public function setStreet($street)
     {
@@ -90,6 +100,8 @@ class Customer
     }
 
     /**
+     * Get the city
+     * 
      * @return string
      */
     public function getCity()
@@ -98,7 +110,9 @@ class Customer
     }
 
     /**
-     * @param $city string
+     * Set the city
+     * 
+     * @param string $city
      */
     public function setCity($city)
     {
@@ -106,6 +120,8 @@ class Customer
     }
 
     /**
+     * Get the phone
+     * 
      * @return string
      */
     public function getPhone()
@@ -114,7 +130,9 @@ class Customer
     }
 
     /**
-     * @param $phone string
+     * Set the phone
+     * 
+     * @param string $phone
      */
     public function setPhone($phone)
     {

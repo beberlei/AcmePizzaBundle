@@ -9,38 +9,40 @@ namespace Acme\PizzaBundle\Entity;
 class OrderItem
 {
     /**
-     * @var integer $id
-     *
+     * @var integer
+     * 
      * @orm:GeneratedValue
      * @orm:Id
      * @orm:Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var \Acme\PizzaBundle\Entity\Order $order
-     *
+     * @var \Acme\PizzaBundle\Entity\Order
+     * 
      * @orm:ManyToOne(targetEntity="Order", inversedBy="items")
      */
-    private $order;
+    protected $order;
 
     /**
-     * @var \Acme\PizzaBundle\Entity\Pizza $pizza
-     *
+     * @var \Acme\PizzaBundle\Entity\Pizza
+     * 
      * @orm:ManyToOne(targetEntity="Pizza")
      * @assert:Type(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
      */
-    private $pizza;
+    protected $pizza;
 
     /**
-     * @var integer $count
-     *
+     * @var integer
+     * 
      * @orm:Column(type="integer")
      * @assert:Min(0)
      */
-    private $count;
+    protected $count;
 
     /**
+     * Get the id
+     * 
      * @return integer
      */
     public function getId()
@@ -49,7 +51,9 @@ class OrderItem
     }
 
     /**
-     * @return \Acme\PizzaBundle\Entity\Order The related entity
+     * Get the related order
+     * 
+     * @return \Acme\PizzaBundle\Entity\Order
      */
     public function getOrder()
     {
@@ -57,7 +61,9 @@ class OrderItem
     }
 
     /**
-     * @param \Acme\PizzaBundle\Entity\Order $order The related entity
+     * Set the related order
+     * 
+     * @param \Acme\PizzaBundle\Entity\Order $order
      */
     public function setOrder(\Acme\PizzaBundle\Entity\Order $order)
     {
@@ -65,7 +71,9 @@ class OrderItem
     }
 
     /**
-     * @return \Acme\PizzaBundle\Entity\Pizza The related entity
+     * Get the related pizza
+     * 
+     * @return \Acme\PizzaBundle\Entity\Pizza
      */
     public function getPizza()
     {
@@ -73,7 +81,9 @@ class OrderItem
     }
 
     /**
-     * @param \Acme\PizzaBundle\Entity\Pizza $pizza The related entity
+     * Set the related pizza
+     * 
+     * @param \Acme\PizzaBundle\Entity\Pizza $pizza
      */
     public function setPizza(\Acme\PizzaBundle\Entity\Pizza $pizza)
     {
@@ -81,6 +91,8 @@ class OrderItem
     }
 
     /**
+     * Get the count
+     * 
      * @return integer
      */
     public function getCount()
@@ -89,7 +101,9 @@ class OrderItem
     }
 
     /**
-     * @param $count integer
+     * Set the count
+     * 
+     * @param integer $count
      */
     public function setCount($count)
     {
