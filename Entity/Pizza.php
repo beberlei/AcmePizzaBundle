@@ -27,7 +27,7 @@ class Pizza
     protected $name;
 
     /**
-     * @var decimal
+     * @var float
      * 
      * @orm:Column(type="decimal", precision="5", scale="2")
      * @assert:NotBlank()
@@ -68,7 +68,7 @@ class Pizza
     /**
      * Get the price
      * 
-     * @return decimal
+     * @return float
      */
     public function getPrice()
     {
@@ -78,7 +78,7 @@ class Pizza
     /**
      * Set the price
      * 
-     * @param double $price
+     * @param float $price
      */
     public function setPrice($price)
     {
