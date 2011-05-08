@@ -55,7 +55,7 @@ class OrderItem
      * 
      * @param \Acme\PizzaBundle\Entity\Order $order
      */
-    public function setOrder(\Acme\PizzaBundle\Entity\Order $order)
+    public function setOrder(Order $order)
     {
         $this->order = $order;
     }
@@ -75,7 +75,7 @@ class OrderItem
      * 
      * @param \Acme\PizzaBundle\Entity\Pizza $pizza
      */
-    public function setPizza(\Acme\PizzaBundle\Entity\Pizza $pizza)
+    public function setPizza(Pizza $pizza)
     {
         $this->pizza = $pizza;
     }

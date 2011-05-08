@@ -29,7 +29,7 @@ class Pizza
     /**
      * @var float
      * 
-     * @orm:Column(type="decimal", precision="5", scale="2")
+     * @orm:Column(type="decimal", precision=5, scale=2)
      * @assert:NotBlank()
      * @assert:Min(2)
      */

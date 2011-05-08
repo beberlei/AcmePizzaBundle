@@ -82,7 +82,7 @@ class Order
      * 
      * @param \Acme\PizzaBundle\Entity\Customer $customer
      */
-    public function setCustomer(\Acme\PizzaBundle\Entity\Customer $customer)
+    public function setCustomer(Customer $customer)
     {
         $this->customer = $customer;
     }
@@ -112,7 +112,7 @@ class Order
      * 
      * @param \Acme\PizzaBundle\Entity\OrderItem $item
      */
-    public function addItem(\Acme\PizzaBundle\Entity\OrderItem $item)
+    public function addItem(OrderItem $item)
     {
         $this->items->add($item);
         $item->setOrder($this);
@@ -123,7 +123,7 @@ class Order
      * 
      * @param \Acme\PizzaBundle\Entity\OrderItem $item
      */
-    public function removeItem(\Acme\PizzaBundle\Entity\OrderItem $item)
+    public function removeItem(OrderItem $item)
     {
         $this->items->removeElement($item);
     }
