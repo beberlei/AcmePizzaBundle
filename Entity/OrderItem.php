@@ -51,16 +51,6 @@ class OrderItem
     }
 
     /**
-     * Get the related order
-     * 
-     * @return \Acme\PizzaBundle\Entity\Order
-     */
-    public function getOrder()
-    {
-        return $this->order;
-    }
-
-    /**
      * Set the related order
      * 
      * @param \Acme\PizzaBundle\Entity\Order $order
@@ -71,13 +61,13 @@ class OrderItem
     }
 
     /**
-     * Get the related pizza
+     * Get the related order
      * 
-     * @return \Acme\PizzaBundle\Entity\Pizza
+     * @return \Acme\PizzaBundle\Entity\Order
      */
-    public function getPizza()
+    public function getOrder()
     {
-        return $this->pizza;
+        return $this->order;
     }
 
     /**
@@ -91,13 +81,13 @@ class OrderItem
     }
 
     /**
-     * Get the count
+     * Get the related pizza
      * 
-     * @return integer
+     * @return \Acme\PizzaBundle\Entity\Pizza
      */
-    public function getCount()
+    public function getPizza()
     {
-        return $this->count;
+        return $this->pizza;
     }
 
     /**
@@ -108,6 +98,16 @@ class OrderItem
     public function setCount($count)
     {
         $this->count = $count;
+    }
+
+    /**
+     * Get the count
+     * 
+     * @return integer
+     */
+    public function getCount()
+    {
+        return $this->count;
     }
 
     /**

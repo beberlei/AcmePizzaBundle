@@ -46,16 +46,6 @@ class Pizza
     }
 
     /**
-     * Get the name
-     * 
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * Set the name
      * 
      * @param string $name
@@ -66,13 +56,13 @@ class Pizza
     }
 
     /**
-     * Get the price
+     * Get the name
      * 
-     * @return float
+     * @return string
      */
-    public function getPrice()
+    public function getName()
     {
-        return $this->price;
+        return $this->name;
     }
 
     /**
@@ -83,6 +73,16 @@ class Pizza
     public function setPrice($price)
     {
         $this->price = $price;
+    }
+
+    /**
+     * Get the price
+     * 
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 
     public function __toString()

@@ -60,16 +60,6 @@ class Customer
     }
 
     /**
-     * Get the name
-     * 
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * Set the name
      * 
      * @param string $name
@@ -80,13 +70,13 @@ class Customer
     }
 
     /**
-     * Get the street
+     * Get the name
      * 
      * @return string
      */
-    public function getStreet()
+    public function getName()
     {
-        return $this->street;
+        return $this->name;
     }
 
     /**
@@ -100,13 +90,13 @@ class Customer
     }
 
     /**
-     * Get the city
+     * Get the street
      * 
      * @return string
      */
-    public function getCity()
+    public function getStreet()
     {
-        return $this->city;
+        return $this->street;
     }
 
     /**
@@ -120,13 +110,13 @@ class Customer
     }
 
     /**
-     * Get the phone
+     * Get the city
      * 
      * @return string
      */
-    public function getPhone()
+    public function getCity()
     {
-        return $this->phone;
+        return $this->city;
     }
 
     /**
@@ -137,5 +127,15 @@ class Customer
     public function setPhone($phone)
     {
         $this->phone = $phone;
+    }
+
+    /**
+     * Get the phone
+     * 
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
     }
 }

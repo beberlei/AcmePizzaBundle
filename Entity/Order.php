@@ -58,16 +58,6 @@ class Order
     }
 
     /**
-     * Get the date
-     * 
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
      * Set the date
      * 
      * @param \DateTime $date
@@ -78,13 +68,13 @@ class Order
     }
 
     /**
-     * Get the related customer
+     * Get the date
      * 
-     * @return \Acme\PizzaBundle\Entity\Customer
+     * @return \DateTime
      */
-    public function getCustomer()
+    public function getDate()
     {
-        return $this->customer;
+        return $this->date;
     }
 
     /**
@@ -98,13 +88,13 @@ class Order
     }
 
     /**
-     * Get the collection of related items
+     * Get the related customer
      * 
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return \Acme\PizzaBundle\Entity\Customer
      */
-    public function getItems()
+    public function getCustomer()
     {
-        return $this->items;
+        return $this->customer;
     }
 
     /**
@@ -136,6 +126,16 @@ class Order
     public function removeItem(\Acme\PizzaBundle\Entity\OrderItem $item)
     {
         $this->items->removeElement($item);
+    }
+
+    /**
+     * Get the collection of related items
+     * 
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getItems()
+    {
+        return $this->items;
     }
 
     public function getTotal()
