@@ -9,35 +9,38 @@ namespace Acme\PizzaBundle\Entity;
 class Order
 {
     /**
-     * @var integer $id
-     *
-     * @orm:GeneratedValue
-     * @orm:Id
+     * @var integer
+     * 
      * @orm:Column(type="integer")
+     * @orm:Id
+     * @orm:GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var \DateTime $date
-     *
+     * @var \DateTime
+     * 
      * @orm:Column(type="datetime")
      */
-    private $date;
+    protected $date;
 
     /**
-     * @var \Acme\PizzaBundle\Entity\Customer $customer
+     * @var \Acme\PizzaBundle\Entity\Customer
      *
      * @orm:ManyToOne(targetEntity="Customer", cascade={"persist"})
      */
-    private $customer;
+    protected $customer;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection $items
-     *
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     * 
      * @orm:OneToMany(targetEntity="OrderItem", mappedBy="order", cascade={"persist"})
      */
-    private $items;
+    protected $items;
 
+    /**
+     * 
+     */
     public function __construct()
     {
         $this->date  = new \DateTime('now');
@@ -45,6 +48,8 @@ class Order
     }
 
     /**
+     * Get the id
+     * 
      * @return integer
      */
     public function getId()
@@ -53,6 +58,18 @@ class Order
     }
 
     /**
+     * Set the date
+     * 
+     * @param \DateTime $date
+     */
+    public function setDate(\DateTime $date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * Get the date
+     * 
      * @return \DateTime
      */
     public function getDate()
@@ -61,15 +78,19 @@ class Order
     }
 
     /**
-     * @param $date \DateTime
+     * Set the related customer
+     * 
+     * @param \Acme\PizzaBundle\Entity\Customer $customer
      */
-    public function setDate(\DateTime $date)
+    public function setCustomer(Customer $customer)
     {
-        $this->date = $date;
+        $this->customer = $customer;
     }
 
     /**
-     * @return \Acme\PizzaBundle\Entity\Customer The related entity
+     * Get the related customer
+     * 
+     * @return \Acme\PizzaBundle\Entity\Customer
      */
     public function getCustomer()
     {
@@ -77,23 +98,9 @@ class Order
     }
 
     /**
-     * @param \Acme\PizzaBundle\Entity\Customer $customer The related entity
-     */
-    public function setCustomer(\Acme\PizzaBundle\Entity\Customer $customer)
-    {
-        $this->customer = $customer;
-    }
-
-    /**
-     * @return \Doctrine\Common\Collections\ArrayCollection The collection of related entities
-     */
-    public function getItems()
-    {
-        return $this->items;
-    }
-
-    /**
-     * @param \Doctrine\Common\Collections\ArrayCollection $items The collection of related entities
+     * Set the collection of related items
+     * 
+     * @param \Doctrine\Common\Collections\ArrayCollection $items
      */
     public function setItems(\Doctrine\Common\Collections\ArrayCollection $items)
     {
@@ -101,20 +108,34 @@ class Order
     }
 
     /**
-     * @param Acme\PizzaBundle\Entity\OrderItem $item
+     * Add a item to the collection of related items
+     * 
+     * @param \Acme\PizzaBundle\Entity\OrderItem $item
      */
-    public function addItem(\Acme\PizzaBundle\Entity\OrderItem $item)
+    public function addItem(OrderItem $item)
     {
         $this->items->add($item);
         $item->setOrder($this);
     }
 
     /**
-     * @param Acme\PizzaBundle\Entity\OrderItem $item
+     * Remove a item from the collection of related items
+     * 
+     * @param \Acme\PizzaBundle\Entity\OrderItem $item
      */
-    public function removeItem(\Acme\PizzaBundle\Entity\OrderItem $item)
+    public function removeItem(OrderItem $item)
     {
         $this->items->removeElement($item);
+    }
+
+    /**
+     * Get the collection of related items
+     * 
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getItems()
+    {
+        return $this->items;
     }
 
     public function getTotal()

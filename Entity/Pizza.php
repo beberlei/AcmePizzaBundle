@@ -9,33 +9,35 @@ namespace Acme\PizzaBundle\Entity;
 class Pizza
 {
     /**
-     * @var integer $id
-     *
-     * @orm:GeneratedValue
-     * @orm:Id
+     * @var integer
+     * 
      * @orm:Column(type="integer")
+     * @orm:Id
+     * @orm:GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var string $name
-     *
+     * @var string
+     * 
      * @orm:Column(type="string")
      * @assert:NotBlank()
      * @assert:MinLength(5)
      */
-    private $name;
+    protected $name;
 
     /**
-     * @var decimal $price
-     *
-     * @orm:Column(type="decimal", scale=2, precision=5)
+     * @var float
+     * 
+     * @orm:Column(type="decimal", precision=5, scale=2)
      * @assert:NotBlank()
      * @assert:Min(2)
      */
-    private $price;
+    protected $price;
 
     /**
+     * Get the id
+     * 
      * @return integer
      */
     public function getId()
@@ -44,6 +46,18 @@ class Pizza
     }
 
     /**
+     * Set the name
+     * 
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get the name
+     * 
      * @return string
      */
     public function getName()
@@ -52,27 +66,23 @@ class Pizza
     }
 
     /**
-     * @param $name string
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return decimal
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param $price decimal
+     * Set the price
+     * 
+     * @param float $price
      */
     public function setPrice($price)
     {
         $this->price = $price;
+    }
+
+    /**
+     * Get the price
+     * 
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 
     public function __toString()

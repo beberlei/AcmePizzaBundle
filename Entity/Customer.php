@@ -9,47 +9,49 @@ namespace Acme\PizzaBundle\Entity;
 class Customer
 {
     /**
-     * @var integer $id
-     *
-     * @orm:GeneratedValue
-     * @orm:Id
+     * @var integer
+     * 
      * @orm:Column(type="integer")
+     * @orm:Id
+     * @orm:GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @var string $name
-     *
+     * @var string
+     * 
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
-    private $name;
+    protected $name;
 
     /**
-     * @var string $street
-     *
+     * @var string
+     * 
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
-    private $street;
+    protected $street;
 
     /**
-     * @var string $city
-     *
+     * @var string
+     * 
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
-    private $city;
+    protected $city;
 
     /**
-     * @var string $phone
-     *
+     * @var string
+     * 
      * @orm:Column(type="string")
      * @assert:NotBlank(groups="Customer")
      */
-    private $phone;
+    protected $phone;
 
     /**
+     * Get the id
+     * 
      * @return integer
      */
     public function getId()
@@ -58,6 +60,18 @@ class Customer
     }
 
     /**
+     * Set the name
+     * 
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get the name
+     * 
      * @return string
      */
     public function getName()
@@ -66,14 +80,18 @@ class Customer
     }
 
     /**
-     * @param $name string
+     * Set the street
+     * 
+     * @param string $street
      */
-    public function setName($name)
+    public function setStreet($street)
     {
-        $this->name = $name;
+        $this->street = $street;
     }
 
     /**
+     * Get the street
+     * 
      * @return string
      */
     public function getStreet()
@@ -82,14 +100,18 @@ class Customer
     }
 
     /**
-     * @param $street string
+     * Set the city
+     * 
+     * @param string $city
      */
-    public function setStreet($street)
+    public function setCity($city)
     {
-        $this->street = $street;
+        $this->city = $city;
     }
 
     /**
+     * Get the city
+     * 
      * @return string
      */
     public function getCity()
@@ -98,26 +120,22 @@ class Customer
     }
 
     /**
-     * @param $city string
+     * Set the phone
+     * 
+     * @param string $phone
      */
-    public function setCity($city)
+    public function setPhone($phone)
     {
-        $this->city = $city;
+        $this->phone = $phone;
     }
 
     /**
+     * Get the phone
+     * 
      * @return string
      */
     public function getPhone()
     {
         return $this->phone;
-    }
-
-    /**
-     * @param $phone string
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
     }
 }
