@@ -171,7 +171,7 @@ class Customer
                 break;
 
             default:
-                throw new \InvalidArgumentException(sprintf('The property "%s" does not exists.', $name));
+                throw new \InvalidArgumentException(sprintf('Generic setter for "%s" is not defined', $name));
         }
     }
 
@@ -203,7 +203,7 @@ class Customer
                 return $this->getId($value);
 
             default:
-                throw new \InvalidArgumentException(sprintf('The property "%s" does not exists.', $name));
+                throw new \InvalidArgumentException(sprintf('Generic getter for "%s" is not defined', $name));
         }
     }
 }
