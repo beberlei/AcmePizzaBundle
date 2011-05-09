@@ -111,6 +111,53 @@ class OrderItem
     }
 
     /**
+     * Set a property
+     * 
+     * @param string $name
+     * @param mixed  $value
+     * 
+     * @throws \InvalidArgumentException If the property does not exists
+     */
+    public function set($name, $value)
+    {
+        switch ($name) {
+            case 'count':
+                $this->setCount($value);
+                break;
+
+            case 'id':
+                $this->setId($value);
+                break;
+
+            default:
+                throw new \InvalidArgumentException(sprintf('The property "%s" does not exists.', $name));
+        }
+    }
+
+    /**
+     * Get a property
+     * 
+     * @param string $name
+     * 
+     * @return mixed
+     * 
+     * @throws \InvalidArgumentException If the property does not exists
+     */
+    public function get($name)
+    {
+        switch ($name) {
+            case 'count':
+                return $this->getCount($value);
+
+            case 'id':
+                return $this->getId($value);
+
+            default:
+                throw new \InvalidArgumentException(sprintf('The property "%s" does not exists.', $name));
+        }
+    }
+
+    /**
      * @return float
      */
     public function getTotal()
