@@ -4,24 +4,24 @@ namespace Acme\PizzaBundle\Controller;
 
 use
     Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+    Symfony\Component\HttpKernel\Exception\NotFoundHttpException,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra
     ;
 
 use
     Acme\PizzaBundle\Entity\Factory\OrderFactory,
-    Acme\PizzaBundle\Entity\Pizza,
-    Acme\PizzaBundle\Form\OrderFormType,
-    Acme\PizzaBundle\Form\OrderType
+    Acme\PizzaBundle\Entity\Order,
+    Acme\PizzaBundle\Form\OrderFormType
     ;
 
 /**
- * @extra:Route("/acme-pizza/order")
+ * @Extra\Route("/acme-pizza/order")
  */
 class OrderController extends Controller
 {
     /**
-     * @extra:Route("/index", name="acmepizza_order_index")
-     * @extra:Template()
+     * @Extra\Route("/index", name="acmepizza_order_index")
+     * @Extra\Template()
      */
     public function indexAction()
     {
@@ -55,8 +55,8 @@ class OrderController extends Controller
     }
 
     /**
-     * @extra:Route("/list", name="acmepizza_order_list")
-     * @extra:Template()
+     * @Extra\Route("/list", name="acmepizza_order_list")
+     * @Extra\Template()
      */
     public function listAction()
     {
@@ -71,14 +71,15 @@ class OrderController extends Controller
     }
 
     /**
-     * @extra:Route("/edit/{id}", name="acmepizza_order_edit")
-     * @extra:Template()
+     * @Extra\Route("/edit/{id}", name="acmepizza_order_edit")
+     * @Extra\Template()
      */
     public function editAction($id)
     {
         $em = $this->get('doctrine.orm.entity_manager');
 
         $order = $em->find('AcmePizzaBundle:Order', $id);
+        /* @var \Acme\PizzaBundle\Entity\Order $order */
         if (!$order) {
             throw new NotFoundHttpException("Invalid Order.");
         }
@@ -95,7 +96,7 @@ class OrderController extends Controller
                 $em->flush();
 
                 return $this->redirect($this->generateUrl('acmepizza_order_edit', array(
-                    'id' => $pizza->getId(),
+                    'id' => $order->getId(),
                 )));
             }
         }

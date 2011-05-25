@@ -2,50 +2,53 @@
 
 namespace Acme\PizzaBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM,
+    Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity
- * @orm:Table(name="customer")
+ * @ORM\Entity
+ * @ORM\Table(name="customer")
  */
 class Customer
 {
     /**
      * @var integer
      * 
-     * @orm:Column(type="integer")
-     * @orm:Id
-     * @orm:GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
 
     /**
      * @var string
      * 
-     * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Customer")
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(groups="Customer")
      */
     protected $name;
 
     /**
      * @var string
      * 
-     * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Customer")
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(groups="Customer")
      */
     protected $street;
 
     /**
      * @var string
      * 
-     * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Customer")
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(groups="Customer")
      */
     protected $city;
 
     /**
      * @var string
      * 
-     * @orm:Column(type="string")
-     * @assert:NotBlank(groups="Customer")
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(groups="Customer")
      */
     protected $phone;
 
