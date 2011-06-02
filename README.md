@@ -11,25 +11,25 @@ Distribution: Best used with [Symfony Standard Edition](https://github.com/symfo
 Requirements
 ------------
 
-Symfony has to be loaded from [symfony's form branch](https://github.com/symfony/symfony/commits/form)
-
-    ./bin/vendors.sh --min
-    cd vendor/
-    rm -rf symfony/
-    git clone -b form git://github.com/symfony/symfony.git
+Symfony(https://github.com/symfony/symfony) obviously.
 
 Installation
 ------------
 
 ### Register AcmePizzaBundle to Kernel
 
+
+``` php
+<?php
+
     # app/AppKernel.php
-    [...]
+    //...
     $bundles = array(
-        [...]
+        //...
         new Acme\PizzaBundle\AcmePizzaBundle(),
     );
-    [...]
+    //...
+```
 
 ### Create database and schema
 
@@ -97,7 +97,7 @@ steps:
     <selenium>
         <browser
             name    = "Google Chrome Portable"
-            browser = "*custom c:\bin\GoogleChromePortable\GoogleChromePortable.exe --disable-popup-blocking --proxy-server=127.0.0.1:4444"
+            browser = "*custom c:\bin\GoogleChromePortable\GoogleChromePortable.exe -disable-popup-blocking -proxy-server=127.0.0.1:4444"
             host    = "127.0.0.1" /> <!-- ip of selenium RC server -->
     </selenium>
     [...]

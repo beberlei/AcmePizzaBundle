@@ -125,14 +125,13 @@
     }
 
     /* ...known customer... */
-
     var toggle = !true;
 
-    $('input[name="{{ form.known_customer.get('name') }}"]').change(function() {
+    $('input#{{ form.known_customer.get('id') }}').change(function() {
 
         if ($(this).is(':checked')) {
 
-            var $$ = $('input[name="{{ form.known_phone.get('name') }}"]:first').closest('div');
+            var $$ = $('input#{{ form.known_phone.get('id') }}').closest('div');
             $$.find('input').attr('disabled', false);
             if (toggle) $$.show();
 
@@ -144,14 +143,14 @@
             $$.find('input').attr('disabled', false);
             if (toggle) $$.show();
 
-            var $$ = $('input[name="{{ form.known_phone.get('name') }}"]:first').closest('div');
+            var $$ = $('input#{{ form.known_phone.get('id') }}').closest('div');
             $$.find('input').attr('disabled', true);
             if (toggle) $$.hide();
         }
 
     });
 
-    $('input[name="{{ form.known_customer.get('name') }}"]').change()
+    $('input#{{ form.known_customer.get('name') }}').change();
 </script>
 
 {% endblock %}

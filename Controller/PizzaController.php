@@ -25,7 +25,7 @@ class PizzaController extends Controller
      */
     public function editAction($id = null)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine')->getEntityManager();
 
         if (isset($id)) {
             $pizza = $em->find('AcmePizzaBundle:Pizza', $id);
@@ -63,7 +63,7 @@ class PizzaController extends Controller
      */
     public function listAction()
     {
-        $pizzas = $this->get('doctrine.orm.entity_manager')
+        $pizzas = $this->get('doctrine')->getEntityManager()
             ->createQuery('SELECT p FROM AcmePizzaBundle:Pizza p ORDER BY p.name ASC')
             ->getResult()
             ;
@@ -79,7 +79,7 @@ class PizzaController extends Controller
      */
     public function deleteAction($id)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine')->getEntityManager();
 
         $pizza = $em->find('AcmePizzaBundle:Pizza', $id);
 

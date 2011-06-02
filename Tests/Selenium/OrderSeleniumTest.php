@@ -26,7 +26,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
     {
         $pizza = array(
             'name'  => 'Big Sicilian',
-            'price' => 13.4
+            'price' => 13.4,
         );
 
         $url = $this->router->generate('acmepizza_pizza_list');
@@ -34,8 +34,8 @@ class OrderSeleniumTest extends AbstractSeleniumTest
         $this->open($url);
         $this->click("//td[contains(text(), 'Sicilian')]/../td//a[text()='Update']");
         $this->waitForPageToLoad(30000);
-        $this->type('pizza_name',  $pizza['name' ]);
-        $this->type('pizza_price', $pizza['price']);
+        $this->type('pizza_name',  $pizza['name']);
+        $this->type('pizza_price', number_format($pizza['price'], 2, ',', ' '));
         $this->click("//input[@type='submit']");
         $this->waitForPageToLoad(30000);
 
@@ -54,7 +54,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             ),
             'items' => array(
                 array(
-                    'pizza' => 'Big Sicilian(13.4)',
+                    'pizza' => 'Big Sicilian(13.40)',
                     'count' => 1,
                 ),
             ),
@@ -100,11 +100,11 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             'known_phone' => '03.37.63.90.80',
             'items' => array(
                 array(
-                    'pizza' => 'Sweet Potato(7.9)',
+                    'pizza' => 'Sweet Potato(7.90)',
                     'count' => 2,
                 ),
                 array(
-                    'pizza' => 'Big Sicilian(13.4)',
+                    'pizza' => 'Big Sicilian(13.40)',
                     'count' => 1,
                 ),
             ),
@@ -132,7 +132,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             'known_phone' => '03.37.63.90.70',
             'items' => array(
                 array(
-                    'pizza' => 'Sweet Potato(7.9)',
+                    'pizza' => 'Sweet Potato(7.90)',
                     'count' => 3,
                 ),
             ),
@@ -157,7 +157,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             'known_phone' => '03.37.63.90.80',
             'items' => array(
                 array(
-                    'pizza' => 'Sweet Potato(7.9)',
+                    'pizza' => 'Sweet Potato(7.90)',
                     'count' => 0,
                 ),
             ),
@@ -184,7 +184,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             'known_phone' => '03.37.63.90.80',
             'items' => array(
                 array(
-                    'pizza' => 'Sweet Potato(7.9)',
+                    'pizza' => 'Sweet Potato(7.90)',
                     'count' => -1,
                 ),
             ),

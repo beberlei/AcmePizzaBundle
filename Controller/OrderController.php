@@ -26,7 +26,7 @@ class OrderController extends Controller
     public function indexAction()
     {
         $request = $this->get('request');
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine')->getEntityManager();
 
         $factory = new OrderFactory($em);
 
@@ -60,7 +60,7 @@ class OrderController extends Controller
      */
     public function listAction()
     {
-        $orders = $this->get('doctrine.orm.entity_manager')
+        $orders = $this->get('doctrine')->getEntityManager()
             ->createQuery('SELECT o FROM AcmePizzaBundle:Order o ORDER BY o.id DESC')
             ->getResult()
             ;
@@ -76,7 +76,7 @@ class OrderController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine')->getEntityManager();
 
         $order = $em->find('AcmePizzaBundle:Order', $id);
         /* @var \Acme\PizzaBundle\Entity\Order $order */
