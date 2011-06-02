@@ -4,12 +4,13 @@ namespace Acme\PizzaBundle\Entity\Factory;
 
 use
     Symfony\Component\Validator\ExecutionContext,
+    Symfony\Component\Validator\Constraints as Assert,
     Acme\PizzaBundle\Entity\Order,
     Acme\PizzaBundle\Entity\Customer
     ;
 
 /**
- * @assert:callback(methods={"isValidCustomer", "pickedOrderItems"})
+ * @Assert\callback(methods={"isValidCustomer", "pickedOrderItems"})
  */
 class OrderFactory
 {

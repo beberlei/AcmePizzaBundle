@@ -4,7 +4,8 @@ namespace Acme\PizzaBundle\Controller;
 
 use
     Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+    Symfony\Component\HttpKernel\Exception\NotFoundHttpException,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra
     ;
 
 use
@@ -13,16 +14,14 @@ use
     ;
 
 /**
- * @extra:Route("/acme-pizza/pizza")
+ * @Extra\Route("/acme-pizza/pizza")
  */
 class PizzaController extends Controller
 {
     /**
-     * @extra:Routes({
-     *     @extra:Route("/create", name="acmepizza_pizza_create"),
-     *     @extra:Route("/update/{id}", name="acmepizza_pizza_update", requirements={"id" = "\d+"})
-     * })
-     * @extra:Template()
+     * @Extra\Route("/create", name="acmepizza_pizza_create"),
+     * @Extra\Route("/update/{id}", name="acmepizza_pizza_update", requirements={"id" = "\d+"})
+     * @Extra\Template()
      */
     public function editAction($id = null)
     {
@@ -59,8 +58,8 @@ class PizzaController extends Controller
     }
 
     /**
-     * @extra:Route("/list", name="acmepizza_pizza_list")
-     * @extra:Template()
+     * @Extra\Route("/list", name="acmepizza_pizza_list")
+     * @Extra\Template()
      */
     public function listAction()
     {
@@ -75,8 +74,8 @@ class PizzaController extends Controller
     }
 
     /**
-     * @extra:Route("/delete/{id}", name="acmepizza_pizza_delete")
-     * @extra:Template()
+     * @Extra\Route("/delete/{id}", name="acmepizza_pizza_delete")
+     * @Extra\Template()
      */
     public function deleteAction($id)
     {

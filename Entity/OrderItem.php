@@ -2,41 +2,44 @@
 
 namespace Acme\PizzaBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM,
+    Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity
- * @orm:Table(name="order_item")
+ * @ORM\Entity
+ * @ORM\Table(name="order_item")
  */
 class OrderItem
 {
     /**
      * @var integer
      * 
-     * @orm:Column(type="integer")
-     * @orm:Id
-     * @orm:GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
 
     /**
      * @var \Acme\PizzaBundle\Entity\Order
      * 
-     * @orm:ManyToOne(targetEntity="Order", inversedBy="items")
+     * @ORM\ManyToOne(targetEntity="Order", inversedBy="items")
      */
     protected $order;
 
     /**
      * @var \Acme\PizzaBundle\Entity\Pizza
      * 
-     * @orm:ManyToOne(targetEntity="Pizza")
-     * @assert:Type(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
+     * @ORM\ManyToOne(targetEntity="Pizza")
+     * @Assert\Type(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
      */
     protected $pizza;
 
     /**
      * @var integer
      * 
-     * @orm:Column(type="integer")
-     * @assert:Min(0)
+     * @ORM\Column(type="integer")
+     * @Assert\Min(0)
      */
     protected $count;
 

@@ -2,39 +2,42 @@
 
 namespace Acme\PizzaBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM,
+    Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * @orm:Entity
- * @orm:Table(name="order_")
+ * @ORM\Entity
+ * @ORM\Table(name="order_")
  */
 class Order
 {
     /**
      * @var integer
      * 
-     * @orm:Column(type="integer")
-     * @orm:Id
-     * @orm:GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
 
     /**
      * @var \DateTime
      * 
-     * @orm:Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
     protected $date;
 
     /**
      * @var \Acme\PizzaBundle\Entity\Customer
      *
-     * @orm:ManyToOne(targetEntity="Customer", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Customer", cascade={"persist"})
      */
     protected $customer;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      * 
-     * @orm:OneToMany(targetEntity="OrderItem", mappedBy="order", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="order", cascade={"persist"})
      */
     protected $items;
 
