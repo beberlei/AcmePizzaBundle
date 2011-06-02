@@ -141,6 +141,53 @@ class Order
         return $this->items;
     }
 
+    /**
+     * Set a property
+     * 
+     * @param string $name
+     * @param mixed  $value
+     * 
+     * @throws \InvalidArgumentException If the property does not exists
+     */
+    public function set($name, $value)
+    {
+        switch ($name) {
+            case 'date':
+                $this->setDate($value);
+                break;
+
+            case 'id':
+                $this->setId($value);
+                break;
+
+            default:
+                throw new \InvalidArgumentException(sprintf('Generic setter for "%s" is not defined', $name));
+        }
+    }
+
+    /**
+     * Get a property
+     * 
+     * @param string $name
+     * 
+     * @return mixed
+     * 
+     * @throws \InvalidArgumentException If the property does not exists
+     */
+    public function get($name)
+    {
+        switch ($name) {
+            case 'date':
+                return $this->getDate($value);
+
+            case 'id':
+                return $this->getId($value);
+
+            default:
+                throw new \InvalidArgumentException(sprintf('Generic getter for "%s" is not defined', $name));
+        }
+    }
+
     public function getTotal()
     {
         $total = 0.0;

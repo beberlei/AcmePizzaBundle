@@ -141,4 +141,72 @@ class Customer
     {
         return $this->phone;
     }
+
+    /**
+     * Set a property
+     * 
+     * @param string $name
+     * @param mixed  $value
+     * 
+     * @throws \InvalidArgumentException If the property does not exists
+     */
+    public function set($name, $value)
+    {
+        switch ($name) {
+            case 'name':
+                $this->setName($value);
+                break;
+
+            case 'street':
+                $this->setStreet($value);
+                break;
+
+            case 'city':
+                $this->setCity($value);
+                break;
+
+            case 'phone':
+                $this->setPhone($value);
+                break;
+
+            case 'id':
+                $this->setId($value);
+                break;
+
+            default:
+                throw new \InvalidArgumentException(sprintf('Generic setter for "%s" is not defined', $name));
+        }
+    }
+
+    /**
+     * Get a property
+     * 
+     * @param string $name
+     * 
+     * @return mixed
+     * 
+     * @throws \InvalidArgumentException If the property does not exists
+     */
+    public function get($name)
+    {
+        switch ($name) {
+            case 'name':
+                return $this->getName($value);
+
+            case 'street':
+                return $this->getStreet($value);
+
+            case 'city':
+                return $this->getCity($value);
+
+            case 'phone':
+                return $this->getPhone($value);
+
+            case 'id':
+                return $this->getId($value);
+
+            default:
+                throw new \InvalidArgumentException(sprintf('Generic getter for "%s" is not defined', $name));
+        }
+    }
 }

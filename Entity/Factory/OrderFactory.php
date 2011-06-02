@@ -32,7 +32,7 @@ class OrderFactory
     private $customer;
 
     /**
-     * @assert:Valid()
+     * @Assert\Valid()
      */
     private $items = array();
 
