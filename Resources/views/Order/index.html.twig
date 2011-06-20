@@ -1,46 +1,3 @@
-{#
-{% form_theme form _self %}
-{% use 'TwigBundle:Form:div_layout.html.twig' %}
-
-{% block _order_items_row %}
-<table>
-    <caption>{{ form_label(form) }}</caption>
-    <thead>
-        <tr>
-            <th>{{ form_label(form.children['$$name$$'].pizza) }}</th>
-            <th>{{ form_label(form.children['$$name$$'].count) }}</th>
-            <td></td>
-        </tr>
-    </thead>
-    <tbody>
-        {% for child in form.children %}
-        <tr>
-            <td>
-                {{ form_errors(child.pizza) }}
-                {{ form_widget(child.pizza) }}
-            </td>
-            <td>
-                {{ form_errors(child.count) }}
-                {{ form_widget(child.count) }}
-            </td>
-            <td>
-                <ul>
-                    <li><a href="#">Add</a></li>
-                </ul>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{{ form_rest(form) }}
-{% endblock %}
-
-{% block form_widget %}
-    {{ block('field_rows') }}
-    {{ form_rest(form) }}
-{% endblock %}
-#}
-
 {% extends "AcmePizzaBundle::layout.html.twig" %}
 
 {% block title parent() ~ " - Order" %}
@@ -150,7 +107,7 @@
 
     });
 
-    $('input#{{ form.known_customer.get('name') }}').change();
+    $('input#{{ form.known_customer.get('id') }}').change();
 </script>
 
 {% endblock %}

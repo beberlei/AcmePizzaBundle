@@ -42,9 +42,13 @@ Installation
     acme-pizza_pizza:
         resource: "@AcmePizzaBundle/Controller/PizzaController.php"
         type:     annotation
-    
+
     acme-pizza_order:
         resource: "@AcmePizzaBundle/Controller/OrderController.php"
+        type:     annotation
+
+    acme-pizza_customer:
+        resource: "@AcmePizzaBundle/Controller/CustomerController.php"
         type:     annotation
 
 ### Refresh asset folder
@@ -57,7 +61,7 @@ First, make sure that your db parameters are correctly set in `app/config/parame
 You'll need to install [Doctrine Data Fixtures](git://github.com/doctrine/data-fixtures.git)
 (don't forget to add the path to `AppKernel.php`) and then run:
 
-    ./app/console doctrine:data:load
+    ./app/console doctrine:fixtures:load
 
 Usage
 -----

@@ -1,0 +1,29 @@
+{% extends "AcmePizzaBundle::layout.html.twig" %}
+
+{% block title parent() ~ " - Customer - List" %}
+
+{% block content %}
+
+<h2>Customers</h2>
+
+{% for customer in customers %}
+
+    <dl>
+        <dt>Name</dt>
+        <dd>{{ customer.name }}<dd>
+
+        <dt>Street</dt>
+        <dd>{{ customer.street }}<dd>
+
+        <dt>City</dt>
+        <dd>{{ customer.city }}<dd>
+
+        <dt>Phone</dt>
+        <dd>{{ customer.phone }}<dd>
+    </dl>
+
+    <hr />
+
+{% endfor %}
+
+{% endblock %}
