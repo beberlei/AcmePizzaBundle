@@ -22,7 +22,7 @@ class CustomerController extends Controller
         $customers = $this->get('doctrine')->getEntityManager()
             ->createQuery('SELECT c FROM AcmePizzaBundle:Customer c ORDER BY c.name ASC')
             ->getResult()
-        ;
+            ;
 
         return array(
             'customers' => $customers,
