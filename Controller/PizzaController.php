@@ -26,6 +26,7 @@ class PizzaController extends Controller
     public function editAction($id = null)
     {
         $em = $this->get('doctrine')->getEntityManager();
+        /* @var $em Doctrine\ORM\EntityManager */
 
         if (isset($id)) {
             $pizza = $em->find('AcmePizzaBundle:Pizza', $id);
@@ -37,11 +38,13 @@ class PizzaController extends Controller
             $pizza = new Pizza();
         }
 
-        $form = $this->get('form.factory')->create(new PizzaType());
-        $form->setData($pizza);
+        $form = $this->createForm(new PizzaType(), $pizza);
 
-        if ($this->get('request')->getMethod() == 'POST') {
-            $form->bindRequest($this->get('request'));
+        $request = $this->get('request');
+        /* @var $request Symfony\Component\HttpFoundation\Request */
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
 
             if ($form->isValid()) {
                 $em->persist($pizza);

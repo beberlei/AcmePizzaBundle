@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link type="text/css" rel="stylesheet" href="{{ asset('bundles/acmepizza/css/main.css') }}" />
         <title>{% block title "Acme Pizza" %}</title>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
     </head>
     <body>
 
@@ -14,10 +14,11 @@
             </div>
             <div class="nav">
                 <ul>
-                    <li><a href="{{ path("acmepizza_order_index")  }}">Order - Create</a></li>
-                    <li><a href="{{ path("acmepizza_order_list")   }}">Order - List  </a></li>
-                    <li><a href="{{ path("acmepizza_pizza_create") }}">Pizza - Create</a></li>
-                    <li><a href="{{ path("acmepizza_pizza_list")   }}">Pizza - List  </a></li>
+                    <li><a href="{{ path("acmepizza_order_index"  ) }}">   Order - Create</a></li>
+                    <li><a href="{{ path("acmepizza_order_list"   ) }}">   Order - List  </a></li>
+                    <li><a href="{{ path("acmepizza_pizza_create" ) }}">   Pizza - Create</a></li>
+                    <li><a href="{{ path("acmepizza_pizza_list"   ) }}">   Pizza - List  </a></li>
+                    <li><a href="{{ path("acmepizza_customer_list") }}">Customer - List  </a></li>
                 </ul>
             </div>
         </div>

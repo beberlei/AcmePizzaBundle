@@ -16,11 +16,4 @@ class PizzaType extends AbstractType
             ->add('price', 'money')
             ;
     }
-
-    public function getDefaultOptions(array $options)
-    {
-        return array(
-            'data_class' => 'Acme\PizzaBundle\Entity\Pizza',
-        );
-    }
 }

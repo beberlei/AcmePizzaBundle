@@ -25,23 +25,22 @@ class OrderController extends Controller
      */
     public function indexAction()
     {
-        $request = $this->get('request');
         $em = $this->get('doctrine')->getEntityManager();
+        /* @var $em Doctrine\ORM\EntityManager */
 
         $factory = new OrderFactory($em);
 
-        $form = $this->get('form.factory')->create(new OrderFormType());
-        $form->setData($factory);
+        $form = $this->createForm(new OrderFormType(), $factory);
+
+        $request = $this->get('request');
+        /* @var $request Symfony\Component\HttpFoundation\Request */
 
         if ($request->getMethod() == 'POST') {
-
-            //$form->setValidationGroups('new');
 
             $form->bindRequest($request);
 
             if ($form->isValid()) {
 
-                //$em = $this->get('doctrine.orm.entity_manager');
                 $em->persist($factory->make());
                 $em->flush();
 
@@ -50,7 +49,7 @@ class OrderController extends Controller
         }
 
         return array(
-            'form'  => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 

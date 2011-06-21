@@ -35,7 +35,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
         $this->click("//td[contains(text(), 'Sicilian')]/../td//a[text()='Update']");
         $this->waitForPageToLoad(30000);
         $this->type('pizza_name',  $pizza['name']);
-        $this->type('pizza_price', number_format($pizza['price'], 2, ',', ' '));
+        $this->type('pizza_price', $pizza['price']);
         $this->click("//input[@type='submit']");
         $this->waitForPageToLoad(30000);
 

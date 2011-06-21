@@ -152,12 +152,14 @@ class OrderFactory
         }
 
         if ($count === 0) {
+            //die('couk');
             /*
             $property_path = $context->getPropertyPath() . '.customer.phone';
             $property_path = $context->getPropertyPath() . '.items[0].count';
+            $property_path = $context->getPropertyPath() . '.items.[0].count';
             $property_path = $context->getPropertyPath() . '.items.0.count';
             */
-            $property_path = $context->getPropertyPath() . '.items.[0].count'; // ok
+            $property_path = $context->getPropertyPath() . '.items[0].count';
             $context->setPropertyPath($property_path);
             $context->addViolation('You have to pick at least one pizza...', array(), null);
         }
