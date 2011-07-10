@@ -5,7 +5,8 @@ namespace Acme\PizzaBundle\Controller;
 use
     Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Symfony\Component\HttpKernel\Exception\NotFoundHttpException,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration as Extra
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Template
     ;
 
 use
@@ -15,13 +16,13 @@ use
     ;
 
 /**
- * @Extra\Route("/acme-pizza/order")
+ * @Route("/acme-pizza/order")
  */
 class OrderController extends Controller
 {
     /**
-     * @Extra\Route("/index", name="acmepizza_order_index")
-     * @Extra\Template()
+     * @Route("/index", name="acmepizza_order_index")
+     * @Template()
      */
     public function indexAction()
     {
@@ -54,8 +55,8 @@ class OrderController extends Controller
     }
 
     /**
-     * @Extra\Route("/list", name="acmepizza_order_list")
-     * @Extra\Template()
+     * @Route("/list", name="acmepizza_order_list")
+     * @Template()
      */
     public function listAction()
     {
@@ -70,8 +71,8 @@ class OrderController extends Controller
     }
 
     /**
-     * @Extra\Route("/edit/{id}", name="acmepizza_order_edit")
-     * @Extra\Template()
+     * @Route("/edit/{id}", name="acmepizza_order_edit")
+     * @Template()
      */
     public function editAction($id)
     {

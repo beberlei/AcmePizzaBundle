@@ -5,7 +5,7 @@ namespace Acme\PizzaBundle\Form\Type;
 use
     Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilder
-    ;
+;
 
 class OrderType extends AbstractType
 {
@@ -17,7 +17,7 @@ class OrderType extends AbstractType
                 'type'       => new OrderItemType(),
                 'modifiable' => true,
             ))
-            ;
+        ;
     }
 
      public function getName()

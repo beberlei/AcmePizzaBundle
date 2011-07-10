@@ -78,7 +78,7 @@ Testing
 You can launch functional tests with Selenium RC server running with the following
 steps:
 
--   download [selenium server](http://selenium.googlecode.com/files/selenium-server-standalone-2.0rc3.jar)
+-   download [selenium server](http://selenium.googlecode.com/files/selenium-server-standalone-2.0.0.jar)
 -   edit `app/phpunit.xml.dist`:
     -   add php's server variable to match your configuration
     -   add the selenium's browser configuration. I added [Google Chrome Portable]()
@@ -112,6 +112,6 @@ steps:
     <!-- ... -->
 ```
 
-Now you can run test (assuming that Selenium RC is running `java -jar selenium-server-standalone-2.0rc3.jar`)
-with `phpunit -c app/phpunit.xml.dist src/Acme/PizzaBundle/Tests/Selenium/`
+Now you can run test (assuming that Selenium RC is running `java -jar selenium-server-standalone-2.0.0.jar`)
+with `phpunit -c app/ src/Acme/PizzaBundle/Tests/Selenium/`
 If you want you can submit other missing tests.
