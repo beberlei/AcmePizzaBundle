@@ -16,4 +16,9 @@ class PizzaType extends AbstractType
             ->add('price', 'money')
             ;
     }
+
+     public function getName()
+    {
+        return 'pizza';
+    }
 }
