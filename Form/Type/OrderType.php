@@ -19,4 +19,9 @@ class OrderType extends AbstractType
             ))
             ;
     }
+
+     public function getName()
+    {
+        return 'order';
+    }
 }

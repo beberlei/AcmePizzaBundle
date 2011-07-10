@@ -26,4 +26,9 @@ class OrderItemType extends AbstractType
             'data_class' => 'Acme\PizzaBundle\Entity\OrderItem',
         );
     }
+
+     public function getName()
+    {
+        return 'order_item';
+    }
 }

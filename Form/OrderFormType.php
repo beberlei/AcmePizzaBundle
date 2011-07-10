@@ -24,4 +24,9 @@ class OrderFormType extends AbstractType
             ))
             ;
     }
+
+    public function getName()
+    {
+        return 'order_form';
+    }
 }
