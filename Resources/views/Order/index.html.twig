@@ -14,6 +14,28 @@
     {{ form_row(form.known_phone)    }}
     {{ form_row(form.customer)       }}
 
+    {% macro prototype(item) %}
+    <tr>
+        <td>
+            {{ form_widget(item.pizza) }}
+            {{ form_errors(item.pizza) }}
+        </td>
+        <td>
+            {{ form_widget(item.count) }}
+            {{ form_errors(item.count) }}
+        </td>
+        <td>
+            <ul>
+                <li><a href="#">Add</a></li>
+            </ul>
+        </td>
+    </tr>
+    {% endmacro %}
+
+    <script type="text/html">
+        {{ _self.prototype(form.items['$$name$$']) }}
+    </script>
+
     <table>
         <caption>{{ form_label(form.items) }}</caption>
         <thead>
@@ -24,22 +46,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in form.items %}
-            <tr>
-                <td>
-                    {{ form_widget(item.pizza) }}
-                    {{ form_errors(item.pizza) }}
-                </td>
-                <td>
-                    {{ form_widget(item.count) }}
-                    {{ form_errors(item.count) }}
-                </td>
-                <td>
-                    <ul>
-                        <li><a href="#">Add</a></li>
-                    </ul>
-                </td>
-            </tr>
+            {% for key, item in form.items %}
+                {% if key != "$$name$$" %}
+                    {{ _self.prototype(item) }}
+                {% endif %}
             {% endfor %}
         </tbody>
     </table>
@@ -50,39 +60,23 @@
 </form>
 
 <script>
-    var prototype;
-    prototype = $('*[name*="$$name$$"]:first').closest('tr');
-    prototype.find('input, select').attr('disabled', true);
-    prototype.hide();
+    /* add pizzas */
+    var add = function() {
+        var index = $('table tbody tr').length;
+        var row = $('script[type="text/html"]').text().replace(/\$\$name\$\$/g, index);
 
-    var button = prototype.find('a');
-    button.click(function(event) {
+        $('table tbody').append(row);
+    };
+
+    $('table tbody a').live('click', function(event) {
+        add();
         event.preventDefault();
-
-        var index = prototype.parent().find(' > tr').size() - 1;
-
-        row = prototype.clone(true);
-        row.find('*[disabled]').removeAttr('disabled');
-        row.find('*[name*="$$name$$"]').each(function() {
-
-            var attribute;
-
-            attribute = 'id';
-            $(this).attr(attribute, $(this).attr(attribute).replace(/\$\$name\$\$/g, index));
-
-            attribute = 'name';
-            $(this).attr(attribute, $(this).attr(attribute).replace(/\$\$name\$\$/g, index));
-        });
-        prototype.closest('tbody').append(row);
-        row.show();
     });
 
-    if (prototype.parent().find(' > tr').length == 1) {
-        button.click();
-    }
+    add();
 
     /* ...known customer... */
-    var toggle = !true;
+    var toggle = true;
 
     $('input#{{ form.known_customer.get('id') }}').change(function() {
 
@@ -105,9 +99,7 @@
             if (toggle) $$.hide();
         }
 
-    });
-
-    $('input#{{ form.known_customer.get('id') }}').change();
+    }).change();
 </script>
 
 {% endblock %}
