@@ -20,6 +20,11 @@ class OrderItemType extends AbstractType
             ;
     }
 
+    public function getName()
+    {
+        return 'order_item';
+    }
+
     public function getDefaultOptions(array $options)
     {
         return array(
