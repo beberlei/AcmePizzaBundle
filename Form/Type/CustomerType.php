@@ -19,11 +19,6 @@ class CustomerType extends AbstractType
         ;
     }
 
-    public function getName()
-    {
-        return 'customer';
-    }
-
     public function getDefaultOptions(array $options)
     {
         return array(

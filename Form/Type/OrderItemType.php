@@ -5,7 +5,7 @@ namespace Acme\PizzaBundle\Form\Type;
 use
     Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilder
-    ;
+;
 
 class OrderItemType extends AbstractType
 {
@@ -17,12 +17,7 @@ class OrderItemType extends AbstractType
                 'query_builder' => function ($repository) { return $repository->createQueryBuilder('p')->orderBy('p.name', 'ASC'); },
             ))
             ->add('count', 'integer')
-            ;
-    }
-
-    public function getName()
-    {
-        return 'order_item';
+        ;
     }
 
     public function getDefaultOptions(array $options)
