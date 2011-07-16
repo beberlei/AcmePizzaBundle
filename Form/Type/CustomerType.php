@@ -30,4 +30,9 @@ class CustomerType extends AbstractType
             'data_class' => 'Acme\PizzaBundle\Entity\Customer',
         );
     }
+
+    public function getName()
+    {
+        return 'customer';
+    }
 }

@@ -21,4 +21,9 @@ class PizzaType extends AbstractType
     {
         return 'pizza';
     }
+
+     public function getName()
+    {
+        return 'pizza';
+    }
 }
