@@ -12,7 +12,7 @@ class PizzaType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
+            ->add('name')
             ->add('price', 'money')
         ;
     }

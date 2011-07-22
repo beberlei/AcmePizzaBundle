@@ -7,12 +7,12 @@ use
     Symfony\Component\HttpKernel\Exception\NotFoundHttpException,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template
-    ;
+;
 
 use
     Acme\PizzaBundle\Entity\Pizza,
     Acme\PizzaBundle\Form\Type\PizzaType
-    ;
+;
 
 /**
  * @Route("/acme-pizza/pizza")
@@ -26,8 +26,7 @@ class PizzaController extends Controller
      */
     public function editAction($id = null)
     {
-        $em = $this->get('doctrine')->getEntityManager();
-        /* @var $em Doctrine\ORM\EntityManager */
+        $em = $this->getDoctrine()->getEntityManager();
 
         if (isset($id)) {
             $pizza = $em->find('AcmePizzaBundle:Pizza', $id);
@@ -41,8 +40,7 @@ class PizzaController extends Controller
 
         $form = $this->createForm(new PizzaType(), $pizza);
 
-        $request = $this->get('request');
-        /* @var $request Symfony\Component\HttpFoundation\Request */
+        $request = $this->getRequest();
 
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
@@ -70,11 +68,9 @@ class PizzaController extends Controller
         $pizzas = $this->get('doctrine')->getEntityManager()
             ->createQuery('SELECT p FROM AcmePizzaBundle:Pizza p ORDER BY p.name ASC')
             ->getResult()
-            ;
+        ;
 
-        return array(
-            'pizzas' => $pizzas,
-        );
+        return array('pizzas' => $pizzas);
     }
 
     /**
@@ -83,7 +79,7 @@ class PizzaController extends Controller
      */
     public function deleteAction($id)
     {
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->getDoctrine()->getEntityManager();
 
         $pizza = $em->find('AcmePizzaBundle:Pizza', $id);
 

@@ -7,7 +7,7 @@ use
     Symfony\Component\HttpKernel\Exception\NotFoundHttpException,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template
-    ;
+;
 
 /**
  * @Route("/acme-pizza/customer")
@@ -20,13 +20,11 @@ class CustomerController extends Controller
      */
     public function listAction()
     {
-        $customers = $this->get('doctrine')->getEntityManager()
+        $customers = $this->getDoctrine()->getEntityManager()
             ->createQuery('SELECT c FROM AcmePizzaBundle:Customer c ORDER BY c.name ASC')
             ->getResult()
-            ;
+        ;
 
-        return array(
-            'customers' => $customers,
-        );
+        return array('customers' => $customers);
     }
 }
