@@ -21,9 +21,7 @@ class CustomerType extends AbstractType
 
     public function getDefaultOptions(array $options)
     {
-        return array(
-            'data_class' => 'Acme\PizzaBundle\Entity\Customer',
-        );
+        return array('data_class' => 'Acme\PizzaBundle\Entity\Customer');
     }
 
     public function getName()

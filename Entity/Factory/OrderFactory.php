@@ -7,7 +7,7 @@ use
     Symfony\Component\Validator\Constraints as Assert,
     Acme\PizzaBundle\Entity\Order,
     Acme\PizzaBundle\Entity\Customer
-    ;
+;
 
 /**
  * @Assert\callback(methods={"isValidCustomer", "pickedOrderItems"})
@@ -105,7 +105,7 @@ class OrderFactory
                 ->findOneBy(array(
                     'phone' => $this->known_phone,
                 ))
-                ;
+            ;
 
             if (false === ($this->customer instanceof Customer)) {
                 $property_path = $context->getPropertyPath() . '.known_phone';
@@ -152,7 +152,6 @@ class OrderFactory
         }
 
         if ($count === 0) {
-            //die('couk');
             /*
             $property_path = $context->getPropertyPath() . '.customer.phone';
             $property_path = $context->getPropertyPath() . '.items[0].count';

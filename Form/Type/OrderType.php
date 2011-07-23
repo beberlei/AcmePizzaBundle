@@ -14,8 +14,9 @@ class OrderType extends AbstractType
         $builder
             ->add('customer', new CustomerType())
             ->add('items', 'collection', array(
-                'type'       => new OrderItemType(),
-                'modifiable' => true,
+                'type'      => new OrderItemType(),
+                'allow_add' => true,
+                'prototype' => true,
             ))
         ;
     }

@@ -7,13 +7,13 @@ use
     Symfony\Component\HttpKernel\Exception\NotFoundHttpException,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template
-    ;
+;
 
 use
     Acme\PizzaBundle\Entity\Factory\OrderFactory,
     Acme\PizzaBundle\Entity\Order,
     Acme\PizzaBundle\Form\OrderFormType
-    ;
+;
 
 /**
  * @Route("/acme-pizza/order")
@@ -26,15 +26,13 @@ class OrderController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->get('doctrine')->getEntityManager();
-        /* @var $em Doctrine\ORM\EntityManager */
+        $em = $this->getDoctrine()->getEntityManager();
 
         $factory = new OrderFactory($em);
 
         $form = $this->createForm(new OrderFormType(), $factory);
 
-        $request = $this->get('request');
-        /* @var $request Symfony\Component\HttpFoundation\Request */
+        $request = $this->getRequest();
 
         if ($request->getMethod() == 'POST') {
 
@@ -49,9 +47,7 @@ class OrderController extends Controller
             }
         }
 
-        return array(
-            'form' => $form->createView(),
-        );
+        return array('form' => $form->createView());
     }
 
     /**
@@ -60,14 +56,12 @@ class OrderController extends Controller
      */
     public function listAction()
     {
-        $orders = $this->get('doctrine')->getEntityManager()
+        $orders = $this->getDoctrine()->getEntityManager()
             ->createQuery('SELECT o FROM AcmePizzaBundle:Order o ORDER BY o.id DESC')
             ->getResult()
-            ;
+        ;
 
-        return array(
-            'orders' => $orders,
-        );
+        return array('orders' => $orders);
     }
 
     /**
@@ -76,7 +70,7 @@ class OrderController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->getDoctrine()->getEntityManager();
 
         $order = $em->find('AcmePizzaBundle:Order', $id);
         /* @var \Acme\PizzaBundle\Entity\Order $order */
@@ -84,12 +78,12 @@ class OrderController extends Controller
             throw new NotFoundHttpException("Invalid Order.");
         }
 
-        $form = $this->get('form.factory')->create(new OrderType());
+        $form = $this->createForm(new OrderType());
         $form->setData($order);
 
-        if ($this->get('request')->getMethod() == 'POST') {
+        if ($this->getRequest()->getMethod() == 'POST') {
 
-            $form->bindRequest($this->get('request'));
+            $form->bindRequest($this->getRequest());
 
             if ($form->isValid()) {
 

@@ -22,9 +22,7 @@ class OrderItemType extends AbstractType
 
     public function getDefaultOptions(array $options)
     {
-        return array(
-            'data_class' => 'Acme\PizzaBundle\Entity\OrderItem',
-        );
+        return array('data_class' => 'Acme\PizzaBundle\Entity\OrderItem');
     }
 
      public function getName()
