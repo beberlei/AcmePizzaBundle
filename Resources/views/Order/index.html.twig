@@ -33,7 +33,7 @@
     {% endmacro %}
 
     <script type="text/html">
-        {{ _self.prototype(form.items['$$name$$']) }}
+        {{ _self.prototype(form.items.get('prototype')) }} {# don't know if it is the best way to access prototype #}
     </script>
 
     <table>
@@ -47,14 +47,12 @@
         </thead>
         <tbody>
             {% for key, item in form.items %}
-                {% if key != "$$name$$" %}
-                    {{ _self.prototype(item) }}
-                {% endif %}
+                {{ _self.prototype(item) }}
             {% endfor %}
         </tbody>
     </table>
 
-    {{ form_rest(form) }}
+    {{ form_rest(form) }}{# form.items's prototype is rendered twice #}
 
     <input type="submit" />
 </form>

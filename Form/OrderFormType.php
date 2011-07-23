@@ -21,6 +21,7 @@ class OrderFormType extends AbstractType
                 'type'         => new Type\OrderItemType(),
                 'allow_add'    => true,
                 'allow_delete' => true,
+                'prototype'    => true,
             ))
         ;
     }
