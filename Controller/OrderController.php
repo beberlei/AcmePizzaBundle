@@ -109,7 +109,13 @@ class OrderController extends Controller
 
             if ($form->isValid()) {
 
-                $order = $factory->getOrder();
+                // http://groups.google.com/group/symfony2/browse_thread/thread/99c09855f17dc127/a745356555c126e7?lnk=raot
+
+                if (true) {
+                    $order = $factory->getOrder();
+                } else {
+                    $order = $factory->make();
+                }
 
                 $em->persist($order);
                 $em->flush();

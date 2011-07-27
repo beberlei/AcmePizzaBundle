@@ -4,9 +4,11 @@
 
 {% block content %}
 
-<h2>Order a Pizza</h2>
+<h2>Updating an order</h2>
 
+<!--
 <p>Hello customer! We want to serve you a yummy-yummy Pizza!</p>
+-->
 
 <form method="post" action="{{ app.request.requestUri }}" {{ form_enctype(form) }}>
 
@@ -70,6 +72,9 @@
     $('table tbody a').live('click', function(event) {
         if ($(this).text() === "Add") {
             add();
+        }
+        if ($(this).text() === "Remove") {
+            $(this).closest('tr').remove();
         }
         event.preventDefault();
     });

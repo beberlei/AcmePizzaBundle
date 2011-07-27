@@ -72,7 +72,14 @@ class OrderSeleniumTest extends AbstractSeleniumTest
         $this->click("//input[@type='submit']");
         $this->waitForPageToLoad(30000);
 
-        $this->assertTrue($this->isTextPresent($order['customer']['name']));
+        $this->assertTrue($this->isTextPresent($order['customer']['name'  ]));
+        $this->assertTrue($this->isTextPresent($order['customer']['street']));
+        $this->assertTrue($this->isTextPresent($order['customer']['city'  ]));
+        $this->assertTrue($this->isTextPresent($order['customer']['phone' ]));
+        foreach($order['items'] as $item) {
+            //$this->assertTrue($this->isTextPresent($item['pizza']));
+            $this->assertTrue($this->isTextPresent($item['count']));
+        }
     }
 
     public function testPizza2Create()
@@ -124,6 +131,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
         $this->waitForPageToLoad(30000);
 
         $this->assertTrue($this->isTextPresent("Arnaud Chassé"));
+
     }
 
     public function testOrder3CreateWithKnowCustomerButTypoInPhoneNumber()
@@ -178,8 +186,6 @@ class OrderSeleniumTest extends AbstractSeleniumTest
 
     public function testOrder5CreateWithKnowCustomerButCountIsNegative()
     {
-        $this->markTestSkipped();
-
         $order = array(
             'known_phone' => '03.37.63.90.80',
             'items' => array(
@@ -200,6 +206,117 @@ class OrderSeleniumTest extends AbstractSeleniumTest
         $this->click("//input[@type='submit']");
         $this->waitForPageToLoad(30000);
 
+        $this->markTestSkipped();
+
         $this->assertTrue($this->isTextPresent("You have to pick at least one pizza..."));
+    }
+
+    public function testOrderUpdateCustomer()
+    {
+        $url = $this->router->generate('acme_pizza_order_edit', array('id' => 6));
+
+        $this->open($url);
+
+        if ('Madeleine Thibault' == $this->getValue('order_customer_name')) {
+            $data = array(
+                'order_customer_name'   => 'Madeleine Thibault',
+                'order_customer_street' => '3, rue des Lacs',
+                'order_customer_city'   => '14200 HÉROUVILLE-SAINT-CLAIR',
+                'order_customer_phone'  => '02.12.62.54.75',
+            );
+        } else {
+            $data = array(
+                'order_customer_name'   => 'Andreas Zimmerman',
+                'order_customer_street' => 'Lietzenburger Strasse 75',
+                'order_customer_city'   => '51469 Bergisch Gladbach Hand',
+                'order_customer_phone'  => '02202 01 48 77',
+            );
+        }
+
+        foreach ($data as $key => $value) {
+            $this->type($key, $value);
+        }
+
+        $this->click("//input[@type='submit']");
+        $this->waitForPageToLoad(30000);
+
+        foreach ($data as $key => $value) {
+            $this->assertTrue($this->isTextPresent($value));
+        }
+    }
+
+    public function testOrderUpdatePizzaCount()
+    {
+        $url = $this->router->generate('acme_pizza_order_edit', array('id' => 6));
+
+        $this->open($url);
+
+        $counts = array();
+
+        for ($i = 0; $i < $this->getXpathCount('//tbody/tr'); $i++) {
+            $counts[] = $count = rand(100, 999);
+
+            $this->type("order_items_{$i}_count", $count);
+        }
+
+        $this->click("//input[@type='submit']");
+        $this->waitForPageToLoad(30000);
+
+        foreach ($counts as $i => $count) {
+            $this->assertEquals($count, $this->getText('//tbody/tr['.($i + 1).']/td[2]'));
+        }
+    }
+
+    public function testOrderUpdatePizzaType()
+    {
+        $url = $this->router->generate('acme_pizza_order_edit', array('id' => 6));
+
+        $this->open($url);
+
+        $n = $this->getXpathCount('//select[@id="order_items_0_pizza"]/option');
+
+        $pizzas = array();
+
+        for ($i = 0; $i < $this->getXpathCount('//tbody/tr'); $i++) {
+            $pizzas[] = $pizza = $this->getText('//select[@id="order_items_0_pizza"]/option['.rand(1, $n).']');
+
+            $this->select("order_items_{$i}_pizza", 'label='.$pizza);
+        }
+
+        $this->click("//input[@type='submit']");
+        $this->waitForPageToLoad(30000);
+
+        foreach ($pizzas as $i => $pizza) {
+            $pizza = substr($pizza, 0, strpos($pizza, '('));
+            $this->assertEquals($pizza, $this->getText('//tbody/tr['.($i + 1).']/td[1]'));
+        }
+    }
+
+    public function testOrderUpdatePizzaAdd()
+    {
+        $url = $this->router->generate('acme_pizza_order_edit', array('id' => 6));
+
+        $this->open($url);
+
+        $n = $this->getXpathCount('//tbody/tr');
+
+        $this->click('//tbody/tr[position()=last()]//a[text()="Add"]');
+
+        $pizza = $this->getText(sprintf('//select[@id="order_items_0_pizza"]/option[%d]', rand(
+            1,
+            $this->getXpathCount('//select[@id="order_items_0_pizza"]/option')
+        )));
+
+        $this->select("order_items_{$n}_pizza", 'label='.$pizza);
+        $this->type("order_items_{$n}_count", $count = rand(100, 999));
+
+        $this->click("//input[@type='submit']");
+        $this->waitForPageToLoad(30000);
+
+        $this->assertEquals($n + 1, $this->getXpathCount('//tbody/tr'));
+
+        $pizza = substr($pizza, 0, strpos($pizza, '('));
+        $this->assertEquals($pizza, $this->getText('//tbody/tr[position()=last()]/td[1]'));
+        $this->assertEquals($count, $this->getText('//tbody/tr[position()=last()]/td[2]'));
     }
 }
