@@ -10,12 +10,12 @@ use
 ;
 
 /**
- * @Route("/acme-pizza/customer")
+ * @Route("/customer")
  */
 class CustomerController extends Controller
 {
     /**
-     * @Route("/list", name="acmepizza_customer_list")
+     * @Route("/list")
      * @Template()
      */
     public function listAction()

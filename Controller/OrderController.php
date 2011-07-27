@@ -16,12 +16,12 @@ use
 ;
 
 /**
- * @Route("/acme-pizza/order")
+ * @Route("/order")
  */
 class OrderController extends Controller
 {
     /**
-     * @Route("/index", name="acmepizza_order_index")
+     * @Route("/index")
      * @Template()
      */
     public function indexAction()
@@ -43,7 +43,7 @@ class OrderController extends Controller
                 $em->persist($factory->make());
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('acmepizza_order_list'));
+                return $this->redirect($this->generateUrl('acme_pizza_order_list'));
             }
         }
 
@@ -51,7 +51,7 @@ class OrderController extends Controller
     }
 
     /**
-     * @Route("/list", name="acmepizza_order_list")
+     * @Route("/list")
      * @Template()
      */
     public function listAction()
@@ -65,7 +65,7 @@ class OrderController extends Controller
     }
 
     /**
-     * @Route("/edit/{id}", name="acmepizza_order_edit")
+     * @Route("/edit/{id}")
      * @Template()
      */
     public function editAction($id)
@@ -89,7 +89,7 @@ class OrderController extends Controller
 
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('acmepizza_order_edit', array(
+                return $this->redirect($this->generateUrl('acme_pizza_order_edit', array(
                     'id' => $order->getId(),
                 )));
             }

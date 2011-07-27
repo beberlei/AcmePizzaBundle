@@ -8,7 +8,7 @@
 
 <p>Hello customer! We want to serve you a yummy-yummy Pizza!</p>
 
-<form method="post" action="{{ path("acmepizza_order_index") }}" {{ form_enctype(form) }}>
+<form method="post" action="{{ path("acme_pizza_order_index") }}" {{ form_enctype(form) }}>
 
     {{ form_row(form.known_customer, { "label": "Is known customer?" }) }}
     {{ form_row(form.known_phone)    }}

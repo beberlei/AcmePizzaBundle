@@ -6,7 +6,7 @@
 
 <h1>Edit Order #"{{ order.id }}"</h1>
 
-<form method="post" action="{{ path("acmepizza_order_edit", {"id": order.id}) }}">
+<form method="post" action="{{ path("acme_pizza_order_edit", {"id": order.id}) }}">
     {{ form.errors }}
     {{ form.widget }}
     <input type="submit" value="Update" />
