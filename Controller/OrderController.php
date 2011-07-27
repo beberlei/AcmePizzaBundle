@@ -40,10 +40,14 @@ class OrderController extends Controller
 
             if ($form->isValid()) {
 
-                $em->persist($factory->make());
+                $em->persist($order = $factory->make());
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('acme_pizza_order_list'));
+                $this->get('session')->setFlash('success', 'New order were saved!');
+
+                return $this->redirect($this->generateUrl('acme_pizza_order_show', array(
+                    'id' => $order->getId(),
+                )));
             }
         }
 
@@ -62,6 +66,21 @@ class OrderController extends Controller
         ;
 
         return array('orders' => $orders);
+    }
+
+    /**
+     * @Route("/show/{id}")
+     * @Template()
+     */
+    public function showAction($id)
+    {
+        $order = $this->getDoctrine()->getEntityManager()->find('AcmePizzaBundle:Order', $id);
+
+        if (!$order) {
+            throw $this->createNotFoundException('The order does not exist');
+        }
+
+        return array('order' => $order);
     }
 
     /**

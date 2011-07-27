@@ -49,6 +49,8 @@ class PizzaController extends Controller
                 $em->persist($pizza);
                 $em->flush();
 
+                $this->get('session')->setFlash('success', 'New pizza was saved!');
+
                 return $this->redirect($this->generateUrl('acme_pizza_pizza_list'));
             }
         }
