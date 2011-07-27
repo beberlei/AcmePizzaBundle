@@ -42,12 +42,14 @@ class PizzaController extends Controller
 
         $request = $this->getRequest();
 
-        if ($request->getMethod() == 'POST') {
+        if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
 
             if ($form->isValid()) {
                 $em->persist($pizza);
                 $em->flush();
+
+                $this->get('session')->setFlash('success', 'New pizza was saved!');
 
                 return $this->redirect($this->generateUrl('acme_pizza_pizza_list'));
             }

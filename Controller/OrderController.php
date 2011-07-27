@@ -34,16 +34,20 @@ class OrderController extends Controller
 
         $request = $this->getRequest();
 
-        if ($request->getMethod() == 'POST') {
+        if ('POST' === $request->getMethod()) {
 
             $form->bindRequest($request);
 
             if ($form->isValid()) {
 
-                $em->persist($factory->make());
+                $em->persist($order = $factory->make());
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('acme_pizza_order_list'));
+                $this->get('session')->setFlash('success', 'New order were saved!');
+
+                return $this->redirect($this->generateUrl('acme_pizza_order_show', array(
+                    'id' => $order->getId(),
+                )));
             }
         }
 
@@ -65,6 +69,21 @@ class OrderController extends Controller
     }
 
     /**
+     * @Route("/show/{id}")
+     * @Template()
+     */
+    public function showAction($id)
+    {
+        $order = $this->getDoctrine()->getEntityManager()->find('AcmePizzaBundle:Order', $id);
+
+        if (!$order) {
+            throw $this->createNotFoundException('The order does not exist');
+        }
+
+        return array('order' => $order);
+    }
+
+    /**
      * @Route("/edit/{id}")
      * @Template()
      */
@@ -81,9 +100,11 @@ class OrderController extends Controller
         $form = $this->createForm(new OrderType());
         $form->setData($order);
 
-        if ($this->getRequest()->getMethod() == 'POST') {
+        $request = $this->getRequest();
 
-            $form->bindRequest($this->getRequest());
+        if ('POST' === $request->getMethod()) {
+
+            $form->bindRequest($request);
 
             if ($form->isValid()) {
 
