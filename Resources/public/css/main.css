@@ -178,7 +178,8 @@ th {
   font-weight: bold; }
 
 body {
-  margin: 20px; }
+  width: 940px;
+  margin: 20px auto; }
 
 .nav ul {
   list-style: none; }
