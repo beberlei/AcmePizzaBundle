@@ -39,18 +39,11 @@ Installation
 ### Enable routing configuration
 
 ``` yaml
-    # app/config/routing.yml
-    acme-pizza_pizza:
-        resource: "@AcmePizzaBundle/Controller/PizzaController.php"
-        type:     annotation
-
-    acme-pizza_order:
-        resource: "@AcmePizzaBundle/Controller/OrderController.php"
-        type:     annotation
-
-    acme-pizza_customer:
-        resource: "@AcmePizzaBundle/Controller/CustomerController.php"
-        type:     annotation
+# app/config/routing.yml
+AcmePizzaBundle:
+    resource: "@AcmePizzaBundle/Controller/"
+    type:     annotation
+    prefix:   /acme-pizza
 ```
 
 ### Refresh asset folder
@@ -78,7 +71,7 @@ Testing
 You can launch functional tests with Selenium RC server running with the following
 steps:
 
--   download [selenium server](http://selenium.googlecode.com/files/selenium-server-standalone-2.0.0.jar)
+-   download [selenium server](http://selenium.googlecode.com/files/selenium-server-standalone-2.2.0.jar)
 -   edit `app/phpunit.xml.dist`:
     -   add php's server variable to match your configuration
     -   add the selenium's browser configuration. I added [Google Chrome Portable]()
@@ -87,31 +80,31 @@ steps:
 # app/phpunit.xml.dist
 
 ``` xml
-    # app/phpunit.xml.dist
-    <!-- ... -->
-    <php>
-        <server
-            name  = "KERNEL_DIR"
-            value = "/var/www/AcmePizza/app/" />
-        <server
-            name  = "HTTP_HOST"
-            value = "localhost" />
-        <server
-            name  = "SCRIPT_NAME"
-            value = "/AcmePizza/web/app_dev.php" />
-    </php>
-    <!-- ... -->
+# app/phpunit.xml.dist
+<!-- ... -->
+<php>
+    <server
+        name  = "KERNEL_DIR"
+        value = "/var/www/AcmePizza/app/" />
+    <server
+        name  = "HTTP_HOST"
+        value = "localhost" />
+    <server
+        name  = "SCRIPT_NAME"
+        value = "/AcmePizza/web/app_dev.php" />
+</php>
+<!-- ... -->
 
-    <!-- ... -->
-    <selenium>
-        <browser
-            name    = "Google Chrome Portable"
-            browser = "*custom c:\bin\GoogleChromePortable\GoogleChromePortable.exe -disable-popup-blocking -proxy-server=127.0.0.1:4444"
-            host    = "127.0.0.1" /> <!-- ip of selenium RC server -->
-    </selenium>
-    <!-- ... -->
+<!-- ... -->
+<selenium>
+    <browser
+        name    = "Google Chrome Portable"
+        browser = "*custom c:\bin\GoogleChromePortable\GoogleChromePortable.exe -disable-popup-blocking -proxy-server=127.0.0.1:4444"
+        host    = "127.0.0.1" /> <!-- ip of selenium RC server -->
+</selenium>
+<!-- ... -->
 ```
 
-Now you can run test (assuming that Selenium RC is running `java -jar selenium-server-standalone-2.0.0.jar`)
+Now you can run test (assuming that Selenium RC is running `java -jar selenium-server-standalone-2.2.0.jar`)
 with `phpunit -c app/ src/Acme/PizzaBundle/Tests/Selenium/`
 If you want you can submit other missing tests.

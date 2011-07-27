@@ -15,13 +15,13 @@ use
 ;
 
 /**
- * @Route("/acme-pizza/pizza")
+ * @Route("/pizza")
  */
 class PizzaController extends Controller
 {
     /**
-     * @Route("/create", name="acmepizza_pizza_create"),
-     * @Route("/update/{id}", name="acmepizza_pizza_update", requirements={"id" = "\d+"})
+     * @Route("/create", name="acme_pizza_pizza_create"),
+     * @Route("/update/{id}", name="acme_pizza_pizza_update", requirements={"id" = "\d+"})
      * @Template()
      */
     public function editAction($id = null)
@@ -49,7 +49,7 @@ class PizzaController extends Controller
                 $em->persist($pizza);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('acmepizza_pizza_list'));
+                return $this->redirect($this->generateUrl('acme_pizza_pizza_list'));
             }
         }
 
@@ -60,7 +60,7 @@ class PizzaController extends Controller
     }
 
     /**
-     * @Route("/list", name="acmepizza_pizza_list")
+     * @Route("/list")
      * @Template()
      */
     public function listAction()
@@ -74,7 +74,7 @@ class PizzaController extends Controller
     }
 
     /**
-     * @Route("/delete/{id}", name="acmepizza_pizza_delete")
+     * @Route("/delete/{id}")
      * @Template()
      */
     public function deleteAction($id)
@@ -90,6 +90,6 @@ class PizzaController extends Controller
         $em->remove($pizza);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('acmepizza_pizza_list'));
+        return $this->redirect($this->generateUrl('acme_pizza_pizza_list'));
     }
 }

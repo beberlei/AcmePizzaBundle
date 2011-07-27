@@ -10,7 +10,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             'price' => 11.5
         );
 
-        $url = $this->router->generate('acmepizza_pizza_create');
+        $url = $this->router->generate('acme_pizza_pizza_create');
 
         $this->open($url);
         $this->type('pizza_name',  $pizza['name' ]);
@@ -29,7 +29,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             'price' => 13.4,
         );
 
-        $url = $this->router->generate('acmepizza_pizza_list');
+        $url = $this->router->generate('acme_pizza_pizza_list');
 
         $this->open($url);
         $this->click("//td[contains(text(), 'Sicilian')]/../td//a[text()='Update']");
@@ -60,7 +60,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             ),
         );
 
-        $url = $this->router->generate('acmepizza_order_index');
+        $url = $this->router->generate('acme_pizza_order_index');
 
         $this->open($url);
         $this->type  ('order_customer_name',   $order['customer']['name'  ]);
@@ -82,7 +82,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             'price' => 7.9
         );
 
-        $url = $this->router->generate('acmepizza_pizza_create');
+        $url = $this->router->generate('acme_pizza_pizza_create');
 
         $this->open($url);
         $this->type('pizza_name',  $pizza['name' ]);
@@ -110,7 +110,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             ),
         );
 
-        $url = $this->router->generate('acmepizza_order_index');
+        $url = $this->router->generate('acme_pizza_order_index');
 
         $this->open($url);
         $this->click ('order_known_customer');
@@ -138,7 +138,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             ),
         );
 
-        $url = $this->router->generate('acmepizza_order_index');
+        $url = $this->router->generate('acme_pizza_order_index');
 
         $this->open($url);
         $this->click ('order_known_customer');
@@ -163,7 +163,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             ),
         );
 
-        $url = $this->router->generate('acmepizza_order_index');
+        $url = $this->router->generate('acme_pizza_order_index');
 
         $this->open($url);
         $this->click ('order_known_customer');
@@ -190,7 +190,7 @@ class OrderSeleniumTest extends AbstractSeleniumTest
             ),
         );
 
-        $url = $this->router->generate('acmepizza_order_index');
+        $url = $this->router->generate('acme_pizza_order_index');
 
         $this->open($url);
         $this->click ('order_known_customer');
