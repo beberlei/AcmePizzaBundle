@@ -94,11 +94,12 @@ class OrderController extends Controller
         $order = $em->find('AcmePizzaBundle:Order', $id);
         /* @var \Acme\PizzaBundle\Entity\Order $order */
         if (!$order) {
-            throw new NotFoundHttpException("Invalid Order.");
+            throw $this->createNotFoundException("Invalid Order.");
         }
 
-        $form = $this->createForm(new OrderType());
-        $form->setData($order);
+        $factory = new \Acme\PizzaBundle\Entity\Factory\OrderNewFactory($em, $order);
+
+        $form = $this->createForm(new \Acme\PizzaBundle\Form\OrderNewFactoryType(), $factory);
 
         $request = $this->getRequest();
 
@@ -108,17 +109,19 @@ class OrderController extends Controller
 
             if ($form->isValid()) {
 
+                $order = $factory->getOrder();
+
+                $em->persist($order);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('acme_pizza_order_edit', array(
+                $this->get('session')->setFlash('success', 'order was updated!');
+
+                return $this->redirect($this->generateUrl('acme_pizza_order_show', array(
                     'id' => $order->getId(),
                 )));
             }
         }
 
-        return array(
-            'form'  => $form->createView(),
-            'order' => $order,
-        );
+        return array('form' => $form->createView());
     }
 }

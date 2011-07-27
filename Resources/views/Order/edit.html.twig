@@ -1,46 +1,108 @@
 {% extends "AcmePizzaBundle::layout.html.twig" %}
 
-{% block title parent() ~ " - Order - Edit" %}
+{% block title parent() ~ " - Order" %}
 
 {% block content %}
 
-<h1>Edit Order #"{{ order.id }}"</h1>
+<h2>Order a Pizza</h2>
 
-<form method="post" action="{{ path("acme_pizza_order_edit", {"id": order.id}) }}">
-    {{ form.errors }}
-    {{ form.widget }}
-    <input type="submit" value="Update" />
+<p>Hello customer! We want to serve you a yummy-yummy Pizza!</p>
+
+<form method="post" action="{{ app.request.requestUri }}" {{ form_enctype(form) }}>
+
+    {{ form_row(form.known_customer, { "label": "Is known customer?" }) }}
+    {{ form_row(form.known_phone)    }}
+    {{ form_row(form.customer)       }}
+
+    {% macro prototype(item) %}
+    <tr>
+        <td>
+            {{ form_widget(item.pizza) }}
+            {{ form_errors(item.pizza) }}
+        </td>
+        <td>
+            {{ form_widget(item.count) }}
+            {{ form_errors(item.count) }}
+        </td>
+        <td>
+            <ul>
+                <li><a href="#">Add</a></li>
+                <li><a href="#">Remove</a></li>
+            </ul>
+        </td>
+    </tr>
+    {% endmacro %}
+
+    <script type="text/html">
+        {{ _self.prototype(form.items.get('prototype')) }} {# don't know if it is the best way to access prototype #}
+    </script>
+
+    <table>
+        <caption>{{ form_label(form.items) }}</caption>
+        <thead>
+            <tr>
+                <th>Pizza</th>
+                <th>Count</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, item in form.items %}
+                {{ _self.prototype(item) }}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {{ form_rest(form) }}{# form.items's prototype is rendered twice #}
+
+    <input type="submit" />
 </form>
 
 <script>
-$(document).ready(function() {
-    var $$ = $("label:contains('$$name$$')").closest("div");
-    $$.find("input, select").attr('disabled', true);
-    $$.hide();
+    /* add pizzas */
+    var add = function() {
+        var index = $('table tbody tr').length;
+        var row = $('script[type="text/html"]').text().replace(/\$\$name\$\$/g, index);
 
-    /*
-    $$.find("div").each(function(i, item) {
-        // console.log(i);
-        // console.log(item);
+        $('table tbody').append(row);
+    };
 
-        var k = i + 1;
-        k = "numero";
-        console.log(k);
-
-        var pattern = /\$\$name\$\$/g;
-
-        var tmp = $(item).find("label");
-        tmp.attr("for", tmp.attr("for").replace(pattern, k));
-
-        var tmp = $(item).find("label");
-        tmp.attr("for", tmp.attr("for").replace(pattern, k));
-
-        var tmp = $(item).find("input, select");
-        tmp.attr("id", tmp.attr("id").replace(pattern, k));
-        tmp.attr("name", tmp.attr("name").replace(pattern, k));
+    $('table tbody a').live('click', function(event) {
+        if ($(this).text() === "Add") {
+            add();
+        }
+        event.preventDefault();
     });
-    */
-});
+
+    if ($('table tbody tr').length === 0) {
+        add();
+    }
+
+    /* ...known customer... */
+    var toggle = true;
+
+    $('input#{{ form.known_customer.get('id') }}').change(function() {
+
+        if ($(this).is(':checked')) {
+
+            var $$ = $('input#{{ form.known_phone.get('id') }}').closest('div');
+            $$.find('input').attr('disabled', false);
+            if (toggle) $$.show();
+
+            var $$ = $('label:contains("{{ form.customer.get('label') }}"):first').closest('div');
+            $$.find('input').attr('disabled', true);
+            if (toggle) $$.hide();
+        } else {
+            var $$ = $('label:contains("{{ form.customer.get('label') }}"):first').closest('div');
+            $$.find('input').attr('disabled', false);
+            if (toggle) $$.show();
+
+            var $$ = $('input#{{ form.known_phone.get('id') }}').closest('div');
+            $$.find('input').attr('disabled', true);
+            if (toggle) $$.hide();
+        }
+
+    }).change();
 </script>
 
 {% endblock %}
