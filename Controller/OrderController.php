@@ -34,7 +34,7 @@ class OrderController extends Controller
 
         $request = $this->getRequest();
 
-        if ($request->getMethod() == 'POST') {
+        if ('POST' === $request->getMethod()) {
 
             $form->bindRequest($request);
 
@@ -81,9 +81,11 @@ class OrderController extends Controller
         $form = $this->createForm(new OrderType());
         $form->setData($order);
 
-        if ($this->getRequest()->getMethod() == 'POST') {
+        $request = $this->getRequest();
 
-            $form->bindRequest($this->getRequest());
+        if ('POST' === $request->getMethod()) {
+
+            $form->bindRequest($request);
 
             if ($form->isValid()) {
 

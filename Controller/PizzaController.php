@@ -42,7 +42,7 @@ class PizzaController extends Controller
 
         $request = $this->getRequest();
 
-        if ($request->getMethod() == 'POST') {
+        if ('POST' === $request->getMethod()) {
             $form->bindRequest($request);
 
             if ($form->isValid()) {

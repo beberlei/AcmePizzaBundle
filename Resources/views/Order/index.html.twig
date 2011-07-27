@@ -27,6 +27,7 @@
         <td>
             <ul>
                 <li><a href="#">Add</a></li>
+                <li><a href="#">Remove</a></li>
             </ul>
         </td>
     </tr>
@@ -67,11 +68,15 @@
     };
 
     $('table tbody a').live('click', function(event) {
-        add();
+        if ($(this).text() === "Add") {
+            add();
+        }
         event.preventDefault();
     });
 
-    add();
+    if ($('table tbody tr').length === 0) {
+        add();
+    }
 
     /* ...known customer... */
     var toggle = true;
