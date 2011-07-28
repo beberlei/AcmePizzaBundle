@@ -145,4 +145,28 @@ echo "<hr />";
 
         return array('form' => $form->createView());
     }
+
+    /**
+     * @Route("/delete/{id}")
+     * @Template()
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $order = $em->find('AcmePizzaBundle:Order', $id);
+
+        if (!$order) {
+            throw $this->createNotFoundException("Invalid order.");
+        }
+
+        foreach ($order->getItems() as $item) {
+            $em->remove($item);
+        }
+
+        $em->remove($order);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('acme_pizza_order_list'));
+    }
 }
