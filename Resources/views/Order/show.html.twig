@@ -47,8 +47,11 @@
     </tfoot>
 </table>
 
-{#
-<a href="{{ path("acme_pizza_order_edit", {"id": order.id}) }}">Edit</a>
-#}
+<ul>
+    {#
+    <li><a href="{{ path("acme_pizza_order_edit", {"id": order.id}) }}">Edit</a></li>
+    #}
+    <li><a href="{{ path("acme_pizza_order_delete", {"id": order.id}) }}">Delete</a></li>
+</ul>
 
 {% endblock %}
