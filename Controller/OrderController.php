@@ -96,7 +96,11 @@ class OrderController extends Controller
         if (!$order) {
             throw $this->createNotFoundException("Invalid Order.");
         }
-
+/*
+var_dump("count (before)");
+var_dump(count($order->getItems()));
+echo "<hr />";
+*/
         $factory = new \Acme\PizzaBundle\Entity\Factory\OrderNewFactory($em, $order);
 
         $form = $this->createForm(new \Acme\PizzaBundle\Form\OrderNewFactoryType(), $factory);
@@ -115,6 +119,17 @@ class OrderController extends Controller
                     $order = $factory->getOrder();
                 } else {
                     $order = $factory->make();
+                }
+/*
+var_dump("count (after)");
+var_dump(count($order->getItems()));
+echo "<hr />";
+//exit();
+*/
+
+                // FIXME this should be part of the factory class
+                foreach ($order->getItems() as $item) {
+                    $item->setOrder($order);
                 }
 
                 $em->persist($order);

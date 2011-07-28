@@ -37,7 +37,7 @@ class Order
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      * 
-     * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="order", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="order", cascade={"persist, remove"}, orphanRemoval="true")
      */
     protected $items;
 

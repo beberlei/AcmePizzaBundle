@@ -109,7 +109,14 @@ class OrderNewFactory
      */
     public function setItems($items)
     {
-        $this->items = $items;
+        //var_dump(count($items));
+        return;
+
+        foreach ($items as $item) {
+            $this->order->addItem($item);
+        }
+
+        //$this->items = $items;
     }
 
     /**
@@ -167,6 +174,8 @@ class OrderNewFactory
      */
     public function pickedOrderItems(ExecutionContext $context)
     {
+        return;
+
         $count = 0;
 
         foreach ($this->order->getItems() as $item) {

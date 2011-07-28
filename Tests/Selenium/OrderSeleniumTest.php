@@ -319,4 +319,20 @@ class OrderSeleniumTest extends AbstractSeleniumTest
         $this->assertEquals($pizza, $this->getText('//tbody/tr[position()=last()]/td[1]'));
         $this->assertEquals($count, $this->getText('//tbody/tr[position()=last()]/td[2]'));
     }
+
+    public function testOrderUpdatePizzaRemove()
+    {
+        $url = $this->router->generate('acme_pizza_order_edit', array('id' => 6));
+
+        $this->open($url);
+
+        $n = $this->getXpathCount('//tbody/tr');
+
+        $this->click('//tbody/tr[position()=last()]//a[text()="Remove"]');
+
+        $this->click("//input[@type='submit']");
+        $this->waitForPageToLoad(30000);
+
+        $this->assertEquals($n - 1, $this->getXpathCount('//tbody/tr'));
+    }
 }
