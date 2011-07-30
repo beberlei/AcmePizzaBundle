@@ -1,4 +1,3 @@
-
 Acme Pizza Bundle
 =================
 
@@ -15,6 +14,29 @@ Symfony(https://github.com/symfony/symfony) obviously.
 
 Installation
 ------------
+
+### Add the deps for the needed bundles
+
+``` php
+[AcmePizzaBundle]
+    git=https://github.com/beberlei/AcmePizzaBundle.git
+    target=/bundles/Acme/PizzaBundle
+
+[doctrine-fixtures]
+    git=http://github.com/doctrine/data-fixtures.git
+
+[DoctrineFixturesBundle]
+    git=http://github.com/symfony/DoctrineFixturesBundle.git
+    target=/bundles/Symfony/Bundle/DoctrineFixturesBundle
+```
+
+### Add to autoload.php
+
+``` php
+$loader->registerNamespaces(array(
+    'Acme'             => __DIR__.'/../vendor/bundles',
+    // ...
+```
 
 ### Register AcmePizzaBundle to Kernel
 
