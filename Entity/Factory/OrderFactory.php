@@ -10,7 +10,7 @@ use
 ;
 
 /**
- * @Assert\callback(methods={"isValidCustomer", "pickedOrderItems"})
+ * @Assert\Callback(methods={"isValidCustomer"})
  */
 class OrderFactory
 {
@@ -142,6 +142,7 @@ class OrderFactory
     /**
      * @param  ExecutionContext $context
      * @return void
+     * @deprecated
      */
     public function pickedOrderItems(ExecutionContext $context)
     {

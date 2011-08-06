@@ -8,7 +8,7 @@
 
 <p>Hello customer! We want to serve you a yummy-yummy Pizza!</p>
 
-<form method="post" action="{{ path("acme_pizza_order_index") }}" {{ form_enctype(form) }}>
+<form method="post" action="{{ path("acme_pizza_order_index") }}" {{ form_enctype(form) }} novalidate="novalidate">
 
     {{ form_row(form.known_customer, { "label": "Is known customer?" }) }}
     {{ form_row(form.known_phone)    }}
@@ -17,7 +17,7 @@
     {% macro prototype(item) %}
     <tr>
         <td>
-            {{ form_widget(item.pizza) }}
+            {{ form_widget(item.pizza, { "empty_value": "" }) }}
             {{ form_errors(item.pizza) }}
         </td>
         <td>
@@ -54,6 +54,7 @@
     </table>
 
     {{ form_rest(form) }}{# form.items's prototype is rendered twice #}
+    {{ form_errors(form) }}
 
     <input type="submit" />
 </form>

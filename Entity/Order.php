@@ -2,8 +2,10 @@
 
 namespace Acme\PizzaBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM,
-    Symfony\Component\Validator\Constraints as Assert;
+use
+    Doctrine\ORM\Mapping as ORM,
+    Symfony\Component\Validator\Constraints as Assert
+;
 
 /**
  * @ORM\Entity
@@ -24,6 +26,7 @@ class Order
      * @var \DateTime
      * 
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     protected $date;
 
@@ -31,6 +34,7 @@ class Order
      * @var \Acme\PizzaBundle\Entity\Customer
      *
      * @ORM\ManyToOne(targetEntity="Customer", cascade={"persist"})
+     * @Assert\NotBlank()
      */
     protected $customer;
 
@@ -38,6 +42,7 @@ class Order
      * @var \Doctrine\Common\Collections\ArrayCollection
      * 
      * @ORM\OneToMany(targetEntity="OrderItem", mappedBy="order", cascade={"persist"})
+     * @Assert\NotBlank()
      */
     protected $items;
 
@@ -156,8 +161,12 @@ class Order
                 $this->setDate($value);
                 break;
 
-            case 'id':
-                $this->setId($value);
+            case 'customer':
+                $this->setCustomer($value);
+                break;
+
+            case 'items':
+                $this->setItems($value);
                 break;
 
             default:
@@ -177,11 +186,11 @@ class Order
     public function get($name)
     {
         switch ($name) {
-            case 'date':
-                return $this->getDate($value);
-
             case 'id':
                 return $this->getId($value);
+
+            case 'date':
+                return $this->getDate($value);
 
             default:
                 throw new \InvalidArgumentException(sprintf('Generic getter for "%s" is not defined', $name));

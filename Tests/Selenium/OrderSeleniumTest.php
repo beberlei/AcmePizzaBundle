@@ -173,33 +173,6 @@ class OrderSeleniumTest extends AbstractSeleniumTest
         $this->click("//input[@type='submit']");
         $this->waitForPageToLoad(30000);
 
-        $this->assertTrue($this->isTextPresent("You have to pick at least one pizza..."));
-    }
-
-    public function testOrder5CreateWithKnowCustomerButCountIsNegative()
-    {
-        $this->markTestSkipped();
-
-        $order = array(
-            'known_phone' => '03.37.63.90.80',
-            'items' => array(
-                array(
-                    'pizza' => 'Sweet Potato(7.90)',
-                    'count' => -1,
-                ),
-            ),
-        );
-
-        $url = $this->router->generate('acme_pizza_order_index');
-
-        $this->open($url);
-        $this->click ('order_known_customer');
-        $this->type  ('order_known_phone', $order['known_phone']);
-        $this->select('order_items_0_pizza', 'label='.$order['items'][0]['pizza']);
-        $this->type  ('order_items_0_count', $order['items'][0]['count']);
-        $this->click("//input[@type='submit']");
-        $this->waitForPageToLoad(30000);
-
-        $this->assertTrue($this->isTextPresent("You have to pick at least one pizza..."));
+        $this->assertTrue($this->isTextPresent("This value should not be blank"));
     }
 }

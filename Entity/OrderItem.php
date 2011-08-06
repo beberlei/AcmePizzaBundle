@@ -2,8 +2,10 @@
 
 namespace Acme\PizzaBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM,
-    Symfony\Component\Validator\Constraints as Assert;
+use
+    Doctrine\ORM\Mapping as ORM,
+    Symfony\Component\Validator\Constraints as Assert
+;
 
 /**
  * @ORM\Entity
@@ -21,17 +23,17 @@ class OrderItem
     protected $id;
 
     /**
-     * @var \Acme\PizzaBundle\Entity\Order
+     * @var Order
      * 
      * @ORM\ManyToOne(targetEntity="Order", inversedBy="items")
      */
     protected $order;
 
     /**
-     * @var \Acme\PizzaBundle\Entity\Pizza
+     * @var Pizza
      * 
      * @ORM\ManyToOne(targetEntity="Pizza")
-     * @Assert\Type(type="Acme\PizzaBundle\Entity\Pizza", message="You have to pick a pizza from the list")
+     * @Assert\NotBlank()
      */
     protected $pizza;
 
@@ -39,7 +41,9 @@ class OrderItem
      * @var integer
      * 
      * @ORM\Column(type="integer")
-     * @Assert\Min(0)
+     * @Assert\NotBlank()
+     * @Assert\Min(1)
+     * @Assert\Type("integer")
      */
     protected $count;
 
@@ -56,7 +60,7 @@ class OrderItem
     /**
      * Set the related order
      * 
-     * @param \Acme\PizzaBundle\Entity\Order $order
+     * @param Order $order
      */
     public function setOrder(Order $order)
     {
@@ -66,7 +70,7 @@ class OrderItem
     /**
      * Get the related order
      * 
-     * @return \Acme\PizzaBundle\Entity\Order
+     * @return Order
      */
     public function getOrder()
     {
@@ -76,7 +80,7 @@ class OrderItem
     /**
      * Set the related pizza
      * 
-     * @param \Acme\PizzaBundle\Entity\Pizza $pizza
+     * @param Pizza $pizza
      */
     public function setPizza(Pizza $pizza)
     {
@@ -86,7 +90,7 @@ class OrderItem
     /**
      * Get the related pizza
      * 
-     * @return \Acme\PizzaBundle\Entity\Pizza
+     * @return Pizza
      */
     public function getPizza()
     {
@@ -124,12 +128,16 @@ class OrderItem
     public function set($name, $value)
     {
         switch ($name) {
-            case 'count':
-                $this->setCount($value);
+            case 'order':
+                $this->setOrder($value);
                 break;
 
-            case 'id':
-                $this->setId($value);
+            case 'pizza':
+                $this->setPizza($value);
+                break;
+
+            case 'count':
+                $this->setCount($value);
                 break;
 
             default:
