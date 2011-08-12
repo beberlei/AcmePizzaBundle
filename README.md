@@ -29,6 +29,11 @@ Installation
     git=http://github.com/symfony/DoctrineFixturesBundle.git
     target=/bundles/Symfony/Bundle/DoctrineFixturesBundle
 ```
+Next, run the vendors script to download the bundles:
+
+``` bash
+$ php bin/vendors install
+```
 
 ### Add to autoload.php
 
