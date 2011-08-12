@@ -45,7 +45,6 @@ $loader->registerNamespaces(array(
 
 ### Register AcmePizzaBundle to Kernel
 
-
 ``` php
 <?php
 
@@ -60,8 +59,10 @@ $loader->registerNamespaces(array(
 
 ### Create database and schema
 
-    ./app/console doctrine:database:create
-    ./app/console doctrine:schema:create
+``` bash
+$ php app/console doctrine:database:create
+$ php app/console doctrine:schema:create
+```
 
 ### Enable routing configuration
 
@@ -75,7 +76,9 @@ AcmePizzaBundle:
 
 ### Refresh asset folder
 
-    ./app/console assets:install web/
+``` bash
+$ php app/console assets:install web/
+```
 
 ### Data fixtures (optional)
 
@@ -83,7 +86,9 @@ First, make sure that your db parameters are correctly set in `app/config/parame
 You'll need to install ``Doctrine Data Fixtures`` (don't forget to add the
 path to `AppKernel.php`) and then run:
 
-    ./app/console doctrine:fixtures:load
+``` bash
+$ php app/console doctrine:fixtures:load
+```
 
 You can read about install instructions in the Symfony2 Cookbook(http://symfony.com/doc/2.0/cookbook/doctrine/doctrine_fixtures.html#setup-and-configuration)
 
