@@ -72,6 +72,9 @@
         if ($(this).text() === "Add") {
             add();
         }
+        if ($(this).text() === "Remove") {
+            $(this).closest('tr').remove();
+        }
         event.preventDefault();
     });
 
