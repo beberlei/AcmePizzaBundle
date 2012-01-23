@@ -10,5 +10,5 @@
             "Acme\\PizzaBundle\\":""
         }
     },
-    "target-dir": "Acme\\PizzaBundle\\"
+    "target-dir": "Acme/PizzaBundle"
 }
