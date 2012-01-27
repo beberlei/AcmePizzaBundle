@@ -3,7 +3,8 @@ namespace Acme\PizzaBundle\DataFixtures\ORM;
 
 use
     Doctrine\Common\DataFixtures\AbstractFixture,
-    Doctrine\Common\DataFixtures\OrderedFixtureInterface
+    Doctrine\Common\DataFixtures\OrderedFixtureInterface,
+    Doctrine\Common\Persistence\ObjectManager
     ;
 
 use
@@ -17,7 +18,7 @@ class SomeCustomers extends AbstractFixture implements OrderedFixtureInterface
         return 2;
     }
 
-    public function load($manager)
+    public function load(ObjectManager $manager)
     {
         foreach(array(
             array(
